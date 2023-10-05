@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.Pane?>
 
-<?import javafx.scene.control.TableColumn?>
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
 
-<TableView fx:id="adherentsTable" layoutY="61.0" prefHeight="339.0" prefWidth="600.0" >
+<TableView fx:id="adherentsTable" layoutY="61.0" prefHeight="339.0" prefWidth="600.0">
     <columns>
-        <TableColumn text="Nom"  fx:id="nomColumn"  />
-        <TableColumn text="Prénom" fx:id="prenomColumn" />
+        <TableColumn fx:id="nomColumn" text="Nom" />
+        <TableColumn fx:id="prenomColumn" text="Prénom" />
         <!-- Ajoutez d'autres colonnes au besoin -->
     </columns>
 </TableView>
+   <TextField layoutX="418.0" layoutY="20.0" />
 
 </Pane>
