@@ -9,4 +9,5 @@ module com.btssio.gestionadherents {
 
     opens com.btssio.gestionadherents to javafx.fxml;
     exports com.btssio.gestionadherents;
+    exports com.btssio.models;
 }

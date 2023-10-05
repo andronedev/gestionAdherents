@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<adherents>
+    <adherent>
+        <nom>nom1</nom>
+        <prenom>prenom1</prenom>
+        <adresse>adresse1</adresse>
+        <telephone>telephone1</telephone>
+        <email>email1</email>
+        <dateNaissance>dateNaissance1</dateNaissance>
+        <dateInscription>dateInscription1</dateInscription>
+        <dateFinAdhesion>dateFinAdhesion1</dateFinAdhesion>
+        <montantCotisation>montantCotisation1</montantCotisation>
+        <montantDon>montantDon1</montantDon>
+        <montantTotal>montantTotal1</montantTotal>
+    </adherent>
+    <adherent>
+        <nom>nom2</nom>
+        <prenom>prenom2</prenom>
+        <adresse>adresse2</adresse>
+        <telephone>telephone2</telephone>
+        <email>email2</email>
+        <dateNaissance>dateNaissance2</dateNaissance>
+        <dateInscription>dateInscription2</dateInscription>
+        <dateFinAdhesion>dateFinAdhesion2</dateFinAdhesion>
+        <montantCotisation>montantCotisation2</montantCotisation>
+        <montantDon>montantDon2</montantDon>
+        <montantTotal>montantTotal2</montantTotal>
+    </adherent>
+</adherents>

@@ -8,6 +8,9 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.w3c.dom.Document;
 
 
@@ -137,57 +140,20 @@ public class AdherentManager {
 
 
     //getAdherentsTableModel
-    public TableModel getAdherentsTableModel(String nom) {
+    public ObservableList<Adherent> getAdherentsObservableList(String nom) {
         ArrayList<Adherent> adherents_searched;
-        if (nom == null || nom.equals("")) {
+        if (nom == null || nom.isEmpty()) {
             adherents_searched = adherents;
         } else {
             adherents_searched = searchAdherents(nom);
         }
 
-        return new TableModel() {
+        ObservableList<Adherent> observableList = FXCollections.observableArrayList();
 
-            public int getRowCount() {
-                return adherents_searched.size();
-            }
+        // Ajoutez tous les éléments de adherents_searched à l'ObservableList
+        observableList.addAll(adherents_searched);
 
-            public int getColumnCount() {
-                return 2; // nom et prénom
-            }
-
-            public String getColumnName(int columnIndex) {
-                if (columnIndex == 0) {
-                    return "Nom";
-                } else {
-                    return "Prénom";
-                }
-            }
-
-            public Class<?> getColumnClass(int columnIndex) {
-                return String.class;
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return false;
-            }
-
-            public Object getValueAt(int rowIndex, int columnIndex) {
-                Adherent adherent = adherents_searched.get(rowIndex);
-                if (columnIndex == 0) {
-                    return adherent.getNom();
-                } else {
-                    return adherent.getPrenom();
-                }
-            }
-
-            public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-                // left empty since cells are not editable
-            }
-
-            // Méthodes pour écouter les modifications du modèle
-            public void addTableModelListener(TableModelListener l) {}
-            public void removeTableModelListener(TableModelListener l) {}
-        };
+        return observableList;
     }
 
 
