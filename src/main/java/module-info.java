@@ -5,6 +5,7 @@ module com.btssio.gestionadherents {
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
+    requires java.desktop;
 
     opens com.btssio.gestionadherents to javafx.fxml;
     exports com.btssio.gestionadherents;
