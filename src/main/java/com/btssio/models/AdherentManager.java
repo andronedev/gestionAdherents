@@ -1,172 +1,75 @@
+
 package com.btssio.models;
 
 import java.io.File;
 import java.util.ArrayList;
-
-// pour la gestion des fichiers XML
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.w3c.dom.Document;
-
-
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class AdherentManager {
 
-    private ArrayList<Adherent> adherents = new ArrayList<Adherent>();
-    private ArrayList<Club> clubs = new ArrayList<Club>();
-    public AdherentManager() {
+    private List<Reservation> reservations = new ArrayList<>();
+
+    public void addReservation(Adherent adherent, Club club, Date date, String period) {
+        Reservation reservation = new Reservation(adherent, club, date, period);
+        reservations.add(reservation);
     }
 
-    // Ajout d'un adhérent
-    public void ajouterAdherent(Adherent adherent) {
-        adherents.add(adherent);
+    public List<Reservation> getReservationsForAdherent(Adherent adherent) {
+        return reservations.stream().filter(r -> r.getAdherent().equals(adherent)).collect(Collectors.toList());
     }
 
-    // Recherche d'un adhérent
-    public Adherent rechercherAdherent(String nom) {
-        for (Adherent adherent : adherents) {
-            if (adherent.getNom().equals(nom)) {
-                return adherent;
-            }
+    public void removeReservation(Reservation reservation) {
+        reservations.remove(reservation);
+    }
+
+    public double calculateFeeForAdherent(Adherent adherent) {
+        List<Reservation> adherentReservations = getReservationsForAdherent(adherent);
+        double totalFee = 0.0;
+        for (Reservation reservation : adherentReservations) {
+            totalFee += reservation.getClub().getCategory().getTarif();
         }
-        return null;
+        return totalFee;
     }
 
-    // Modification d'un adhérent
-    public void modifierAdherent(Adherent adherent) {
-        Adherent a = rechercherAdherent(adherent.getNom());
-        if (a != null) {
-            a.setPrenom(adherent.getPrenom());
-            // etc.
-        }
-    }
 
-    // Suppression d'un adhérent
-    public void supprimerAdherent(Adherent adherent) {
-        adherents.remove(adherent);
-    }
-
-    // Récupération de tous les adhérents
-    public ArrayList<Adherent> getAdherents() {
-        return adherents;
-    }
-
-    // Chargement des adhérents depuis un fichier XML
-    public void loadAdherentsFromXML(String path) {
-        // Code pour charger les adherents à partir du fichier XML
-
-
-        // si le fichier n'existe pas, on crée un fichier vide
-        if (!new File(path).exists()) {
-            try {
-                new File(path).createNewFile();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return;
-            }
-        }
-
-
-        File file = new File(path);
-
-
-        // Lecture du fichier XML
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder;
-        Document document = null;
+    public static List<Adherent> chargerAdherents() {
+        List<Adherent> listeAdherents = new ArrayList<>();
+        
         try {
-            builder = factory.newDocumentBuilder();
-            document = builder.parse(file);
+            File adherentsXml = new File("adherents.xml");
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(adherentsXml);
+            doc.getDocumentElement().normalize();
+            
+            NodeList adherentNodes = doc.getElementsByTagName("adherent");
+            
+            for (int i = 0; i < adherentNodes.getLength(); i++) {
+                Node adherentNode = adherentNodes.item(i);
+                
+                if (adherentNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element adherentElement = (Element) adherentNode;
+                    String nom = adherentElement.getElementsByTagName("nom").item(0).getTextContent();
+                    String prenom = adherentElement.getElementsByTagName("prenom").item(0).getTextContent();
+                    Adherent adherent = new Adherent(nom, prenom);
+                    listeAdherents.add(adherent);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return;
         }
-
-        // Parcours du fichier XML et création des adhérents
-
-        for (int i = 0; i < document.getElementsByTagName("adherent").getLength(); i++) {
-            String nom = document.getElementsByTagName("nom").item(i).getTextContent();
-            String prenom = document.getElementsByTagName("prenom").item(i).getTextContent();
-            Adherent adherent = new Adherent(nom, prenom);
-            adherents.add(adherent);
-        }
-
-
-
-
-
+        
+        return listeAdherents;
     }
-
-    public void loadClubsFromXML(String path) {
-        if (!new File(path).exists()) {
-            try {
-                new File(path).createNewFile();
-            } catch (Exception e) {
-                e.printStackTrace();
-                return;
-            }
-        }
-
-        File file = new File(path);
-
-
-        // Lecture du fichier XML
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder builder;
-        Document document = null;
-        try {
-            builder = factory.newDocumentBuilder();
-            document = builder.parse(file);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return;
-        }
-
-
-        for (int i = 0; i < document.getElementsByTagName("club").getLength(); i++) {
-            String nom = document.getElementsByTagName("nom").item(i).getTextContent();
-            String adresse = document.getElementsByTagName("adresse").item(i).getTextContent();
-            Club club = new Club(nom, adresse);
-            clubs.add(club);
-        }
-
-
-    }
-
-
-    //getAdherentsTableModel
-    public ObservableList<Adherent> getAdherentsObservableList(String nom) {
-        ArrayList<Adherent> adherents_searched;
-        if (nom == null || nom.isEmpty()) {
-            adherents_searched = adherents;
-        } else {
-            adherents_searched = searchAdherents(nom);
-        }
-
-        ObservableList<Adherent> observableList = FXCollections.observableArrayList();
-
-        // Ajoutez tous les éléments de adherents_searched à l'ObservableList
-        observableList.addAll(adherents_searched);
-
-        return observableList;
-    }
-
-
-    //searchAdherents
-    public ArrayList<Adherent> searchAdherents(String query) {
-        ArrayList<Adherent> result = new ArrayList<Adherent>();
-        for (Adherent adherent : adherents) {
-            if (adherent.getNom().contains(query) || adherent.getPrenom().contains(query)) {
-                result.add(adherent);
-            }
-        }
-        return result;
-    }
-
+    
+    // Additional methods for saving, updating, and deleting adherents can be added here.
 
 }
