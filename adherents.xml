@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <adherents>
     <adherent>
-        <nom>nom1</nom>
-        <prenom>prenom1</prenom>
-        <adresse>adresse1</adresse>
-        <telephone>telephone1</telephone>
-        <email>email1</email>
-        <dateNaissance>dateNaissance1</dateNaissance>
-        <dateInscription>dateInscription1</dateInscription>
-        <dateFinAdhesion>dateFinAdhesion1</dateFinAdhesion>
-        <montantCotisation>montantCotisation1</montantCotisation>
-        <montantDon>montantDon1</montantDon>
-        <montantTotal>montantTotal1</montantTotal>
+        <nom>Dupont</nom>
+        <prenom>Jean</prenom>
+        <adresse>123 rue de la République, 75001 Paris</adresse>
+        <telephone>0123456789</telephone>
+        <email>jean.dupont@example.com</email>
+        <dateNaissance>1985-06-15</dateNaissance>
+        <dateInscription>2023-01-01</dateInscription>
+        <dateFinAdhesion>2024-01-01</dateFinAdhesion>
+        <montantCotisation>150.00</montantCotisation>
+        <montantDon>50.00</montantDon>
+        <montantTotal>200.00</montantTotal>
     </adherent>
     <adherent>
-        <nom>nom2</nom>
-        <prenom>prenom2</prenom>
-        <adresse>adresse2</adresse>
-        <telephone>telephone2</telephone>
-        <email>email2</email>
-        <dateNaissance>dateNaissance2</dateNaissance>
-        <dateInscription>dateInscription2</dateInscription>
-        <dateFinAdhesion>dateFinAdhesion2</dateFinAdhesion>
-        <montantCotisation>montantCotisation2</montantCotisation>
-        <montantDon>montantDon2</montantDon>
-        <montantTotal>montantTotal2</montantTotal>
+        <nom>Martin</nom>
+        <prenom>Marie</prenom>
+        <adresse>456 avenue des Ternes, 75017 Paris</adresse>
+        <telephone>0987654321</telephone>
+        <email>marie.martin@example.com</email>
+        <dateNaissance>1990-10-20</dateNaissance>
+        <dateInscription>2023-02-15</dateInscription>
+        <dateFinAdhesion>2024-02-15</dateFinAdhesion>
+        <montantCotisation>150.00</montantCotisation>
+        <montantDon>75.00</montantDon>
+        <montantTotal>225.00</montantTotal>
     </adherent>
 </adherents>

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
 
@@ -9,6 +15,15 @@
         <columns>
             <TableColumn fx:id="nomColumn" text="Nom" />
             <TableColumn fx:id="prenomColumn" text="Prénom" />
+            <TableColumn fx:id="emailColumn" text="Email" />
+            <TableColumn fx:id="telephoneColumn" text="Téléphone" />
+            <TableColumn fx:id="adresseColumn" text="Adresse" />
+            <TableColumn fx:id="dateNaissanceColumn" text="Date de Naissance" />
+            <TableColumn fx:id="dateInscriptionColumn" text="Date d'Inscription" />
+            <TableColumn fx:id="dateFinAdhesionColumn" text="Date Fin d'Adhésion" />
+            <TableColumn fx:id="montantCotisationColumn" text="Montant Cotisation" />
+            <TableColumn fx:id="montantDonColumn" text="Montant Don" />
+            <TableColumn fx:id="montantTotalColumn" text="Montant Total" />
         </columns>
     </TableView>
 
@@ -21,17 +36,24 @@
     <Separator layoutX="509.0" layoutY="70.0" prefHeight="17.0" prefWidth="188.0" />
 
     <!-- Add, Edit and Delete Buttons -->
-    <Button layoutX="550.0" layoutY="25.0" mnemonicParsing="false" text="Ajouter" fx:id="addButton" />
-    <Button layoutX="650.0" layoutY="25.0" mnemonicParsing="false" text="Modifier" fx:id="editButton" />
-    <Button layoutX="725.0" layoutY="25.0" mnemonicParsing="false" text="Supprimer" fx:id="deleteButton" />
+    <Button fx:id="addButton" layoutX="550.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter" />
+    <Button fx:id="editButton" layoutX="650.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier" />
+    <Button fx:id="deleteButton" layoutX="725.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" />
 
     <!-- Details pane for adding or editing adherents (can be expanded upon) -->
     <Pane layoutX="510.0" layoutY="100.0" prefHeight="300.0" prefWidth="280.0">
-        <Label text="Nom:" layoutX="10" layoutY="10" />
+        <Label layoutX="10" layoutY="10" text="Nom:" />
         <TextField fx:id="nomField" layoutX="60.0" layoutY="5.0" prefWidth="200.0" />
-        <Label text="Prénom:" layoutX="10" layoutY="50" />
+        <Label layoutX="10" layoutY="50" text="Prénom:" />
         <TextField fx:id="prenomField" layoutX="60.0" layoutY="45.0" prefWidth="200.0" />
-        <!-- Additional fields can be added here -->
+        <Label layoutX="10" layoutY="90" text="Email:" />
+        <TextField fx:id="emailField" layoutX="60.0" layoutY="85.0" prefWidth="200.0" />
+        <Label layoutX="10" layoutY="130" text="Téléphone:" />
+        <TextField fx:id="telephoneField" layoutX="60.0" layoutY="125.0" prefWidth="200.0" />
+        <Label layoutX="10" layoutY="170" text="Adresse:" />
+        <TextField fx:id="adresseField" layoutX="60.0" layoutY="165.0" prefWidth="200.0" />
+       <Button fx:id="clearButton" layoutX="60.0" layoutY="209.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="200.0" text="Annuler" />
+        <!-- Additional fields can be added here as needed -->
     </Pane>
 
 </Pane>

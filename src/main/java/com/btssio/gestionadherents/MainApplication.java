@@ -1,8 +1,8 @@
 
 package com.btssio.gestionadherents;
 
-import com.btssio.models.Adherent;
-import com.btssio.models.AdherentManager;
+import com.btssio.models.adherent.Adherent;
+import com.btssio.models.adherent.AdherentManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
