@@ -2,11 +2,10 @@ package com.btssio.gestionadherents;
 
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
+import com.btssio.models.tarif.Categorie;
+import com.btssio.models.tarif.TarifManager;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
@@ -76,6 +75,17 @@ public class MainController {
     @FXML
     private Button clearButton;
 
+    @FXML
+    private TextField categorieField;
+
+    @FXML
+    private TextField tarifField;
+
+    @FXML
+    private ChoiceBox<String> categorieChoiceBox;
+    @FXML
+    private TarifManager tarifManager;
+
     public void initialize() {
         // Ajouter un écouteur à la sélection de la table
         adherentsTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -83,6 +93,8 @@ public class MainController {
                 updateInputFields(newSelection);
             }
         });
+
+        tarifManager.getCategorieManager().getCategories().forEach(categorie -> categorieField.setText(categorie.getNom()));
     }
 
     private void updateInputFields(Adherent adherent) {
@@ -137,9 +149,11 @@ public class MainController {
 
     private List<Adherent> listeAdherents;
 
-    public void setListeAdherents(List<Adherent> listeAdherents) {
+    public void setListeAdherents(List<Adherent> listeAdherents, TarifManager tarifManager) {
         this.listeAdherents = listeAdherents;
+        this.tarifManager = tarifManager;
         updateAdherentsTable();
+
     }
 
     private void updateAdherentsTable() {
@@ -184,7 +198,7 @@ public class MainController {
             handleClearAction();
             return;
         }
-        Adherent newAdherent = new Adherent(getEmail(), getTelephone(), getNom(), getPrenom(), getAdresse(), LocalDate.now(), LocalDate.now(), LocalDate.now(), 0.0, 0.0, 0.0);
+        Adherent newAdherent = new Adherent(getEmail(), getTelephone(), getNom(), getPrenom(), getAdresse(), LocalDate.now(), LocalDate.now(), LocalDate.now(), 0.0, 0.0, 0.0, new Categorie());
         listeAdherents.add(newAdherent);
         updateAdherentsTable();
         handleClearAction();
@@ -218,4 +232,37 @@ public class MainController {
         AdherentManager.sauvegarderAdherents(listeAdherents, "adherents.xml");
     }
 
+
+    @FXML
+    public void handleSetCategorie() {
+
+    }
+
+    @FXML
+    public void handleEditCategorie() {
+
+
+    }
+
+    @FXML
+    public void handleDeleteCategorie() {
+
+
+
+    }
+
+    @FXML
+    public void handleSelectCategorie() {
+        // get the selected categorie
+        String selectedCategorie = categorieChoiceBox.getSelectionModel().getSelectedItem();
+        // get the categorie object from the tarifManager
+        Categorie categorie = tarifManager.getCategorieManager().getCategorieByName(selectedCategorie);
+        // set the categorieField text to the categorie's name
+        categorieField.setText(categorie.getNom());
+        // set the tarifField text to the categorie's tarif
+        tarifField.setText(String.valueOf(categorie.getFraisInscription()));
+
+
+
+    }
 }

@@ -22,8 +22,21 @@
         <montantCotisation>150.0</montantCotisation>
         <montantDon>75.0</montantDon>
         <montantTotal>225.0</montantTotal>
-        <nom>Martin</nom>
+        <nom>Martin 677</nom>
         <prenom>Marie</prenom>
         <telephone>0987654321</telephone>
+    </adherent>
+    <adherent>
+        <adresse>qsd</adresse>
+        <dateFinAdhesion>2023-10-23</dateFinAdhesion>
+        <dateInscription>2023-10-23</dateInscription>
+        <dateNaissance>2023-10-23</dateNaissance>
+        <email>qsd</email>
+        <montantCotisation>0.0</montantCotisation>
+        <montantDon>0.0</montantDon>
+        <montantTotal>0.0</montantTotal>
+        <nom>qsd</nom>
+        <prenom>qsd</prenom>
+        <telephone>qsd</telephone>
     </adherent>
 </adherents>

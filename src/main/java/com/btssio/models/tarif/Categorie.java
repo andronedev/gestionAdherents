@@ -11,6 +11,14 @@ public class Categorie {
     private double fraisInscription;
     private double fraisLicence;
 
+    public Categorie() {
+    }
+
+    public Categorie(String categorie, Double tarif) {
+        this.nom = categorie;
+        this.fraisInscription = tarif;
+    }
+
     public String getNom() {
         return nom;
     }
