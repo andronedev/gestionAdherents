@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
+        <adresse>123 rue de la République, 75001 Paris</adresse>
+        <dateFinAdhesion>2024-01-01</dateFinAdhesion>
+        <dateInscription>2023-01-01</dateInscription>
+        <dateNaissance>1985-06-15</dateNaissance>
+        <email>jean.dupont@example.com</email>
+        <montantCotisation>150.0</montantCotisation>
+        <montantDon>50.0</montantDon>
+        <montantTotal>200.0</montantTotal>
         <nom>Dupont</nom>
         <prenom>Jean</prenom>
-        <adresse>123 rue de la République, 75001 Paris</adresse>
         <telephone>0123456789</telephone>
-        <email>jean.dupont@example.com</email>
-        <dateNaissance>1985-06-15</dateNaissance>
-        <dateInscription>2023-01-01</dateInscription>
-        <dateFinAdhesion>2024-01-01</dateFinAdhesion>
-        <montantCotisation>150.00</montantCotisation>
-        <montantDon>50.00</montantDon>
-        <montantTotal>200.00</montantTotal>
     </adherent>
     <adherent>
+        <adresse>456 avenue des Ternes, 75017 Paris</adresse>
+        <dateFinAdhesion>2024-02-15</dateFinAdhesion>
+        <dateInscription>2023-02-15</dateInscription>
+        <dateNaissance>1990-10-20</dateNaissance>
+        <email>marie.martin@example.com</email>
+        <montantCotisation>150.0</montantCotisation>
+        <montantDon>75.0</montantDon>
+        <montantTotal>225.0</montantTotal>
         <nom>Martin</nom>
         <prenom>Marie</prenom>
-        <adresse>456 avenue des Ternes, 75017 Paris</adresse>
         <telephone>0987654321</telephone>
-        <email>marie.martin@example.com</email>
-        <dateNaissance>1990-10-20</dateNaissance>
-        <dateInscription>2023-02-15</dateInscription>
-        <dateFinAdhesion>2024-02-15</dateFinAdhesion>
-        <montantCotisation>150.00</montantCotisation>
-        <montantDon>75.00</montantDon>
-        <montantTotal>225.00</montantTotal>
     </adherent>
 </adherents>

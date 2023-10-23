@@ -1,6 +1,7 @@
 package com.btssio.gestionadherents;
 
 import com.btssio.models.adherent.Adherent;
+import com.btssio.models.adherent.AdherentManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -88,7 +89,7 @@ public class MainController {
         setNom(adherent.getNom());
         setPrenom(adherent.getPrenom());
         setEmail(adherent.getEmail());
-        setTelephone(adherent.getPhoneNumber());
+        setTelephone(adherent.getTelephone());
         setAdresse(adherent.getAdresse());
     }
 
@@ -145,7 +146,7 @@ public class MainController {
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
-        telephoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
+        telephoneColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         dateNaissanceColumn.setCellValueFactory(new PropertyValueFactory<>("dateNaissance"));
         dateInscriptionColumn.setCellValueFactory(new PropertyValueFactory<>("dateInscription"));
@@ -166,20 +167,29 @@ public class MainController {
             selectedAdherent.setNom(getNom());
             selectedAdherent.setPrenom(getPrenom());
             selectedAdherent.setEmail(getEmail());
-            selectedAdherent.setPhoneNumber(getTelephone());
+            selectedAdherent.setTelephone(getTelephone());
             selectedAdherent.setAdresse(getAdresse());
             // Mise à jour de la table pour refléter les modifications
             updateAdherentsTable();
             handleClearAction();
+            saveAdherents();
+
         }
     }
 
     @FXML
     public void handleAddAction() {
+        // si un adhérent est sélectionné, on clear les champs et on attend
+        if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
+            handleClearAction();
+            return;
+        }
         Adherent newAdherent = new Adherent(getEmail(), getTelephone(), getNom(), getPrenom(), getAdresse(), LocalDate.now(), LocalDate.now(), LocalDate.now(), 0.0, 0.0, 0.0);
         listeAdherents.add(newAdherent);
         updateAdherentsTable();
         handleClearAction();
+        saveAdherents();
+
     }
 
     @FXML
@@ -189,6 +199,7 @@ public class MainController {
             listeAdherents.remove(selectedAdherent);
             updateAdherentsTable();
             handleClearAction();
+            saveAdherents();
         }
     }
 
@@ -202,4 +213,9 @@ public class MainController {
         // unfocus the table
         adherentsTable.getSelectionModel().clearSelection();
     }
+
+    public void saveAdherents() {
+        AdherentManager.sauvegarderAdherents(listeAdherents, "adherents.xml");
+    }
+
 }

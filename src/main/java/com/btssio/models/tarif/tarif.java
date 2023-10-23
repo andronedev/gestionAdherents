@@ -1,7 +1,7 @@
 package com.btssio.models.tarif;
 
-import javax.xml.bind.annotation.*;
-
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class tarif {
     public double getCarte10Seances() {

@@ -1,11 +1,17 @@
 package com.btssio.models.adherent;
 
-import java.time.LocalDate;
 
+import com.btssio.models.utils.LocalDateAdapter;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
+import java.time.LocalDate;
+@XmlRootElement(name = "adherent")
 public class Adherent {
 
     private String email;
-    private String phoneNumber;
+    private String telephone;
     private String nom;
     private String prenom;
     private String adresse;
@@ -17,10 +23,10 @@ public class Adherent {
     private double montantTotal;
 
     // Constructeur
-    public Adherent(String email, String phoneNumber, String nom, String prenom, String adresse, LocalDate dateNaissance,
+    public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
                     LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon, double montantTotal) {
         this.email = email;
-        this.phoneNumber = phoneNumber;
+        this.telephone = telephone;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -32,8 +38,11 @@ public class Adherent {
         this.montantTotal = montantTotal;
     }
 
-    // Getters et Setters pour chaque attribut
+    public Adherent() {
+    }
 
+    // Getters et Setters pour chaque attribut
+    @XmlElement
     public String getEmail() {
         return email;
     }
@@ -41,15 +50,15 @@ public class Adherent {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
+    @XmlElement
+    public String getTelephone() {
+        return telephone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setTelephone(String phoneNumber) {
+        this.telephone = phoneNumber;
     }
-
+    @XmlElement
     public String getNom() {
         return nom;
     }
@@ -57,7 +66,7 @@ public class Adherent {
     public void setNom(String nom) {
         this.nom = nom;
     }
-
+    @XmlElement
     public String getPrenom() {
         return prenom;
     }
@@ -65,7 +74,7 @@ public class Adherent {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-
+    @XmlElement
     public String getAdresse() {
         return adresse;
     }
@@ -73,7 +82,8 @@ public class Adherent {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
-
+    @XmlElement
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getDateNaissance() {
         return dateNaissance;
     }
@@ -81,7 +91,8 @@ public class Adherent {
     public void setDateNaissance(LocalDate dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
-
+    @XmlElement
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getDateInscription() {
         return dateInscription;
     }
@@ -89,7 +100,8 @@ public class Adherent {
     public void setDateInscription(LocalDate dateInscription) {
         this.dateInscription = dateInscription;
     }
-
+    @XmlElement
+    @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getDateFinAdhesion() {
         return dateFinAdhesion;
     }
@@ -97,7 +109,7 @@ public class Adherent {
     public void setDateFinAdhesion(LocalDate dateFinAdhesion) {
         this.dateFinAdhesion = dateFinAdhesion;
     }
-
+    @XmlElement
     public double getMontantCotisation() {
         return montantCotisation;
     }
@@ -105,7 +117,7 @@ public class Adherent {
     public void setMontantCotisation(double montantCotisation) {
         this.montantCotisation = montantCotisation;
     }
-
+    @XmlElement
     public double getMontantDon() {
         return montantDon;
     }
@@ -113,7 +125,7 @@ public class Adherent {
     public void setMontantDon(double montantDon) {
         this.montantDon = montantDon;
     }
-
+    @XmlElement
     public double getMontantTotal() {
         return montantTotal;
     }
@@ -124,7 +136,7 @@ public class Adherent {
 
     @Override
     public String toString() {
-        return nom + " " + prenom + ", Email: " + email + ", Phone: " + phoneNumber + ", Adresse: " + adresse +
+        return nom + " " + prenom + ", Email: " + email + ", Phone: " + telephone + ", Adresse: " + adresse +
                 ", Date de Naissance: " + dateNaissance + ", Date d'Inscription: " + dateInscription + ", Date de Fin d'Adhésion: " + dateFinAdhesion +
                 ", Montant de Cotisation: " + montantCotisation + ", Montant de Don: " + montantDon + ", Montant Total: " + montantTotal;
     }

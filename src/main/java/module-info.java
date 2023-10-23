@@ -6,9 +6,14 @@ module com.btssio.gestionadherents {
     requires com.dlsc.formsfx;
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
-    requires java.xml.bind;
+    requires org.glassfish.jaxb.runtime;
 
     opens com.btssio.gestionadherents to javafx.fxml;
+    opens com.btssio.models.adherent to org.glassfish.jaxb.runtime, jakarta.xml.bind;
+    opens com.btssio.models.tarif to org.glassfish.jaxb.runtime, jakarta.xml.bind;
+    opens com.btssio.models.utils to org.glassfish.jaxb.runtime, jakarta.xml.bind;
     exports com.btssio.gestionadherents;
     exports com.btssio.models.adherent;
+    exports com.btssio.models.tarif;
+    exports com.btssio.models.utils;
 }

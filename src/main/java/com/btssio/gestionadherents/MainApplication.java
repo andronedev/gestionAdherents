@@ -16,7 +16,7 @@ public class MainApplication extends Application {
     public void start(Stage primaryStage) {
         try {
             // Load data from XML files
-            List<Adherent> listeAdherents = AdherentManager.chargerAdherents();
+            List<Adherent> listeAdherents = AdherentManager.chargerAdherents("adherents.xml");
             // List<Club> listeClubs = ClubManager.chargerClubs(); // To be implemented
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
