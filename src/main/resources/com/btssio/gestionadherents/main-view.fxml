@@ -33,8 +33,9 @@
     </TableView>
 
     <!-- Search functionality -->
-    <TextField layoutX="14.0" layoutY="24.0" prefHeight="35.0" prefWidth="422.0" promptText="Rechercher" />
-    <Button layoutX="448.0" layoutY="24.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="52.0" text="🔎" />
+    <TextField fx:id="InputRecherche" layoutX="14.0" layoutY="24.0" prefHeight="35.0" prefWidth="422.0" promptText="Rechercher" />
+    <Button layoutX="448.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="52.0" text="🔎" />
+    <Button layoutX="525.0" layoutY="24.0" mnemonicParsing="false" prefHeight="35.0" onAction="#handleClearSearchAction" prefWidth="131.0" text="Effacer la recherche" />
 
     <!-- Details pane for adding or editing adherents (can be expanded upon) -->
     <Pane layoutX="927.0" layoutY="102.0" prefHeight="290.0" prefWidth="347.0">
@@ -69,7 +70,7 @@
         <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
       <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
       <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
-      <Button layoutX="36.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
+      <Button fx:id="clearCatButton" layoutX="36.0" layoutY="177.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
     </Pane>
 
 
@@ -80,5 +81,7 @@
          <Image url="@logo.png" />
       </image>
    </ImageView>
+   
+
 
 </Pane>
