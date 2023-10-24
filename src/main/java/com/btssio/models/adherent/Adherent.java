@@ -7,6 +7,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.time.LocalDate;
+
 @XmlRootElement(name = "adherent")
 public class Adherent {
 
@@ -22,6 +23,7 @@ public class Adherent {
     private double montantDon;
     private double montantTotal;
     private String categorieName;
+
 
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,

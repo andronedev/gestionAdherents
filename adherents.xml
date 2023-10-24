@@ -2,14 +2,14 @@
 <adherents>
     <adherent>
         <adresse>123 rue de la République, 75001 Paris</adresse>
-        <categorieName>M9</categorieName>
+        <categorieName>M5-M7</categorieName>
         <dateFinAdhesion>2024-01-01</dateFinAdhesion>
         <dateInscription>2023-01-01</dateInscription>
         <dateNaissance>1985-06-15</dateNaissance>
         <email>jean.dupont@example.com</email>
-        <montantCotisation>220.0</montantCotisation>
+        <montantCotisation>190.0</montantCotisation>
         <montantDon>50.0</montantDon>
-        <montantTotal>270.0</montantTotal>
+        <montantTotal>240.0</montantTotal>
         <nom>Dupont</nom>
         <prenom>Jean</prenom>
         <telephone>0123456789</telephone>
