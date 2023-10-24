@@ -50,6 +50,9 @@ public class MainController {
     private TableColumn<Adherent, Double> montantTotalColumn;
 
     @FXML
+    private TableColumn<Adherent, String> categorieColumn;
+
+    @FXML
     private Button addButton;
 
     @FXML
@@ -79,7 +82,7 @@ public class MainController {
     private TextField categorieField;
 
     @FXML
-    private TextField tarifField;
+    private Label price;
 
     @FXML
     private ChoiceBox<String> categorieChoiceBox;
@@ -101,6 +104,16 @@ public class MainController {
         setEmail(adherent.getEmail());
         setTelephone(adherent.getTelephone());
         setAdresse(adherent.getAdresse());
+        // set the categorieField text to the adherent's categorieName
+        if (adherent.getCategorieName() != null) {
+            // check if in the list of categories there category exist
+            if (tarifManager.getCategorieByName(adherent.getCategorieName()) != null) {
+                categorieChoiceBox.setValue(adherent.getCategorieName());
+                price.setText(String.valueOf(tarifManager.getCategorieByName(adherent.getCategorieName()).getFraisInscription()));
+            }
+        } else {
+            clearCategorie();
+        }
     }
 
 
@@ -167,6 +180,7 @@ public class MainController {
         montantCotisationColumn.setCellValueFactory(new PropertyValueFactory<>("montantCotisation"));
         montantDonColumn.setCellValueFactory(new PropertyValueFactory<>("montantDon"));
         montantTotalColumn.setCellValueFactory(new PropertyValueFactory<>("montantTotal"));
+        categorieColumn.setCellValueFactory(new PropertyValueFactory<>("categorieName"));
 
         adherentsTable.getItems().setAll(listeAdherents);
     }
@@ -197,7 +211,7 @@ public class MainController {
             handleClearAction();
             return;
         }
-        Adherent newAdherent = new Adherent(getEmail(), getTelephone(), getNom(), getPrenom(), getAdresse(), LocalDate.now(), LocalDate.now(), LocalDate.now(), 0.0, 0.0, 0.0, new Categorie());
+        Adherent newAdherent = new Adherent(getEmail(), getTelephone(), getNom(), getPrenom(), getAdresse(), LocalDate.now(), LocalDate.now(), LocalDate.now(), 0.0, 0.0, 0.0, "");
         listeAdherents.add(newAdherent);
         updateAdherentsTable();
         handleClearAction();
@@ -234,18 +248,35 @@ public class MainController {
 
     @FXML
     public void handleSetCategorie() {
+        if(categorieChoiceBox.getSelectionModel().getSelectedItem() == null) {
+            return;
+        }
+        String selectedCategorie = categorieChoiceBox.getSelectionModel().getSelectedItem();
+        Categorie categorie = tarifManager.getCategorieByName(selectedCategorie);
+        // set this categorie's to the adherent's categorie
+        adherentsTable.getSelectionModel().getSelectedItem().setCategorieName(categorie.getNom());
 
-    }
+        // set the adherent's montantCotisation to the categorie's fraisInscription
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantCotisation(categorie.getFraisInscription());
 
-    @FXML
-    public void handleEditCategorie() {
+        // update montantTotal to the sum of montantCotisation and montantDon
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantCotisation() + adherentsTable.getSelectionModel().getSelectedItem().getMontantDon());
 
+        saveAdherents();
+        updateAdherentsTable();
 
     }
 
     @FXML
     public void handleDeleteCategorie() {
-
+        // set the adherent's categorieName to ""
+        adherentsTable.getSelectionModel().getSelectedItem().setCategorieName("");
+        // set the adherent's montantCotisation to 0
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantCotisation(0.0);
+        // update montantTotal to the sum of montantCotisation and montantDon
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantCotisation() + adherentsTable.getSelectionModel().getSelectedItem().getMontantDon());
+        saveAdherents();
+        updateAdherentsTable();
 
 
     }
@@ -255,13 +286,22 @@ public class MainController {
         // get the selected categorie
         String selectedCategorie = categorieChoiceBox.getSelectionModel().getSelectedItem();
         // get the categorie object from the tarifManager
+        if (tarifManager.getCategorieByName(selectedCategorie) == null) {
+            return;
+        }
         Categorie categorie = tarifManager.getCategorieByName(selectedCategorie);
         // set the categorieField text to the categorie's name
-        categorieField.setText(categorie.getNom());
+        categorieChoiceBox.setValue(categorie.getNom());
         // set the tarifField text to the categorie's tarif
-        tarifField.setText(String.valueOf(categorie.getFraisInscription()));
+        price.setText(String.valueOf(categorie.getFraisInscription()));
 
 
 
+    }
+
+    @FXML
+    public void clearCategorie() {
+        categorieChoiceBox.getSelectionModel().clearSelection();
+        price.setText("");
     }
 }

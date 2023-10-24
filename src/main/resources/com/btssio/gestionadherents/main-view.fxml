@@ -7,6 +7,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
@@ -23,6 +25,7 @@
             <TableColumn fx:id="dateNaissanceColumn" text="Date de Naissance" />
             <TableColumn fx:id="dateInscriptionColumn" text="Date d'Inscription" />
             <TableColumn fx:id="dateFinAdhesionColumn" text="Date Fin d'Adhésion" />
+            <TableColumn fx:id="categorieColumn" text="Catégorie" />
             <TableColumn fx:id="montantCotisationColumn" text="Montant Cotisation" />
             <TableColumn fx:id="montantDonColumn" text="Montant Don" />
             <TableColumn fx:id="montantTotalColumn" text="Montant Total" />
@@ -32,18 +35,9 @@
     <!-- Search functionality -->
     <TextField layoutX="14.0" layoutY="24.0" prefHeight="35.0" prefWidth="422.0" promptText="Rechercher" />
     <Button layoutX="448.0" layoutY="24.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="52.0" text="🔎" />
-    <Separator layoutX="884.0" layoutY="69.0" prefHeight="17.0" prefWidth="422.0" />
-
-    <!-- Add, Edit and Delete Buttons -->
-    <Button fx:id="addButton" layoutX="918.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter l'adherent" />
-    <Button fx:id="editButton" layoutX="1045.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier l'adherent" />
-    <Button fx:id="deleteButton" layoutX="1222.0" layoutY="29.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" textFill="#810000">
-      <font>
-         <Font name="System Bold" size="12.0" />
-      </font></Button>
 
     <!-- Details pane for adding or editing adherents (can be expanded upon) -->
-    <Pane layoutX="927.0" layoutY="102.0" prefHeight="305.0" prefWidth="347.0">
+    <Pane layoutX="927.0" layoutY="102.0" prefHeight="290.0" prefWidth="347.0">
         <Label layoutX="10" layoutY="10" text="Nom:" />
         <TextField fx:id="nomField" layoutX="84.0" layoutY="5.0" prefHeight="25.0" prefWidth="254.0" />
         <Label layoutX="10" layoutY="50" text="Prénom:" />
@@ -54,22 +48,37 @@
         <TextField fx:id="telephoneField" layoutX="84.0" layoutY="125.0" prefHeight="25.0" prefWidth="254.0" />
         <Label layoutX="10" layoutY="170" text="Adresse:" />
         <TextField fx:id="adresseField" layoutX="84.0" layoutY="165.0" prefHeight="25.0" prefWidth="254.0" />
-       <Button fx:id="clearButton" cancelButton="true" layoutX="6.0" layoutY="207.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
+       <Button fx:id="clearButton" cancelButton="true" layoutX="8.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
+       <Separator layoutX="-43.0" layoutY="297.0" prefHeight="17.0" prefWidth="443.0" />
+   
+       <!-- Add, Edit and Delete Buttons -->
+       <Button fx:id="addButton" layoutX="8.0" layoutY="217.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter l'adherent" />
+       <Button fx:id="editButton" layoutX="132.0" layoutY="217.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier l'adherent" />
+       <Button fx:id="deleteButton" layoutX="264.0" layoutY="217.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" textFill="#810000">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
         <!-- Additional fields can be added here as needed -->
     </Pane>
 
     <Pane layoutX="900.0" layoutY="420.0" prefHeight="250.0" prefWidth="400.0">
         <Label layoutX="36.0" layoutY="10.0" text="Catégorie:" />
         <Label layoutX="36.0" layoutY="49.0" text="Tarif:" />
-        <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Ajouter Catégorie" />
-        <Button fx:id="editCategorieButton" layoutX="166.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleEditCategorie" text="Modifier Catégorie" />
-        <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer Catégorie" />
-      <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" prefHeight="25.0" prefWidth="254.0" onAction="#handleSelectCategorie"/>
-      <Label id="price" layoutX="112.0" layoutY="49.0" text="0" />
+        <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Définir cette catégorie a l'utilisateur" />
+        <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
+      <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
+      <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
+      <Button layoutX="36.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
     </Pane>
 
 
     <!-- Separators for visual division -->
     <Separator layoutX="875.0" orientation="VERTICAL" prefHeight="671.0" prefWidth="21.0" />
+   <ImageView fitHeight="99.0" fitWidth="167.0" layoutX="1145.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+         <Image url="@logo.png" />
+      </image>
+   </ImageView>
 
 </Pane>

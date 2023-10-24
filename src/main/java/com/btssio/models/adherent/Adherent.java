@@ -1,7 +1,6 @@
 package com.btssio.models.adherent;
 
 
-import com.btssio.models.tarif.Categorie;
 import com.btssio.models.utils.LocalDateAdapter;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -22,11 +21,11 @@ public class Adherent {
     private double montantCotisation;
     private double montantDon;
     private double montantTotal;
-    private Categorie categorie;
+    private String categorieName;
 
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
-                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon, double montantTotal, Categorie categorie) {
+                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon, double montantTotal, String categorieName) {
         this.email = email;
         this.telephone = telephone;
         this.nom = nom;
@@ -38,7 +37,7 @@ public class Adherent {
         this.montantCotisation = montantCotisation;
         this.montantDon = montantDon;
         this.montantTotal = montantTotal;
-        this.categorie = categorie;
+        this.categorieName = categorieName;
     }
 
     public Adherent() {
@@ -138,8 +137,12 @@ public class Adherent {
     }
 
     @XmlElement
-    public Categorie getCategorie() {
-        return categorie;
+    public String getCategorieName() {
+        return categorieName;
+    }
+
+    public void setCategorieName(String categorie) {
+        this.categorieName = categorie;
     }
 
     @Override
