@@ -64,7 +64,7 @@
         <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Ajouter Catégorie" />
         <Button fx:id="editCategorieButton" layoutX="166.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleEditCategorie" text="Modifier Catégorie" />
         <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer Catégorie" />
-      <ChoiceBox id="categories" layoutX="112.0" layoutY="6.0" prefHeight="25.0" prefWidth="254.0" onAction="#handleSelectCategorie"/>
+      <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" prefHeight="25.0" prefWidth="254.0" onAction="#handleSelectCategorie"/>
       <Label id="price" layoutX="112.0" layoutY="49.0" text="0" />
     </Pane>
 

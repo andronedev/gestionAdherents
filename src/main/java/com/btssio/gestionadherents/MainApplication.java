@@ -20,7 +20,9 @@ public class MainApplication extends Application {
             // Load data from XML files
             List<Adherent> listeAdherents = AdherentManager.chargerAdherents("adherents.xml");
             // List<Club> listeClubs = ClubManager.chargerClubs(); // To be implemented
-            TarifManager tarifManager = new TarifManager("tarifs.xml");
+            TarifManager tarifManager = new TarifManager();
+            tarifManager.loadFromXml("tarifs.xml");
+            System.out.println(tarifManager.getCategories());
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             Parent root = loader.load();

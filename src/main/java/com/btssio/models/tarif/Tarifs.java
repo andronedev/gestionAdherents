@@ -1,7 +1,7 @@
 package com.btssio.models.tarif;
 
-
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlElementWrapper;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
@@ -10,10 +10,9 @@ import java.util.List;
 public class Tarifs {
     private List<Categorie> categories;
     private Options options;
-    private tarif autresFormules;
+    private AutresFormules autresFormules;
 
-    // getters et setters...
-
+    @XmlElementWrapper(name = "Categories")
     @XmlElement(name = "Categorie")
     public List<Categorie> getCategories() {
         return categories;
@@ -23,6 +22,7 @@ public class Tarifs {
         this.categories = categories;
     }
 
+    @XmlElement(name = "Options")
     public Options getOptions() {
         return options;
     }
@@ -31,11 +31,12 @@ public class Tarifs {
         this.options = options;
     }
 
-    public tarif getAutresFormules() {
+    @XmlElement(name = "AutresFormules")
+    public AutresFormules getAutresFormules() {
         return autresFormules;
     }
 
-    public void setAutresFormules(tarif autresFormules) {
+    public void setAutresFormules(AutresFormules autresFormules) {
         this.autresFormules = autresFormules;
     }
 }

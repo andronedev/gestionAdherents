@@ -11,21 +11,30 @@ import java.util.List;
 
 public class TarifManager {
     private Tarifs tarifs;
-    private CategorieManager categorieManager;
+    private List<Categorie> categories;
 
-    {
-        categorieManager = new CategorieManager(List.of());
+    public List<Categorie> getCategories() {
+        return categories;
     }
 
-    public CategorieManager getCategorieManager() {
-        return categorieManager;
+    public Categorie getCategorieByName(String nom) {
+        for (Categorie categorie : categories) {
+            if (categorie.getNom().equals(nom)) {
+                return categorie;
+            }
+        }
+        return null;
     }
 
-    public TarifManager(String pathToXml) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(Tarifs.class);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-        this.tarifs = (Tarifs) unmarshaller.unmarshal(new File(pathToXml));
-        this.categorieManager = new CategorieManager(tarifs.getCategories());
+    public void addCategorie(Categorie categorie) {
+        categories.add(categorie);
+    }
+
+    public void removeCategorie(String nom) {
+        categories.removeIf(categorie -> categorie.getNom().equals(nom));
+    }
+
+    public TarifManager() {
     }
     public void saveToXml(String pathToXml) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Tarifs.class);
@@ -34,5 +43,10 @@ public class TarifManager {
         marshaller.marshal(tarifs, new File(pathToXml));
     }
 
-
+    public void loadFromXml(String pathToXml) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(Tarifs.class);
+        Unmarshaller unmarshaller = context.createUnmarshaller();
+        this.tarifs = (Tarifs) unmarshaller.unmarshal(new File(pathToXml));
+        this.categories = tarifs.getCategories();
+    }
 }

@@ -1,24 +1,17 @@
 package com.btssio.models.tarif;
 
-import jakarta.xml.bind.annotation.XmlAccessType;
-import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
-@XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name = "Categorie")
 public class Categorie {
     private String nom;
     private int anneeDebut;
     private int anneeFin;
-    private double fraisInscription;
-    private double fraisLicence;
+    private int fraisInscription;
+    private int fraisLicence;
 
-    public Categorie() {
-    }
-
-    public Categorie(String categorie, Double tarif) {
-        this.nom = categorie;
-        this.fraisInscription = tarif;
-    }
-
+    @XmlElement(name = "Nom")
     public String getNom() {
         return nom;
     }
@@ -27,6 +20,7 @@ public class Categorie {
         this.nom = nom;
     }
 
+    @XmlElement(name = "AnneeDebut")
     public int getAnneeDebut() {
         return anneeDebut;
     }
@@ -35,6 +29,7 @@ public class Categorie {
         this.anneeDebut = anneeDebut;
     }
 
+    @XmlElement(name = "AnneeFin")
     public int getAnneeFin() {
         return anneeFin;
     }
@@ -43,21 +38,21 @@ public class Categorie {
         this.anneeFin = anneeFin;
     }
 
-    public double getFraisInscription() {
+    @XmlElement(name = "FraisInscription")
+    public int getFraisInscription() {
         return fraisInscription;
     }
 
-    public void setFraisInscription(double fraisInscription) {
+    public void setFraisInscription(int fraisInscription) {
         this.fraisInscription = fraisInscription;
     }
 
-    public double getFraisLicence() {
+    @XmlElement(name = "FraisLicence")
+    public int getFraisLicence() {
         return fraisLicence;
     }
 
-    public void setFraisLicence(double fraisLicence) {
+    public void setFraisLicence(int fraisLicence) {
         this.fraisLicence = fraisLicence;
     }
-
-    // getters et setters...
 }

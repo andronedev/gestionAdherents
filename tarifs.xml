@@ -1,40 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tarifs>
-    <Categorie>
-        <Nom>M5-M7</Nom>
-        <AnneeDebut>2016</AnneeDebut>
-        <AnneeFin>2018</AnneeFin>
-        <Inscription>190</Inscription>
-        <Licence>28</Licence>
-    </Categorie>
-    <Categorie>
-        <Nom>M9</Nom>
-        <AnneeDebut>2014</AnneeDebut>
-        <AnneeFin>2015</AnneeFin>
-        <Inscription>220</Inscription>
-        <Licence>45</Licence>
-    </Categorie>
-    <Categorie>
-        <Nom>M11</Nom>
-        <AnneeDebut>2012</AnneeDebut>
-        <AnneeFin>2013</AnneeFin>
-        <Inscription>220</Inscription>
-        <Licence>55</Licence>
-    </Categorie>
-    <Categorie>
-        <Nom>M13-M20</Nom>
-        <AnneeDebut>2003</AnneeDebut>
-        <AnneeFin>2011</AnneeFin>
-        <Inscription>220</Inscription>
-        <Licence>55</Licence>
-    </Categorie>
-    <Categorie>
-        <Nom>M23-veterans</Nom>
-        <AnneeDebut>2002</AnneeDebut>
-        <AnneeFin>2002</AnneeFin>
-        <Inscription>255</Inscription>
-        <Licence>55</Licence>
-    </Categorie>
+    <Categories>
+        <Categorie>
+            <Nom>M5-M7</Nom>
+            <AnneeDebut>2016</AnneeDebut>
+            <AnneeFin>2018</AnneeFin>
+            <FraisInscription>190</FraisInscription>
+            <FraisLicence>28</FraisLicence>
+        </Categorie>
+        <Categorie>
+            <Nom>M9</Nom>
+            <AnneeDebut>2014</AnneeDebut>
+            <AnneeFin>2015</AnneeFin>
+            <FraisInscription>220</FraisInscription>
+            <FraisLicence>45</FraisLicence>
+        </Categorie>
+
+    </Categories>
+    <!-- ... d'autres catégories ... -->
     <Options>
         <LicenceSansAssurance>-0.21</LicenceSansAssurance>
         <LicenceAvecAssurance>1.49</LicenceAvecAssurance>

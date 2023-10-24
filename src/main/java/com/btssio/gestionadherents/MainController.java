@@ -84,7 +84,7 @@ public class MainController {
     @FXML
     private ChoiceBox<String> categorieChoiceBox;
     @FXML
-    private TarifManager tarifManager;
+    private TarifManager tarifManager ;
 
     public void initialize() {
         // Ajouter un écouteur à la sélection de la table
@@ -93,8 +93,6 @@ public class MainController {
                 updateInputFields(newSelection);
             }
         });
-
-        tarifManager.getCategorieManager().getCategories().forEach(categorie -> categorieField.setText(categorie.getNom()));
     }
 
     private void updateInputFields(Adherent adherent) {
@@ -154,6 +152,7 @@ public class MainController {
         this.tarifManager = tarifManager;
         updateAdherentsTable();
 
+        tarifManager.getCategories().forEach(categorie -> categorieChoiceBox.getItems().add(categorie.getNom()));
     }
 
     private void updateAdherentsTable() {
@@ -256,7 +255,7 @@ public class MainController {
         // get the selected categorie
         String selectedCategorie = categorieChoiceBox.getSelectionModel().getSelectedItem();
         // get the categorie object from the tarifManager
-        Categorie categorie = tarifManager.getCategorieManager().getCategorieByName(selectedCategorie);
+        Categorie categorie = tarifManager.getCategorieByName(selectedCategorie);
         // set the categorieField text to the categorie's name
         categorieField.setText(categorie.getNom());
         // set the tarifField text to the categorie's tarif
