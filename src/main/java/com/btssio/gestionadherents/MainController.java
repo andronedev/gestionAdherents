@@ -10,7 +10,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
 import java.util.List;
-
 public class MainController {
 
     @FXML
@@ -226,6 +225,7 @@ public class MainController {
             listeAdherents.remove(selectedAdherent);
             updateAdherentsTable();
             handleClearAction();
+            clearCategorie();
             saveAdherents();
         }
     }

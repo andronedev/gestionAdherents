@@ -2,13 +2,14 @@
 <adherents>
     <adherent>
         <adresse>123 rue de la République, 75001 Paris</adresse>
+        <categorieName>M9</categorieName>
         <dateFinAdhesion>2024-01-01</dateFinAdhesion>
         <dateInscription>2023-01-01</dateInscription>
         <dateNaissance>1985-06-15</dateNaissance>
         <email>jean.dupont@example.com</email>
-        <montantCotisation>150.0</montantCotisation>
+        <montantCotisation>220.0</montantCotisation>
         <montantDon>50.0</montantDon>
-        <montantTotal>200.0</montantTotal>
+        <montantTotal>270.0</montantTotal>
         <nom>Dupont</nom>
         <prenom>Jean</prenom>
         <telephone>0123456789</telephone>
@@ -28,14 +29,14 @@
     </adherent>
     <adherent>
         <adresse>qsd</adresse>
-        <categorieName>M5-M7</categorieName>
+        <categorieName></categorieName>
         <dateFinAdhesion>2023-10-23</dateFinAdhesion>
         <dateInscription>2023-10-23</dateInscription>
         <dateNaissance>2023-10-23</dateNaissance>
         <email>qsd</email>
-        <montantCotisation>190.0</montantCotisation>
+        <montantCotisation>0.0</montantCotisation>
         <montantDon>0.0</montantDon>
-        <montantTotal>190.0</montantTotal>
+        <montantTotal>0.0</montantTotal>
         <nom>qsd</nom>
         <prenom>qsd</prenom>
         <telephone>qsd</telephone>
