@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="671.0" prefWidth="1312.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="825.0" prefWidth="1677.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
 
     <!-- Table for displaying adherents -->
-    <TableView fx:id="adherentsTable" layoutX="1.0" layoutY="77.0" prefHeight="594.0" prefWidth="884.0">
+    <TableView fx:id="adherentsTable" layoutX="14.0" layoutY="76.0" prefHeight="594.0" prefWidth="744.0">
         <columns>
             <TableColumn fx:id="nomColumn" text="Nom" />
             <TableColumn fx:id="prenomColumn" text="Prénom" />
@@ -35,9 +38,9 @@
     <!-- Search functionality -->
     <TextField fx:id="InputRecherche" layoutX="14.0" layoutY="24.0" prefHeight="35.0" prefWidth="422.0" promptText="Rechercher" />
     <Button layoutX="448.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="52.0" text="🔎" />
-    <Button layoutX="525.0" layoutY="24.0" mnemonicParsing="false" prefHeight="35.0" onAction="#handleClearSearchAction" prefWidth="131.0" text="Effacer la recherche" />
+    <Button layoutX="525.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleClearSearchAction" prefHeight="35.0" prefWidth="131.0" text="Effacer la recherche" />
 
-    <!-- Details pane for adding or editing adherents (can be expanded upon) -->
+       <!-- Details pane for adding or editing adherents (can be expanded upon) -->
     <Pane layoutX="927.0" layoutY="102.0" prefHeight="290.0" prefWidth="347.0">
         <Label layoutX="10" layoutY="10" text="Nom:" />
         <TextField fx:id="nomField" layoutX="84.0" layoutY="5.0" prefHeight="25.0" prefWidth="254.0" />
@@ -52,7 +55,7 @@
        <Button fx:id="clearButton" cancelButton="true" layoutX="8.0" layoutY="264.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
        <Separator layoutX="-43.0" layoutY="297.0" prefHeight="17.0" prefWidth="443.0" />
    
-       <!-- Add, Edit and Delete Buttons -->
+          <!-- Add, Edit and Delete Buttons -->
        <Button fx:id="addButton" layoutX="8.0" layoutY="217.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter l'adherent" />
        <Button fx:id="editButton" layoutX="132.0" layoutY="217.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier l'adherent" />
        <Button fx:id="deleteButton" layoutX="264.0" layoutY="217.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" textFill="#810000">
@@ -63,24 +66,108 @@
         <!-- Additional fields can be added here as needed -->
     </Pane>
 
-    <Pane layoutX="900.0" layoutY="420.0" prefHeight="250.0" prefWidth="400.0">
-        <Label layoutX="36.0" layoutY="10.0" text="Catégorie:" />
-        <Label layoutX="36.0" layoutY="49.0" text="Tarif:" />
-        <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Définir cette catégorie a l'utilisateur" />
-        <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
-      <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
-      <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
-      <Button fx:id="clearCatButton" layoutX="36.0" layoutY="177.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
-    </Pane>
-
 
     <!-- Separators for visual division -->
-    <Separator layoutX="875.0" orientation="VERTICAL" prefHeight="671.0" prefWidth="21.0" />
+    <Separator layoutX="890.0" orientation="VERTICAL" prefHeight="671.0" prefWidth="6.0" />
    <ImageView fitHeight="99.0" fitWidth="167.0" layoutX="1145.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@logo.png" />
       </image>
    </ImageView>
+   <Accordion layoutX="1388.0" layoutY="161.0" />
+   <Pane layoutX="953.0" layoutY="449.0" prefHeight="209.0" prefWidth="359.0">
+      <children>
+         <Accordion layoutX="52.0" layoutY="20.0">
+            <panes>
+               <TitledPane animated="false" prefHeight="350.0" prefWidth="570.0" text="Nés entre 2003 et 2011 (M13 – M20)">
+                  <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="567.0">
+                        <children>
+                           <CheckBox layoutX="34.0" layoutY="5.0" mnemonicParsing="false" text="Inscription + adhésion (220 euro)" />
+                           <CheckBox layoutX="34.0" layoutY="30.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" text="Licence FFE (55 euro)" />
+                           <Label layoutX="14.0" layoutY="48.0" prefHeight="18.0" prefWidth="111.0" text="options :" />
+                           <CheckBox layoutX="14.0" layoutY="66.0" mnemonicParsing="false" text="Licence sans assurance (-0,21 euro)" />
+                           <CheckBox layoutX="13.0" layoutY="84.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="264.0" text="Licence avec assurance renforcée (1.49 euro) " />
+                           <CheckBox layoutX="14.0" layoutY="110.0" mnemonicParsing="false" text="Réduction famille 2e adhérent (- 28,50 €)" />
+                           <CheckBox layoutX="14.0" layoutY="136.0" mnemonicParsing="false" text="Réduction famille 3e adhérent et plus (- 38 €)" />
+                           <Label layoutX="14.0" layoutY="164.0" text="AUTRES FORMULES :" />
+                           <CheckBox layoutX="21.0" layoutY="182.0" mnemonicParsing="false" text="Inscription + adhésion carte 10 séances&#10;pour tireurs confirmés (licence en sus) 95 €&#10;" />
+                           <Label layoutX="20.0" layoutY="227.0" text="Dispositif d’aide mobilisé (précisez lequel) :" />
+                           <TextField layoutX="51.0" layoutY="245.0" />
+                           <Pane layoutX="284.0" layoutY="73.0" prefHeight="217.0" prefWidth="282.0">
+                              <children>
+                                 <Label layoutX="22.0" layoutY="60.0" prefHeight="17.0" prefWidth="58.0" text="prix total :" />
+                                 <Button fx:id="addCategorieButton1" layoutX="22.0" layoutY="96.0" mnemonicParsing="false" onAction="#handleSetCategorie" prefHeight="25.0" prefWidth="177.0" text="Appliquer ce tarif à l'adhérent" />
+                                 <Button fx:id="deleteCategorieButton1" layoutX="22.0" layoutY="133.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Annuler le tarif pour cet utilisateur" textFill="RED" />
+                                 <Label fx:id="price1" layoutX="80.0" layoutY="60.0" prefHeight="17.0" prefWidth="6.0" text="0" />
+                                 <Button fx:id="clearCatButton1" layoutX="25.0" layoutY="171.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
+                                 <Separator layoutX="-3.0" layoutY="-79.0" orientation="VERTICAL" prefHeight="328.0" prefWidth="6.0" />
+                              </children>
+                           </Pane>
+                        </children>
+                     </AnchorPane>
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" prefHeight="359.0" prefWidth="570.0" text="Nés en 2002 et avant(M23 - seniors –vétérans)">
+                  <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="567.0">
+                        <children>
+                           <CheckBox layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Inscription + adhésion (255 euro)" />
+                           <CheckBox layoutX="14.0" layoutY="39.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" text="Licence FFE (55 euro)" />
+                           <Label layoutX="14.0" layoutY="64.0" prefHeight="18.0" prefWidth="111.0" text="options :" />
+                           <CheckBox layoutX="21.0" layoutY="82.0" mnemonicParsing="false" text="Licence sans assurance (-0,21 euro)" />
+                           <CheckBox layoutX="21.0" layoutY="100.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="264.0" text="Licence avec assurance renforcée (1.49 euro) " />
+                           <CheckBox layoutX="21.0" layoutY="126.0" mnemonicParsing="false" text="Réduction famille 2e adhérent (- 33,75 €)" />
+                           <CheckBox layoutX="22.0" layoutY="150.0" mnemonicParsing="false" text="Réduction famille 3e adhérent et plus (- 45 €)" />
+                           <Label layoutX="22.0" layoutY="179.0" text="AUTRES FORMULES :" />
+                           <CheckBox layoutX="16.0" layoutY="208.0" mnemonicParsing="false" text="Inscription + adhésion carte 10 séances&#10;pour tireurs confirmés (licence en sus) 95 €&#10;" />
+                           <Label layoutX="18.0" layoutY="252.0" text="Dispositif d’aide mobilisé (précisez lequel) :" />
+                           <TextField layoutX="50.0" layoutY="279.0" />
+                        
+                            <Pane layoutX="312.0" layoutY="79.0" prefHeight="217.0" prefWidth="282.0">
+                                <Label layoutX="22.0" layoutY="60.0" prefHeight="17.0" prefWidth="58.0" text="prix total :" />
+                                <Button fx:id="addCategorieButton" layoutX="22.0" layoutY="96.0" mnemonicParsing="false" onAction="#handleSetCategorie" prefHeight="25.0" prefWidth="177.0" text="Appliquer ce tarif à l'adhérent" />
+                                <Button fx:id="deleteCategorieButton" layoutX="22.0" layoutY="133.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Annuler le tarif pour cet utilisateur" textFill="RED" />
+                              <Label fx:id="price" layoutX="80.0" layoutY="60.0" prefHeight="17.0" prefWidth="6.0" text="0" />
+                              <Button fx:id="clearCatButton" layoutX="25.0" layoutY="171.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
+                            </Pane>
+                        </children>
+                     </AnchorPane>
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" prefHeight="337.0" prefWidth="570.0" text="Nés entre2016 et 2018(M5 – M7)">
+                  <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="454.0" prefWidth="568.0">
+                        <children>
+                           <CheckBox layoutX="19.0" layoutY="21.0" mnemonicParsing="false" text="Inscription + adhésion (190 euro)" />
+                           <CheckBox layoutX="19.0" layoutY="46.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="150.0" text="Licence FFE (28 euro)" />
+                           <Label layoutX="19.0" layoutY="73.0" prefHeight="18.0" prefWidth="111.0" text="options :" />
+                           <CheckBox layoutX="26.0" layoutY="91.0" mnemonicParsing="false" text="Licence sans assurance (-0,21 euro)" />
+                           <CheckBox layoutX="26.0" layoutY="109.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="264.0" text="Licence avec assurance renforcée (1.49 euro) " />
+                           <CheckBox layoutX="26.0" layoutY="135.0" mnemonicParsing="false" text="Réduction famille 2e adhérent (- 24 €)" />
+                           <CheckBox layoutX="27.0" layoutY="156.0" mnemonicParsing="false" text="Réduction famille 3e adhérent et plus (- 32 €)" />
+                           <Label layoutX="19.0" layoutY="181.0" text="AUTRES FORMULES :" />
+                           <CheckBox layoutX="21.0" layoutY="199.0" mnemonicParsing="false" text="Inscription + adhésion carte 10 séances&#10;pour tireurs confirmés (licence en sus) 95 €&#10;" />
+                           <Label layoutX="26.0" layoutY="243.0" text="Dispositif d’aide mobilisé (précisez lequel) :" />
+                           <TextField layoutX="55.0" layoutY="261.0" />
+                        </children>
+                     </AnchorPane>
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" prefHeight="47.0" prefWidth="278.0" text="Nés en 2014 et 2015(M9)">
+                  <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+               </TitledPane>
+               <TitledPane animated="false" prefHeight="77.0" prefWidth="570.0" text="Nés en 2012 et 2013(M11)">
+                  <content>
+                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+               </TitledPane>
+            </panes>
+         </Accordion>
+      </children>
+   </Pane>
    
 
 

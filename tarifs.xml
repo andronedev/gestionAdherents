@@ -1,30 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tarifs>
-    <Categories>
-        <Categorie>
-            <Nom>M5-M7</Nom>
-            <AnneeDebut>2016</AnneeDebut>
-            <AnneeFin>2018</AnneeFin>
-            <FraisInscription>190</FraisInscription>
-            <FraisLicence>28</FraisLicence>
-        </Categorie>
-        <Categorie>
-            <Nom>M9</Nom>
-            <AnneeDebut>2014</AnneeDebut>
-            <AnneeFin>2015</AnneeFin>
-            <FraisInscription>220</FraisInscription>
-            <FraisLicence>45</FraisLicence>
-        </Categorie>
 
-    </Categories>
-    <!-- ... d'autres catégories ... -->
-    <Options>
-        <LicenceSansAssurance>-0.21</LicenceSansAssurance>
-        <LicenceAvecAssurance>1.49</LicenceAvecAssurance>
-        <ReductionFamille2e>24, 28.5, 33.75</ReductionFamille2e>
-        <ReductionFamille3e>32, 38, 45</ReductionFamille3e>
-    </Options>
-    <AutresFormules>
-        <Carte10Seances>95</Carte10Seances>
-    </AutresFormules>
+    <Categorie id="M13-M20">
+        <Nom>Nés entre 2003 et 2011 (M13 – M20)</Nom>
+
+        <Tarif>
+            <InscriptionAdhesion>220</InscriptionAdhesion>
+            <LicenceFFE>55</LicenceFFE>
+        </Tarif>
+
+        <Options>
+            <LicenceSansAssurance>-0.21</LicenceSansAssurance>
+            <LicenceAvecAssuranceRenforcee>1.49</LicenceAvecAssuranceRenforcee>
+            <ReductionFamille>
+                <DeuxiemeAdherent>-28.5</DeuxiemeAdherent>
+                <TroisiemeAdherentEtPlus>-38</TroisiemeAdherentEtPlus>
+            </ReductionFamille>
+        </Options>
+
+        <AutresFormules>
+            <InscriptionAdhesionCarte10SeancesTireursConfirmes>95</InscriptionAdhesionCarte10SeancesTireursConfirmes>
+        </AutresFormules>
+
+        <DispositifAide>
+            <!-- Le dispositif d'aide semble être une entrée texte que l'utilisateur pourrait remplir.
+                 Il peut donc être géré séparément dans votre application, ou conservé ici pour la structure. -->
+            <Type></Type>
+        </DispositifAide>
+    </Categorie>
+
+    <Categorie id="M23">
+        <Nom>Nés en 2002 et avant (M23 - seniors –vétérans)</Nom>
+        <!-- Les éléments tarifaires (Inscription, Options, etc.) pour cette catégorie seront insérés ici -->
+    </Categorie>
+
+    <Categorie id="M5-M7">
+        <Nom>Nés entre 2016 et 2018 (M5 – M7)</Nom>
+        <!-- Les éléments tarifaires (Inscription, Options, etc.) pour cette catégorie seront insérés ici -->
+    </Categorie>
+
+    <Categorie id="M9">
+        <Nom>Nés en 2014 et 2015 (M9)</Nom>
+        <!-- Les éléments tarifaires (Inscription, Options, etc.) pour cette catégorie seront insérés ici -->
+    </Categorie>
+
+    <Categorie id="M11">
+        <Nom>Nés en 2012 et 2013 (M11)</Nom>
+        <!-- Les éléments tarifaires (Inscription, Options, etc.) pour cette catégorie seront insérés ici -->
+    </Categorie>
+
 </Tarifs>
+
+
