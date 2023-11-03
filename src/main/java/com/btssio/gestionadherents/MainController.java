@@ -4,8 +4,6 @@ import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
 import com.btssio.models.tarif.Categorie;
 import com.btssio.models.tarif.TarifManager;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -66,9 +64,6 @@ public class MainController {
     private TextField nomField;
 
     @FXML
-    private TextField InputRecherche;
-
-    @FXML
     private TextField prenomField;
 
     @FXML
@@ -92,9 +87,6 @@ public class MainController {
     private ChoiceBox<String> categorieChoiceBox;
     @FXML
     private TarifManager tarifManager ;
-
-    private boolean rechercheActive = false;
-
 
     public void initialize() {
         // Ajouter un écouteur à la sélection de la table
@@ -306,57 +298,10 @@ public class MainController {
 
 
     }
-    @FXML
-    private void handleSearchAction() {
-        String searchString = InputRecherche.getText().trim().toLowerCase();
-
-        if (!searchString.isEmpty()) {
-            // Créez une liste temporaire pour stocker les adhérents correspondants à la recherche.
-            ObservableList<Adherent> matchingAdherents = FXCollections.observableArrayList();
-
-            // Parcourez la liste des adhérents et ajoutez ceux qui correspondent à la recherche.
-            for (Adherent adherent : listeAdherents) {
-                String nom = adherent.getNom().toLowerCase();
-                String prenom = adherent.getPrenom().toLowerCase();
-
-                // Vérifiez si le nom ou le prénom contient la chaîne de recherche.
-                if (nom.contains(searchString) || prenom.contains(searchString)) {
-                    matchingAdherents.add(adherent);
-                }
-            }
-
-            // Si au moins un adhérent correspond à la recherche, affichez uniquement celui-ci.
-            if (!matchingAdherents.isEmpty()) {
-                adherentsTable.setItems(matchingAdherents);
-                rechercheActive = true; // Mettez à jour l'état de la recherche
-            } else {
-                rechercheActive = false; // Aucun adhérent trouvé, mettez à jour l'état de la recherche
-            }
-        } else {
-            rechercheActive = false; // La recherche est vide, mettez à jour l'état de la recherche
-        }
-    }
-
-    @FXML
-    private void handleClearSearchAction() {
-        InputRecherche.clear(); // Effacez le contenu du champ de recherche
-
-        // Si la recherche était active, rétablissez la liste complète des adhérents.
-        if (rechercheActive) {
-            adherentsTable.setItems(FXCollections.observableArrayList(listeAdherents));
-            rechercheActive = false; // Mettez à jour l'état de la recherche
-        }
-    }
-
-
-
-
 
     @FXML
     public void clearCategorie() {
         categorieChoiceBox.getSelectionModel().clearSelection();
         price.setText("");
     }
-
-
 }
