@@ -7,6 +7,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @XmlRootElement(name = "adherent")
 public class Adherent {
@@ -24,10 +25,25 @@ public class Adherent {
     private double montantTotal;
     private String categorieName;
 
+    private String nomNaissance;
+    private String genre; // Peut être "Masculin" ou "Féminin", à déterminer en fonction de la logique de l'application
+    private String paysVilleNaissance;
+    private String nationalite;
+    private String codePostal;
+    private String ville;
+    private String deuxiemeTelephone;
+    // Supposant que "armes" représente un ensemble d'armes préférées ou utilisées par l'adhérent
+    private List<String> armes; // Pourrait être une liste d'enum ou de String selon les armes disponibles
+    private String pratique; // Peut être "Loisir" ou "Compétition"
+    private String lateralite; // Peut être "gaucher" ou "droitier"
 
+    private String responsableLegal;
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
-                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon, double montantTotal, String categorieName) {
+                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon,
+                    double montantTotal, String categorieName, String nomNaissance, String genre, String PaysVilleNaissance,
+                     String nationalite, String codePostal, String ville, String deuxiemeTelephone,
+                    List<String> armes, String pratique, String lateralite,String responsableLegal) {
         this.email = email;
         this.telephone = telephone;
         this.nom = nom;
@@ -40,6 +56,19 @@ public class Adherent {
         this.montantDon = montantDon;
         this.montantTotal = montantTotal;
         this.categorieName = categorieName;
+
+        // Initialiser les nouveaux champs avec les paramètres
+        this.nomNaissance = nomNaissance;
+        this.genre = genre;
+        this.paysVilleNaissance = PaysVilleNaissance;
+        this.nationalite = nationalite;
+        this.codePostal = codePostal;
+        this.ville = ville;
+        this.deuxiemeTelephone = deuxiemeTelephone;
+        this.armes = armes;
+        this.pratique = pratique;
+        this.lateralite = lateralite;
+        this.responsableLegal = responsableLegal;
     }
 
     public Adherent() {
@@ -146,11 +175,103 @@ public class Adherent {
     public void setCategorieName(String categorie) {
         this.categorieName = categorie;
     }
+    @XmlElement
+    public String getNomNaissance() {
+        return nomNaissance;
+    }
+
+    public void setNomNaissance(String nomNaissance) {
+        this.nomNaissance = nomNaissance;
+    }
+    @XmlElement
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+    @XmlElement
+    public String getPaysVilleNaissance() {
+        return paysVilleNaissance;
+    }
+
+    public void setPaysVilleNaissance(String paysVilleNaissance) {
+        this.paysVilleNaissance = paysVilleNaissance;
+    }
+
+    @XmlElement
+    public String getNationalite() {
+        return nationalite;
+    }
+
+    public void setNationalite(String nationalite) {
+        this.nationalite = nationalite;
+    }
+    @XmlElement
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public void setCodePostal(String codePostal) {
+        this.codePostal = codePostal;
+    }
+    @XmlElement
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+    @XmlElement
+    public String getDeuxiemeTelephone() {
+        return deuxiemeTelephone;
+    }
+
+    public void setDeuxiemeTelephone(String deuxiemeTelephone) {
+        this.deuxiemeTelephone = deuxiemeTelephone;
+    }
+    @XmlElement
+    public List<String> getArmes() {
+        return armes;
+    }
+
+    public void setArmes(List<String> armes) {
+        this.armes = armes;
+    }
+    @XmlElement
+    public String getPratique() {
+        return pratique;
+    }
+
+    public void setPratique(String pratique) {
+        this.pratique = pratique;
+    }
+    @XmlElement
+    public String getLateralite() {
+        return lateralite;
+    }
+
+    public void setLateralite(String lateralite) {
+        this.lateralite = lateralite;
+    }
+
+    @XmlElement
+    public String getResponsableLegal() {
+        return responsableLegal;
+    }
+
+    public void setResponsableLegal(String responsableLegal) {
+        this.responsableLegal = responsableLegal;
+    }
 
     @Override
     public String toString() {
-        return nom + " " + prenom + ", Email: " + email + ", Phone: " + telephone + ", Adresse: " + adresse +
-                ", Date de Naissance: " + dateNaissance + ", Date d'Inscription: " + dateInscription + ", Date de Fin d'Adhésion: " + dateFinAdhesion +
-                ", Montant de Cotisation: " + montantCotisation + ", Montant de Don: " + montantDon + ", Montant Total: " + montantTotal;
+        return super.toString() + ", Nom de naissance: " + nomNaissance + ", Genre: " + genre +
+                ", Pays et Ville de naissance: " + paysVilleNaissance + ", Nationalité: " + nationalite +
+                ", Code Postal: " + codePostal + ", Ville: " + ville + ", Deuxième téléphone: " + deuxiemeTelephone +
+                ", Fleuret: " + armes.contains("Fleuret") + ", Epée: " + armes.contains("Epée") + ", Sabre: " + armes.contains("Sabre") +
+                ", Pratique: " + pratique + ", Latéralité: " + lateralite;
     }
 }

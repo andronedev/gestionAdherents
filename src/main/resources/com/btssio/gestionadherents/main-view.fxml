@@ -30,6 +30,18 @@
             <TableColumn fx:id="montantCotisationColumn" text="Montant Cotisation" />
             <TableColumn fx:id="montantDonColumn" text="Montant Don" />
             <TableColumn fx:id="montantTotalColumn" text="Montant Total" />
+            <TableColumn fx:id="nomNaissanceColumn" text="Nom de naissance" />
+            <TableColumn fx:id="genreColumn" text="Genre" />
+            <TableColumn fx:id="naissanceColumn" text="Date de Naissance Complète" />
+            <TableColumn fx:id="paysVilleNaissanceColumn" text="Pays et Ville de naissance" />
+            <TableColumn fx:id="nationaliteColumn" text="Nationalité" />
+            <TableColumn fx:id="codePostalColumn" text="Code Postal" />
+            <TableColumn fx:id="villeColumn" text="Ville" />
+            <TableColumn fx:id="deuxiemeTelColumn" text="Deuxième Tel" />
+            <TableColumn fx:id="responsableLegalColumn" text="Responsable Légal" />
+            <TableColumn fx:id="armesColumn" text="Armes" />
+            <TableColumn fx:id="pratiqueColumn" text="Pratique" />
+            <TableColumn fx:id="lateraliteColumn" text="Latéralité" />
         </columns>
     </TableView>
 
@@ -62,7 +74,7 @@
                   <TextField fx:id="nomNaissanceField" layoutX="126.0" layoutY="197.0" prefHeight="25.0" prefWidth="210.0" />
                   <Label layoutX="10.0" layoutY="228.0" text="genre:" />
                   <CheckBox fx:id="masculinCheckBox" layoutX="69.0" layoutY="228.0" mnemonicParsing="false" text="Masculin" />
-                  <CheckBox  fx:id="femininCheckBox" layoutX="158.0" layoutY="228.0" mnemonicParsing="false" text="Féminin" />
+                  <CheckBox fx:id="femininCheckBox" layoutX="158.0" layoutY="228.0" mnemonicParsing="false" text="Féminin" />
                   <Label layoutX="10.0" layoutY="258.0" text="Naissance :" />
                   <TextField fx:id="naissanceJourField" layoutX="81.0" layoutY="254.0" prefHeight="25.0" prefWidth="26.0" />
                   <TextField fx:id="naissanceMoisField" layoutX="125.0" layoutY="254.0" prefHeight="25.0" prefWidth="26.0" />
@@ -92,7 +104,7 @@
                      <Font name="System Bold" size="12.0" />
                   </font>
                </Button>
-               <TextField layoutX="19.0" layoutY="432.0" prefHeight="26.0" prefWidth="316.0" />
+               <TextField fx:id="responsableLegalField" layoutX="19.0" layoutY="432.0" prefHeight="26.0" prefWidth="316.0" />
                <Label layoutX="19.0" layoutY="478.0" prefHeight="35.0" prefWidth="52.0" text="armes" />
                <CheckBox fx:id="fleuretCheckBox" layoutX="58.0" layoutY="469.0" mnemonicParsing="false" text="Fleuret" />
                <CheckBox fx:id="epeeCheckBox" layoutX="58.0" layoutY="487.0" mnemonicParsing="false" text="Epée" />

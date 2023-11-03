@@ -2,43 +2,53 @@
 <adherents>
     <adherent>
         <adresse>123 rue de la République, 75001 Paris</adresse>
-        <categorieName>M5-M7</categorieName>
+        <armes>Épée</armes>
+        <categorieName>Adulte</categorieName>
+        <codePostal>75001</codePostal>
         <dateFinAdhesion>2024-01-01</dateFinAdhesion>
         <dateInscription>2023-01-01</dateInscription>
         <dateNaissance>1985-06-15</dateNaissance>
+        <deuxiemeTelephone>0643210987</deuxiemeTelephone>
         <email>jean.dupont@example.com</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
         <montantCotisation>190.0</montantCotisation>
         <montantDon>50.0</montantDon>
         <montantTotal>240.0</montantTotal>
+        <nationalite>Française</nationalite>
         <nom>Dupont</nom>
+        <nomNaissance>Durand</nomNaissance>
+        <paysVilleNaissance>France, Paris</paysVilleNaissance>
+        <pratique>Loisir</pratique>
         <prenom>Jean</prenom>
+        <responsableLegal>Lucie Dupont</responsableLegal>
         <telephone>0123456789</telephone>
+        <ville>Paris</ville>
     </adherent>
     <adherent>
         <adresse>456 avenue des Ternes, 75017 Paris</adresse>
+        <armes>Fleuret</armes>
+        <armes>Epée</armes>
+        <categorieName>Enfant</categorieName>
+        <codePostal>75017</codePostal>
         <dateFinAdhesion>2024-02-15</dateFinAdhesion>
         <dateInscription>2023-02-15</dateInscription>
         <dateNaissance>1990-10-20</dateNaissance>
+        <deuxiemeTelephone>0678901234</deuxiemeTelephone>
         <email>marie.martin@example.com</email>
+        <genre>Féminin</genre>
+        <lateralite>Gaucher</lateralite>
         <montantCotisation>150.0</montantCotisation>
         <montantDon>75.0</montantDon>
         <montantTotal>225.0</montantTotal>
-        <nom>Martin 677</nom>
+        <nationalite>Française</nationalite>
+        <nom>Martin</nom>
+        <nomNaissance>Leblanc</nomNaissance>
+        <paysVilleNaissance>France, Lyon</paysVilleNaissance>
+        <pratique>Compétition</pratique>
         <prenom>Marie</prenom>
+        <responsableLegal>Jacques Martin</responsableLegal>
         <telephone>0987654321</telephone>
-    </adherent>
-    <adherent>
-        <adresse>qsd</adresse>
-        <categorieName></categorieName>
-        <dateFinAdhesion>2023-10-23</dateFinAdhesion>
-        <dateInscription>2023-10-23</dateInscription>
-        <dateNaissance>2023-10-23</dateNaissance>
-        <email>qsd</email>
-        <montantCotisation>0.0</montantCotisation>
-        <montantDon>0.0</montantDon>
-        <montantTotal>0.0</montantTotal>
-        <nom>qsd</nom>
-        <prenom>qsd</prenom>
-        <telephone>qsd</telephone>
+        <ville>Paris</ville>
     </adherent>
 </adherents>

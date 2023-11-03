@@ -3,14 +3,15 @@ package com.btssio.gestionadherents;
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
 import com.btssio.models.tarif.Categorie;
-import javafx.collections.ObservableList;
 import com.btssio.models.tarif.TarifManager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.collections.FXCollections;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 public class MainController {
 
@@ -54,6 +55,41 @@ public class MainController {
     private TableColumn<Adherent, String> categorieColumn;
 
     @FXML
+    private TableColumn<Adherent, String> nomNaissanceColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> genreColumn;
+
+    @FXML
+    private TableColumn<Adherent, LocalDate> naissanceColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> paysVilleNaissanceColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> nationaliteColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> codePostalColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> villeColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> deuxiemeTelColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> responsableLegalColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> armesColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> pratiqueColumn;
+
+    @FXML
+    private TableColumn<Adherent, String> lateraliteColumn;
+    @FXML
     private Button addButton;
 
     @FXML
@@ -92,6 +128,63 @@ public class MainController {
 
     @FXML
     private TextField InputRecherche;
+
+    @FXML
+    private TextField nomNaissanceField;
+
+    @FXML
+    private CheckBox masculinCheckBox;
+
+    @FXML
+    private CheckBox femininCheckBox;
+
+    @FXML
+    private TextField naissanceJourField;
+
+    @FXML
+    private TextField naissanceMoisField;
+
+    @FXML
+    private TextField naissanceAnneeField;
+
+    @FXML
+    private TextField paysVilleNaissanceField;
+
+    @FXML
+    private TextField nationaliteField;
+
+    @FXML
+    private TextField codePostalField;
+
+    @FXML
+    private TextField villeField;
+
+    @FXML
+    private TextField deuxiemeTelField;
+
+    @FXML
+    private CheckBox fleuretCheckBox;
+
+    @FXML
+    private CheckBox epeeCheckBox;
+
+    @FXML
+    private CheckBox sabreCheckBox;
+
+    @FXML
+    private CheckBox loisirCheckbox;
+
+    @FXML
+    private CheckBox competitionCheckbox;
+
+    @FXML
+    private CheckBox gaucherCheckbox;
+
+    @FXML
+    private CheckBox droitierCheckbox;
+
+    @FXML
+    private TextField responsableLegalField;
     private boolean rechercheActive = false;
 
     public void initialize() {
@@ -104,11 +197,35 @@ public class MainController {
     }
 
     private void updateInputFields(Adherent adherent) {
-        setNom(adherent.getNom());
-        setPrenom(adherent.getPrenom());
-        setEmail(adherent.getEmail());
-        setTelephone(adherent.getTelephone());
-        setAdresse(adherent.getAdresse());
+        nomField.setText(adherent.getNom());
+        prenomField.setText(adherent.getPrenom());
+        emailField.setText(adherent.getEmail());
+        telephoneField.setText(adherent.getTelephone());
+        adresseField.setText(adherent.getAdresse());
+        categorieChoiceBox.setValue(adherent.getCategorieName());
+        price.setText(String.valueOf(adherent.getMontantCotisation()));
+        nomNaissanceField.setText(adherent.getNomNaissance());
+        masculinCheckBox.setSelected(adherent.getGenre().equals("Masculin"));
+        femininCheckBox.setSelected(adherent.getGenre().equals("Féminin"));
+        naissanceJourField.setText(String.valueOf(adherent.getDateNaissance().getDayOfMonth()));
+        naissanceMoisField.setText(String.valueOf(adherent.getDateNaissance().getMonthValue()));
+        naissanceAnneeField.setText(String.valueOf(adherent.getDateNaissance().getYear()));
+        paysVilleNaissanceField.setText(adherent.getPaysVilleNaissance());
+        nationaliteField.setText(adherent.getNationalite());
+        codePostalField.setText(adherent.getCodePostal());
+        villeField.setText(adherent.getVille());
+        deuxiemeTelField.setText(adherent.getDeuxiemeTelephone());
+        fleuretCheckBox.setSelected(adherent.getArmes().contains("Fleuret"));
+        epeeCheckBox.setSelected(adherent.getArmes().contains("Epée"));
+        sabreCheckBox.setSelected(adherent.getArmes().contains("Sabre"));
+        loisirCheckbox.setSelected(adherent.getPratique().contains("Loisir"));
+        competitionCheckbox.setSelected(adherent.getPratique().contains("Compétition"));
+        gaucherCheckbox.setSelected(adherent.getLateralite().contains("Gaucher"));
+        droitierCheckbox.setSelected(adherent.getLateralite().contains("Droitier"));
+        responsableLegalField.setText(adherent.getResponsableLegal());
+
+
+
         // set the categorieField text to the adherent's categorieName
         if (adherent.getCategorieName() != null) {
             // check if in the list of categories there category exist
@@ -119,48 +236,6 @@ public class MainController {
         } else {
             clearCategorie();
         }
-    }
-
-
-
-    public String getNom() {
-        return nomField.getText();
-    }
-
-    public void setNom(String nom) {
-        nomField.setText(nom);
-    }
-
-    public String getPrenom() {
-        return prenomField.getText();
-    }
-
-    public void setPrenom(String prenom) {
-        prenomField.setText(prenom);
-    }
-
-    public String getEmail() {
-        return emailField.getText();
-    }
-
-    public void setEmail(String email) {
-        emailField.setText(email);
-    }
-
-    public String getTelephone() {
-        return telephoneField.getText();
-    }
-
-    public void setTelephone(String telephone) {
-        telephoneField.setText(telephone);
-    }
-
-    public String getAdresse() {
-        return adresseField.getText();
-    }
-
-    public void setAdresse(String adresse) {
-        adresseField.setText(adresse);
     }
 
     private List<Adherent> listeAdherents;
@@ -174,6 +249,8 @@ public class MainController {
     }
 
     private void updateAdherentsTable() {
+
+
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
@@ -187,6 +264,20 @@ public class MainController {
         montantTotalColumn.setCellValueFactory(new PropertyValueFactory<>("montantTotal"));
         categorieColumn.setCellValueFactory(new PropertyValueFactory<>("categorieName"));
 
+        nomNaissanceColumn.setCellValueFactory(new PropertyValueFactory<>("nomNaissance"));
+        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        naissanceColumn.setCellValueFactory(new PropertyValueFactory<>("dateNaissance")); // Assurez-vous que c'est la bonne propriété
+        paysVilleNaissanceColumn.setCellValueFactory(new PropertyValueFactory<>("paysVilleNaissance"));
+        nationaliteColumn.setCellValueFactory(new PropertyValueFactory<>("nationalite"));
+        codePostalColumn.setCellValueFactory(new PropertyValueFactory<>("codePostal"));
+        villeColumn.setCellValueFactory(new PropertyValueFactory<>("ville"));
+        deuxiemeTelColumn.setCellValueFactory(new PropertyValueFactory<>("deuxiemeTelephone"));
+        responsableLegalColumn.setCellValueFactory(new PropertyValueFactory<>("responsableLegal"));
+        armesColumn.setCellValueFactory(new PropertyValueFactory<>("armes"));
+        pratiqueColumn.setCellValueFactory(new PropertyValueFactory<>("pratique"));
+        lateraliteColumn.setCellValueFactory(new PropertyValueFactory<>("lateralite"));
+
+
         adherentsTable.getItems().setAll(listeAdherents);
     }
 
@@ -196,11 +287,37 @@ public class MainController {
         Adherent selectedAdherent = adherentsTable.getSelectionModel().getSelectedItem();
         if (selectedAdherent != null) {
             // Mettre à jour l'adhérent sélectionné avec les valeurs des champs d'entrée
-            selectedAdherent.setNom(getNom());
-            selectedAdherent.setPrenom(getPrenom());
-            selectedAdherent.setEmail(getEmail());
-            selectedAdherent.setTelephone(getTelephone());
-            selectedAdherent.setAdresse(getAdresse());
+            selectedAdherent.setNom(nomField.getText());
+            selectedAdherent.setPrenom(prenomField.getText());
+            selectedAdherent.setEmail(emailField.getText());
+            selectedAdherent.setTelephone(telephoneField.getText());
+            selectedAdherent.setAdresse(adresseField.getText());
+            selectedAdherent.setCategorieName(categorieChoiceBox.getSelectionModel().getSelectedItem());
+            selectedAdherent.setMontantCotisation(Double.parseDouble(price.getText()));
+            selectedAdherent.setMontantTotal(selectedAdherent.getMontantCotisation() + selectedAdherent.getMontantDon());
+            selectedAdherent.setNomNaissance(nomNaissanceField.getText());
+            selectedAdherent.setGenre(masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "");
+            selectedAdherent.setPaysVilleNaissance(paysVilleNaissanceField.getText());
+            selectedAdherent.setNationalite(nationaliteField.getText());
+            selectedAdherent.setCodePostal(codePostalField.getText());
+            selectedAdherent.setVille(villeField.getText());
+            selectedAdherent.setDeuxiemeTelephone(deuxiemeTelField.getText());
+            List<String> armes = new ArrayList<>();
+            if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
+            if (epeeCheckBox.isSelected()) armes.add("Epée");
+            if (sabreCheckBox.isSelected()) armes.add("Sabre");
+            selectedAdherent.setArmes(armes);
+            selectedAdherent.setPratique(loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
+                    : loisirCheckbox.isSelected() ? "Loisir"
+                    : competitionCheckbox.isSelected() ? "Compétition"
+                    : "");
+            selectedAdherent.setLateralite(gaucherCheckbox.isSelected() && droitierCheckbox.isSelected() ? "Ambidextre"
+                    : gaucherCheckbox.isSelected() ? "Gaucher"
+                    : droitierCheckbox.isSelected() ? "Droitier"
+                    : "");
+
+            responsableLegalField.setText(selectedAdherent.getResponsableLegal());
+
             // Mise à jour de la table pour refléter les modifications
             updateAdherentsTable();
             handleClearAction();
@@ -216,7 +333,53 @@ public class MainController {
             handleClearAction();
             return;
         }
-        Adherent newAdherent = new Adherent(getEmail(), getTelephone(), getNom(), getPrenom(), getAdresse(), LocalDate.now(), LocalDate.now(), LocalDate.now(), 0.0, 0.0, 0.0, "");
+        List<String> armes = new ArrayList<>();
+        if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
+        if (epeeCheckBox.isSelected()) armes.add("Epée");
+        if (sabreCheckBox.isSelected()) armes.add("Sabre");
+
+        String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
+                : loisirCheckbox.isSelected() ? "Loisir"
+                : competitionCheckbox.isSelected() ? "Compétition"
+                : "";
+
+        String lateralite = gaucherCheckbox.isSelected() && droitierCheckbox.isSelected() ? "Ambidextre"
+                : gaucherCheckbox.isSelected() ? "Gaucher"
+                : droitierCheckbox.isSelected() ? "Droitier"
+                : "";
+
+        Adherent newAdherent = new Adherent(
+                emailField.getText(),
+                telephoneField.getText(),
+                nomField.getText(),  // Replace with actual field if different
+                prenomField.getText(), // Replace with actual field if different
+                adresseField.getText(),
+                LocalDate.of(
+                        Integer.parseInt(naissanceAnneeField.getText()),
+                        Integer.parseInt(naissanceMoisField.getText()),
+                        Integer.parseInt(naissanceJourField.getText())
+                ),
+                LocalDate.now(), // You might need a DatePicker for this if you want a different date
+                LocalDate.now().plusYears(1), // Assuming the adhesion lasts for 1 year
+                0.0, // You might need to get this from a TextField or a different input
+                0.0, // Same as above for montantDon
+                0.0, // Same as above for montantTotal
+                "", // You will need a way to set categorieName
+                nomNaissanceField.getText(),
+                masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "",
+                paysVilleNaissanceField.getText(), // Assuming the country and city are comma-separated
+                nationaliteField.getText(),
+                codePostalField.getText(),
+                villeField.getText(),
+                deuxiemeTelField.getText(),
+                armes,
+                pratique,
+                lateralite,
+                responsableLegalField.getText()
+        );
+
+
+
         listeAdherents.add(newAdherent);
         updateAdherentsTable();
         handleClearAction();
@@ -238,11 +401,11 @@ public class MainController {
 
     @FXML
     public void handleClearAction() {
-        setNom("");
-        setPrenom("");
-        setEmail("");
-        setTelephone("");
-        setAdresse("");
+        nomField.setText("");
+        prenomField.setText("");
+        emailField.setText("");
+        telephoneField.setText("");
+        adresseField.setText("");
         // unfocus the table
         adherentsTable.getSelectionModel().clearSelection();
     }
