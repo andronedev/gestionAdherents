@@ -304,4 +304,14 @@ public class MainController {
         categorieChoiceBox.getSelectionModel().clearSelection();
         price.setText("");
     }
+
+    @FXML
+    public void handleSearchAction() {
+        //TODO
+    }
+
+    @FXML
+    public void handleClearSearchAction() {
+        //TODO
+    }
 }
