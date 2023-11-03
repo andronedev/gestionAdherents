@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -12,9 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
-
+<Pane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1318.0" fx:controller="com.btssio.gestionadherents.MainController">
     <!-- Table for displaying adherents -->
     <TableView fx:id="adherentsTable" layoutX="1.0" layoutY="77.0" prefHeight="594.0" prefWidth="884.0">
         <columns>
@@ -44,92 +41,83 @@
             <TableColumn fx:id="lateraliteColumn" text="Latéralité" />
         </columns>
     </TableView>
-
     <!-- Search functionality -->
     <TextField fx:id="InputRecherche" layoutX="14.0" layoutY="24.0" prefHeight="35.0" prefWidth="422.0" promptText="Rechercher" />
-    <Button layoutX="448.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="52.0" text="🔎" />
+    <Button layoutX="448.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleSearchAction" prefHeight="35.0" prefWidth="52.0" text="&#x1f50e;" />
     <Button layoutX="525.0" layoutY="24.0" mnemonicParsing="false" onAction="#handleClearSearchAction" prefHeight="35.0" prefWidth="131.0" text="Effacer la recherche" />
-
-
     <!-- Separators for visual division -->
     <Separator layoutX="875.0" orientation="VERTICAL" prefHeight="671.0" prefWidth="21.0" />
-   <ScrollPane layoutX="936.0" layoutY="99.0" prefHeight="328.0" prefWidth="375.0">
-     <content>
-       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="618.0" prefWidth="347.0">
-            <children>
-            
-                                                    <!-- Details pane for adding or editing adherents (can be expanded upon) -->
-                <Pane layoutX="19.0" layoutY="14.0" prefHeight="430.0" prefWidth="310.0">
-                    <Label layoutX="10" layoutY="10" text="Nom:" />
-                    <TextField fx:id="nomField" layoutX="84.0" layoutY="5.0" prefHeight="25.0" prefWidth="254.0" />
-                    <Label layoutX="10" layoutY="50" text="Prénom:" />
-                    <TextField fx:id="prenomField" layoutX="84.0" layoutY="45.0" prefHeight="25.0" prefWidth="254.0" />
-                    <Label layoutX="10" layoutY="90" text="Email:" />
-                    <TextField fx:id="emailField" layoutX="84.0" layoutY="85.0" prefHeight="25.0" prefWidth="254.0" />
-                    <Label layoutX="10" layoutY="130" text="Téléphone:" />
-                    <TextField fx:id="telephoneField" layoutX="84.0" layoutY="125.0" prefHeight="25.0" prefWidth="254.0" />
-                    <Label layoutX="10" layoutY="170" text="Adresse:" />
-                    <TextField fx:id="adresseField" layoutX="84.0" layoutY="165.0" prefHeight="25.0" prefWidth="254.0" />
-                  <Label layoutX="10.0" layoutY="201.0" text="Nom de naissance:" />
-                  <TextField fx:id="nomNaissanceField" layoutX="126.0" layoutY="197.0" prefHeight="25.0" prefWidth="210.0" />
-                  <Label layoutX="10.0" layoutY="228.0" text="genre:" />
-                  <CheckBox fx:id="masculinCheckBox" layoutX="69.0" layoutY="228.0" mnemonicParsing="false" text="Masculin" />
-                  <CheckBox fx:id="femininCheckBox" layoutX="158.0" layoutY="228.0" mnemonicParsing="false" text="Féminin" />
-                  <Label layoutX="10.0" layoutY="258.0" text="Naissance :" />
-                  <TextField fx:id="naissanceJourField" layoutX="81.0" layoutY="254.0" prefHeight="25.0" prefWidth="26.0" />
-                  <TextField fx:id="naissanceMoisField" layoutX="125.0" layoutY="254.0" prefHeight="25.0" prefWidth="26.0" />
-                  <TextField fx:id="naissanceAnneeField" layoutX="171.0" layoutY="254.0" prefHeight="25.0" prefWidth="45.0" />
-                  <Label layoutX="114.0" layoutY="258.0" text="/" />
-                  <Label layoutX="158.0" layoutY="258.0" text="/" />
-                  <Label layoutX="11.0" layoutY="288.0" text="Pays et Ville de naissance : " />
-                  <TextField fx:id="paysVilleNaissanceField" layoutX="157.0" layoutY="284.0" />
-                  <Label layoutX="18.0" layoutY="316.0" text="Nationnalité :" />
-                  <TextField fx:id="nationaliteField" layoutX="97.0" layoutY="312.0" prefHeight="25.0" prefWidth="210.0" />
-                  <Label layoutX="12.0" layoutY="343.0" text="code postal :" />
-                  <TextField fx:id="codePostalField" layoutX="81.0" layoutY="339.0" prefHeight="25.0" prefWidth="63.0" />
-                  <Label layoutX="157.0" layoutY="343.0" text="ville :" />
-                  <TextField fx:id="villeField" layoutX="194.0" layoutY="339.0" prefHeight="25.0" prefWidth="111.0" />
-                  <Label layoutX="17.0" layoutY="372.0" text="deuxième tel :" />
-                  <TextField fx:id="deuxiemeTelField" layoutX="119.0" layoutY="368.0" />
-                  <Label layoutX="57.0" layoutY="399.0" text="nom et prémon du responsable légal:" />
-                    <!-- Additional fields can be added here as needed -->
-                </Pane>
-                <Button fx:id="clearButton" cancelButton="true" layoutX="8.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
-            
-                                                       <!-- Add, Edit and Delete Buttons -->
-                <Button fx:id="addButton" layoutX="14.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter l'adherent" />
-                <Button fx:id="editButton" layoutX="134.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier l'adherent" />
-                <Button fx:id="deleteButton" layoutX="257.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" textFill="#810000">
-                  <font>
-                     <Font name="System Bold" size="12.0" />
-                  </font>
-               </Button>
-               <TextField fx:id="responsableLegalField" layoutX="19.0" layoutY="432.0" prefHeight="26.0" prefWidth="316.0" />
-               <Label layoutX="19.0" layoutY="478.0" prefHeight="35.0" prefWidth="52.0" text="armes" />
-               <CheckBox fx:id="fleuretCheckBox" layoutX="58.0" layoutY="469.0" mnemonicParsing="false" text="Fleuret" />
-               <CheckBox fx:id="epeeCheckBox" layoutX="58.0" layoutY="487.0" mnemonicParsing="false" text="Epée" />
-               <CheckBox fx:id="sabreCheckBox" layoutX="58.0" layoutY="504.0" mnemonicParsing="false" text="Sabre" />
-               <Label layoutX="136.0" layoutY="469.0" text="Pratique :" />
-               <Label layoutX="134.0" layoutY="496.0" text="Latéralité :" />
-               <CheckBox fx:id="loisirCheckbox" layoutX="189.0" layoutY="470.0" mnemonicParsing="false" text="Loisir " />
-               <CheckBox fx:id="competitionCheckbox" layoutX="243.0" layoutY="470.0" mnemonicParsing="false" text="Compétition" />
-               <CheckBox fx:id="gaucherCheckbox" layoutX="262.0" layoutY="496.0" mnemonicParsing="false" text="gaucher" />
-               <CheckBox fx:id="droitierCheckbox" layoutX="193.0" layoutY="496.0" mnemonicParsing="false" text="droitier" />
-            </children>
-         </AnchorPane>
-     </content>
-   </ScrollPane>
-
-                            <Pane layoutX="918.0" layoutY="440.0" prefHeight="250.0" prefWidth="400.0">
+    <ScrollPane layoutX="936.0" layoutY="99.0" prefHeight="328.0" prefWidth="375.0">
+        <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="618.0" prefWidth="347.0">
+                <children>
+                    <!-- Details pane for adding or editing adherents (can be expanded upon) -->
+                    <Pane layoutX="19.0" layoutY="14.0" prefHeight="430.0" prefWidth="310.0">
+                        <Label layoutX="10" layoutY="10" text="Nom:" />
+                        <TextField fx:id="nomField" layoutX="84.0" layoutY="5.0" prefHeight="25.0" prefWidth="254.0" />
+                        <Label layoutX="10" layoutY="50" text="Prénom:" />
+                        <TextField fx:id="prenomField" layoutX="84.0" layoutY="45.0" prefHeight="25.0" prefWidth="254.0" />
+                        <Label layoutX="10" layoutY="90" text="Email:" />
+                        <TextField fx:id="emailField" layoutX="84.0" layoutY="85.0" prefHeight="25.0" prefWidth="254.0" />
+                        <Label layoutX="10" layoutY="130" text="Téléphone:" />
+                        <TextField fx:id="telephoneField" layoutX="84.0" layoutY="125.0" prefHeight="25.0" prefWidth="254.0" />
+                        <Label layoutX="10" layoutY="170" text="Adresse:" />
+                        <TextField fx:id="adresseField" layoutX="84.0" layoutY="165.0" prefHeight="25.0" prefWidth="254.0" />
+                        <Label layoutX="10.0" layoutY="201.0" text="Nom de naissance:" />
+                        <TextField fx:id="nomNaissanceField" layoutX="126.0" layoutY="197.0" prefHeight="25.0" prefWidth="210.0" />
+                        <Label layoutX="10.0" layoutY="228.0" text="genre:" />
+                        <CheckBox fx:id="masculinCheckBox" layoutX="69.0" layoutY="228.0" mnemonicParsing="false" text="Masculin" />
+                        <CheckBox fx:id="femininCheckBox" layoutX="158.0" layoutY="228.0" mnemonicParsing="false" text="Féminin" />
+                        <Label layoutX="10.0" layoutY="258.0" text="Naissance :" />
+                        <TextField fx:id="naissanceJourField" layoutX="81.0" layoutY="254.0" prefHeight="25.0" prefWidth="26.0" />
+                        <TextField fx:id="naissanceMoisField" layoutX="125.0" layoutY="254.0" prefHeight="25.0" prefWidth="26.0" />
+                        <TextField fx:id="naissanceAnneeField" layoutX="171.0" layoutY="254.0" prefHeight="25.0" prefWidth="45.0" />
+                        <Label layoutX="114.0" layoutY="258.0" text="/" />
+                        <Label layoutX="158.0" layoutY="258.0" text="/" />
+                        <Label layoutX="11.0" layoutY="288.0" text="Pays et Ville de naissance : " />
+                        <TextField fx:id="paysVilleNaissanceField" layoutX="157.0" layoutY="284.0" />
+                        <Label layoutX="18.0" layoutY="316.0" text="Nationnalité :" />
+                        <TextField fx:id="nationaliteField" layoutX="97.0" layoutY="312.0" prefHeight="25.0" prefWidth="210.0" />
+                        <Label layoutX="12.0" layoutY="343.0" text="code postal :" />
+                        <TextField fx:id="codePostalField" layoutX="81.0" layoutY="339.0" prefHeight="25.0" prefWidth="63.0" />
+                        <Label layoutX="157.0" layoutY="343.0" text="ville :" />
+                        <TextField fx:id="villeField" layoutX="194.0" layoutY="339.0" prefHeight="25.0" prefWidth="111.0" />
+                        <Label layoutX="17.0" layoutY="372.0" text="deuxième tel :" />
+                        <TextField fx:id="deuxiemeTelField" layoutX="119.0" layoutY="368.0" />
+                        <Label layoutX="57.0" layoutY="399.0" text="nom et prémon du responsable légal:" />
+                        <!-- Additional fields can be added here as needed -->
+                    </Pane>
+                    <Button fx:id="clearButton" cancelButton="true" layoutX="8.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
+                    <!-- Add, Edit and Delete Buttons -->
+                    <Button fx:id="addButton" layoutX="14.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter l'adherent" />
+                    <Button fx:id="editButton" layoutX="134.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier l'adherent" />
+                    <Button fx:id="deleteButton" layoutX="257.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" textFill="#810000">
+                        <font>
+                            <Font name="System Bold" size="12.0" />
+                        </font>
+                    </Button>
+                    <TextField fx:id="responsableLegalField" layoutX="19.0" layoutY="432.0" prefHeight="26.0" prefWidth="316.0" />
+                    <Label layoutX="19.0" layoutY="478.0" prefHeight="35.0" prefWidth="52.0" text="armes" />
+                    <CheckBox fx:id="fleuretCheckBox" layoutX="58.0" layoutY="469.0" mnemonicParsing="false" text="Fleuret" />
+                    <CheckBox fx:id="epeeCheckBox" layoutX="58.0" layoutY="487.0" mnemonicParsing="false" text="Epée" />
+                    <CheckBox fx:id="sabreCheckBox" layoutX="58.0" layoutY="504.0" mnemonicParsing="false" text="Sabre" />
+                    <Label layoutX="136.0" layoutY="469.0" text="Pratique :" />
+                    <Label layoutX="134.0" layoutY="496.0" text="Latéralité :" />
+                    <CheckBox fx:id="loisirCheckbox" layoutX="189.0" layoutY="470.0" mnemonicParsing="false" text="Loisir " />
+                    <CheckBox fx:id="competitionCheckbox" layoutX="243.0" layoutY="470.0" mnemonicParsing="false" text="Compétition" />
+                    <CheckBox fx:id="gaucherCheckbox" layoutX="262.0" layoutY="496.0" mnemonicParsing="false" text="gaucher" />
+                    <CheckBox fx:id="droitierCheckbox" layoutX="193.0" layoutY="496.0" mnemonicParsing="false" text="droitier" />
+                </children>
+            </AnchorPane>
+        </content>
+    </ScrollPane>
+    <Pane layoutX="918.0" layoutY="440.0" prefHeight="250.0" prefWidth="400.0">
         <Label layoutX="36.0" layoutY="10.0" text="Catégorie:" />
         <Label layoutX="36.0" layoutY="49.0" text="Tarif:" />
         <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Définir cette catégorie a l'utilisateur" />
         <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
-      <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
-      <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
-      <Button fx:id="clearCatButton" layoutX="36.0" layoutY="177.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
+        <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
+        <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
+        <Button fx:id="clearCatButton" layoutX="36.0" layoutY="177.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
     </Pane>
-   
-
-
 </Pane>
