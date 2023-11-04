@@ -1,4 +1,3 @@
-
 package com.btssio.gestionadherents;
 
 import com.btssio.models.adherent.Adherent;
@@ -17,24 +16,20 @@ public class MainApplication extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            // Load data from XML files
             List<Adherent> listeAdherents = AdherentManager.chargerAdherents("adherents.xml");
-            // List<Club> listeClubs = ClubManager.chargerClubs(); // To be implemented
             TarifManager tarifManager = new TarifManager();
             tarifManager.loadFromXml("tarifs.xml");
-            System.out.println(tarifManager.getCategories());
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-            Parent root = loader.load();
-            MainController controller = loader.getController();
+            FXMLLoader inscriptionLoader = new FXMLLoader(getClass().getResource("inscription-view.fxml"));
+            Parent inscriptionRoot = inscriptionLoader.load();
+            InscriptionController inscriptionController = inscriptionLoader.getController();
 
-            // Pass the loaded data to the controller
-            controller.setListeAdherents(listeAdherents, tarifManager);
-            // controller.setListeClubs(listeClubs); // To be implemented
+            // Pass the loaded data to the inscription controller
+            inscriptionController.setListeAdherents(listeAdherents); // Cette ligne passe la liste au contrôleur d'inscription
 
-            Scene scene = new Scene(root);
-            primaryStage.setScene(scene);
-            primaryStage.setTitle("Gestion des Adhérents");
+            Scene inscriptionScene = new Scene(inscriptionRoot);
+            primaryStage.setScene(inscriptionScene);
+            primaryStage.setTitle("Inscription des Adhérents");
             primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

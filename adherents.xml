@@ -2,7 +2,6 @@
 <adherents>
     <adherent>
         <adresse>123 rue de la République, 75001 Paris</adresse>
-        <armes>Épée</armes>
         <categorieName>Adulte</categorieName>
         <codePostal>75001</codePostal>
         <dateFinAdhesion>2024-01-01</dateFinAdhesion>
@@ -29,7 +28,7 @@
         <adresse>456 avenue des Ternes, 75017 Paris</adresse>
         <armes>Fleuret</armes>
         <armes>Epée</armes>
-        <categorieName>Enfant</categorieName>
+        <categorieName>M5-M7</categorieName>
         <codePostal>75017</codePostal>
         <dateFinAdhesion>2024-02-15</dateFinAdhesion>
         <dateInscription>2023-02-15</dateInscription>
@@ -38,9 +37,9 @@
         <email>marie.martin@example.com</email>
         <genre>Féminin</genre>
         <lateralite>Gaucher</lateralite>
-        <montantCotisation>150.0</montantCotisation>
+        <montantCotisation>190.0</montantCotisation>
         <montantDon>75.0</montantDon>
-        <montantTotal>225.0</montantTotal>
+        <montantTotal>265.0</montantTotal>
         <nationalite>Française</nationalite>
         <nom>Martin</nom>
         <nomNaissance>Leblanc</nomNaissance>
@@ -50,5 +49,30 @@
         <responsableLegal>Jacques Martin</responsableLegal>
         <telephone>0987654321</telephone>
         <ville>Paris</ville>
+    </adherent>
+    <adherent>
+        <adresse>fezfzefzef</adresse>
+        <armes>Fleuret</armes>
+        <categorieName></categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2024-11-04</dateFinAdhesion>
+        <dateInscription>2023-11-04</dateInscription>
+        <dateNaissance>2004-08-31</dateNaissance>
+        <deuxiemeTelephone>0612121221</deuxiemeTelephone>
+        <email>fezfz@fr.fr</email>
+        <genre>Féminin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantCotisation>0.0</montantCotisation>
+        <montantDon>0.0</montantDon>
+        <montantTotal>0.0</montantTotal>
+        <nationalite>fezfz</nationalite>
+        <nom>fezfez</nom>
+        <nomNaissance>fezfzfz</nomNaissance>
+        <paysVilleNaissance>fezfzf</paysVilleNaissance>
+        <pratique>Loisir</pratique>
+        <prenom>fezfz</prenom>
+        <responsableLegal>grege erggeg</responsableLegal>
+        <telephone>0612121221</telephone>
+        <ville>efzfz</ville>
     </adherent>
 </adherents>

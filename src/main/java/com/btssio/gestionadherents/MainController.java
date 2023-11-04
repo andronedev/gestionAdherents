@@ -248,7 +248,7 @@ public class MainController {
         tarifManager.getCategories().forEach(categorie -> categorieChoiceBox.getItems().add(categorie.getNom()));
     }
 
-    private void updateAdherentsTable() {
+    public void updateAdherentsTable() {
 
 
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
