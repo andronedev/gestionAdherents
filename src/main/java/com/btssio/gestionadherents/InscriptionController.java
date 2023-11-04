@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -298,7 +299,6 @@ public class InscriptionController {
                 showAlert("Erreur de validation", "L'arme est requise.");
                 return false;
             }
-
             if (loisirCheckbox.isSelected() == false && competitionCheckbox.isSelected() == false) {
                 showAlert("Erreur de validation", "La pratique est requise.");
                 return false;
@@ -360,7 +360,7 @@ public class InscriptionController {
 
             // Show the main view in the current stage
             Scene mainScene = new Scene(mainView);
-            Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage window = (Stage) ((MenuItem) event.getTarget()).getParentPopup().getOwnerWindow();
             window.setScene(mainScene);
             window.show();
         } catch (IOException e) {
@@ -370,6 +370,8 @@ public class InscriptionController {
             throw new RuntimeException(e);
         }
     }
+
+
 
 
     public void setListeAdherents(List<Adherent> listeAdherents) {
