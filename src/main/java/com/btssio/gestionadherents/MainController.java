@@ -6,10 +6,17 @@ import com.btssio.models.tarif.Categorie;
 import com.btssio.models.tarif.TarifManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -515,4 +522,27 @@ public class MainController {
             rechercheActive = false; // Mettez à jour l'état de la recherche
         }
     }
+
+    @FXML
+    private MenuBar mainMenuBar; // Assurez-vous que le MenuBar a un fx:id et est lié ici
+
+    @FXML
+    private void handleGoToInscriptionView(ActionEvent event) {
+        try {
+            // Chargez la vue d'inscription FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("inscription-view.fxml"));
+            Parent inscriptionView = loader.load();
+
+            // Configurez la scène et la fenêtre pour afficher la vue d'inscription
+            Scene currentScene = mainMenuBar.getScene(); // Obtenez la scène actuelle via mainMenuBar
+            Stage window = (Stage) currentScene.getWindow(); // Obtenez la fenêtre (Stage) associée à la scène
+            window.setScene(new Scene(inscriptionView));
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+        }
+    }
+
+
 }
