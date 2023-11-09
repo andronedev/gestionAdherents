@@ -60,6 +60,8 @@ mvn clean install   # Nettoie et construit le projet
 mvn javafx:run      # Exécute l'application
 ```
 
+[Documentation technique](https://andronedev.github.io/gestionAdherents/)
+
 ## Contribution
 
 Les contributions sont les bienvenues. Suivez les étapes suivantes pour contribuer au projet :
