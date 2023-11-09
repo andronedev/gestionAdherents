@@ -7,6 +7,7 @@ module com.btssio.gestionadherents {
     requires org.kordamp.bootstrapfx.core;
     requires java.desktop;
     requires org.glassfish.jaxb.runtime;
+    requires org.apache.pdfbox;
 
     opens com.btssio.gestionadherents to javafx.fxml;
     opens com.btssio.models.adherent to org.glassfish.jaxb.runtime, jakarta.xml.bind;

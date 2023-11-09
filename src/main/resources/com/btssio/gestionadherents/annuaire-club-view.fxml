@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.VBox?>
-
 <VBox prefHeight="652.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.ClubController">
   <children>
     <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="754.0" VBox.vgrow="NEVER">
@@ -25,7 +20,8 @@
         <MenuItem mnemonicParsing="false" text="Annuaire Association" onAction="#handleGoToClubsView"/></Menu>
       </menus>
     </MenuBar>
-      <TableView fx:id="tableView" prefWidth="990.0">
+    <Button fx:id="btnGeneratePDF" text="Générer PDF" onAction="#handleGeneratePDF" />
+    <TableView fx:id="tableView" prefWidth="990.0">
         <columns>
           <TableColumn fx:id="Nom" prefWidth="143.0" text="Nom" />
           <TableColumn fx:id="Adresse" minWidth="2.0" prefWidth="105.0" text="Adresse" />
