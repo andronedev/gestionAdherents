@@ -27,20 +27,28 @@ gestionAdherents-master/
 ├── mvnw.cmd
 ├── pom.xml
 └── src/
-    └── main/
-        └── java/
-            └── com/
-                └── btssio/
-                    ├── gestionadherents/        # Contrôleurs de l'application
-                    │   ├── ClubController.java
-                    │   ├── InscriptionController.java
-                    │   ├── MainApplication.java  # Classe principale de l'application
-                    │   └── MainController.java
-                    └── models/                   # Modèles de données
-                        ├── adherent/
-                        ├── clubs/
-                        ├── tarif/
-                        └── utils/
+    ├── main/
+    │   ├── java/
+    │   │   └── com/
+    │   │       └── btssio/
+    │   │           ├── gestionadherents/        # Contrôleurs de l'application
+    │   │           │   ├── ClubController.java
+    │   │           │   ├── InscriptionController.java
+    │   │           │   ├── MainApplication.java  # Classe principale de l'application
+    │   │           │   └── MainController.java
+    │   │           └── models/                   # Modèles de données
+    │   │               ├── adherent/
+    │   │               ├── clubs/
+    │   │               ├── tarif/
+    │   │               └── utils/
+    │   └── resources/
+    │       └── com/
+    │           └── btssio/
+    │               └── gestionadherents/         # Vues FXML de l'application
+    │                   ├── annuaire-club-view.fxml
+    │                   ├── inscription-view.fxml
+    │                   ├── main-view.fxml
+    │                   └── ... (autres vues FXML)
 ```
 
 ## Utilisation
@@ -61,5 +69,3 @@ Les contributions sont les bienvenues. Suivez les étapes suivantes pour contrib
 3. Faites vos changements et ajoutez des commentaires JavaDoc pertinents.
 4. Poussez vos changements sur votre fork.
 5. Soumettez une pull request au dépôt original.
-
-Pour plus d'informations sur les classes et méthodes spécifiques, veuillez consulter la documentation technique jointe au projet.
