@@ -16,15 +16,21 @@
 <?import javafx.scene.control.MenuItem?>
 <VBox prefHeight="652.0" prefWidth="990.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.InscriptionController">
     <children>
-        <MenuBar prefHeight="28.0" prefWidth="754.0" VBox.vgrow="NEVER">
+        <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="754.0" VBox.vgrow="NEVER">
             <menus>
-                <Menu mnemonicParsing="false" text="Inscription" />
+                <Menu mnemonicParsing="false" text="Inscription" >
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Ouvrir Inscription" onAction="#handleGoToInscriptionView" />
+                    </items>
+                </Menu>
                 <Menu mnemonicParsing="false" text="Gestion Adhérent">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Ouvrir Gestion Adhérent" onAction="#handleGoToMainView" />
                     </items>
                 </Menu>
-                <Menu mnemonicParsing="false" text="Annuaire Association" />
+                <Menu mnemonicParsing="false" text="Clubs">
+                <MenuItem mnemonicParsing="false" text="Annuaire Association" onAction="#handleGoToClubsView" />
+                </Menu>
             </menus>
         </MenuBar>
 

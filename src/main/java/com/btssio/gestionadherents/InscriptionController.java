@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -370,6 +371,49 @@ public class InscriptionController {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    private void handleGoToInscriptionView(ActionEvent event) {
+        try {
+            // Chargez la vue d'inscription FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("inscription-view.fxml"));
+            Parent inscriptionView = loader.load();
+
+            // Configurez la scène et la fenêtre pour afficher la vue d'inscription
+            Scene currentScene = mainMenuBar.getScene(); // Obtenez la scène actuelle via mainMenuBar
+            Stage window = (Stage) currentScene.getWindow(); // Obtenez la fenêtre (Stage) associée à la scène
+            window.setScene(new Scene(inscriptionView));
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+        }
+    }
+    @FXML
+    private MenuBar mainMenuBar;
+    @FXML
+    private void handleGoToClubsView(ActionEvent event) {
+        try {
+            // Chargez la vue des clubs FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("annuaire-club-view.fxml")); // Assurez-vous que le chemin est correct
+            Parent clubsView = loader.load();
+
+            // Configurez la scène et la fenêtre pour afficher la vue des clubs
+            Scene currentScene = mainMenuBar.getScene(); // Obtenez la scène actuelle via mainMenuBar
+            Stage window = (Stage) currentScene.getWindow(); // Obtenez la fenêtre (Stage) associée à la scène
+            window.setScene(new Scene(clubsView));
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+        }
+    }
+
+
+
+    private Stage getStageFromEvent(ActionEvent event) {
+        return (Stage) ((Node) event.getSource()).getScene().getWindow();
+    }
+
 
 
 

@@ -2,7 +2,9 @@
 <adherents>
     <adherent>
         <adresse>123 rue de la République, 75001 Paris</adresse>
-        <categorieName>Adulte</categorieName>
+        <armes>Fleuret</armes>
+        <armes>Epée</armes>
+        <categorieName>M5-M7</categorieName>
         <codePostal>75001</codePostal>
         <dateFinAdhesion>2024-01-01</dateFinAdhesion>
         <dateInscription>2023-01-01</dateInscription>
@@ -10,7 +12,7 @@
         <deuxiemeTelephone>0643210987</deuxiemeTelephone>
         <email>jean.dupont@example.com</email>
         <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
+        <lateralite>Gaucher</lateralite>
         <montantCotisation>190.0</montantCotisation>
         <montantDon>50.0</montantDon>
         <montantTotal>240.0</montantTotal>
@@ -18,7 +20,7 @@
         <nom>Dupont</nom>
         <nomNaissance>Durand</nomNaissance>
         <paysVilleNaissance>France, Paris</paysVilleNaissance>
-        <pratique>Loisir</pratique>
+        <pratique>Compétition</pratique>
         <prenom>Jean</prenom>
         <responsableLegal>Lucie Dupont</responsableLegal>
         <telephone>0123456789</telephone>
@@ -26,8 +28,7 @@
     </adherent>
     <adherent>
         <adresse>456 avenue des Ternes, 75017 Paris</adresse>
-        <armes>Fleuret</armes>
-        <armes>Epée</armes>
+        <armes>Sabre</armes>
         <categorieName>M5-M7</categorieName>
         <codePostal>75017</codePostal>
         <dateFinAdhesion>2024-02-15</dateFinAdhesion>

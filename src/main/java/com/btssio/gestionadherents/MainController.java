@@ -4,6 +4,7 @@ import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
 import com.btssio.models.tarif.Categorie;
 import com.btssio.models.tarif.TarifManager;
+import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -541,6 +542,61 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
             // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+        }
+    }
+    @FXML
+    private void handleGoToClubsView(ActionEvent event) {
+        try {
+            // Chargez la vue des clubs FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("annuaire-club-view.fxml")); // Assurez-vous que le chemin est correct
+            Parent clubsView = loader.load();
+
+            // Configurez la scène et la fenêtre pour afficher la vue des clubs
+            Scene currentScene = mainMenuBar.getScene(); // Obtenez la scène actuelle via mainMenuBar
+            Stage window = (Stage) currentScene.getWindow(); // Obtenez la fenêtre (Stage) associée à la scène
+            window.setScene(new Scene(clubsView));
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+        }
+    }
+
+    @FXML
+    private void handleGoToMainView(ActionEvent event) {
+        try {
+            // Check if the tarifManager is already initialized, if not initialize and load data
+            if (tarifManager == null) {
+                tarifManager = new TarifManager();
+                tarifManager.loadFromXml("tarifs.xml"); // Load tariff data
+            }
+
+            // Check if listeAdherents is already loaded, if not, load from XML
+            if (listeAdherents == null || listeAdherents.isEmpty()) {
+                listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Load adherent data
+            }
+
+            // Load the main view FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
+            Parent mainView = loader.load();
+
+            // Get the controller for the main view and set its data
+            MainController mainController = loader.getController();
+
+            // Set the loaded data in mainController
+
+            mainController.setListeAdherents(listeAdherents, tarifManager);
+
+            // Show the main view in the current stage
+            Scene mainScene = new Scene(mainView);
+            Stage window = (Stage) ((MenuItem) event.getTarget()).getParentPopup().getOwnerWindow();
+            window.setScene(mainScene);
+            window.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, maybe log it or show an error message
+        } catch (JAXBException e) {
+            throw new RuntimeException(e);
         }
     }
 

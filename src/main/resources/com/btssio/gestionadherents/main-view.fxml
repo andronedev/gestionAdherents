@@ -18,19 +18,21 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
     <!-- Table for displaying adherents -->
-    <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="1326.0">
+    <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="754.0">
         <menus>
             <Menu mnemonicParsing="false" text="Inscription" >
-            <items>
-                <MenuItem mnemonicParsing="false" text="Ouvrir Inscription" onAction="#handleGoToInscriptionView" />
-            </items>
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Ouvrir Inscription" onAction="#handleGoToInscriptionView" />
+                </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Gestion Adhérent">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="Ouvrir Gestion Adhérent" />
+                    <MenuItem mnemonicParsing="false" text="Ouvrir Gestion Adhérent" onAction="#handleGoToMainView" />
                 </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Annuaire Association" />
+            <Menu mnemonicParsing="false" text="Clubs">
+                <MenuItem mnemonicParsing="false" text="Annuaire Association" onAction="#handleGoToClubsView" />
+            </Menu>
         </menus>
     </MenuBar>
     <TableView fx:id="adherentsTable" layoutX="1.0" layoutY="77.0" prefHeight="594.0" prefWidth="884.0">
