@@ -1,4 +1,3 @@
-
 package com.btssio.models.adherent;
 
 
@@ -8,6 +7,7 @@ import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 import java.util.List;
+
 public class AdherentManager {
 
 

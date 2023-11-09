@@ -6,12 +6,12 @@ import javafx.beans.property.StringProperty;
 
 public class Club {
     // Ensure this ID matches the TableView ID in FXML
-    private SimpleStringProperty nom;
-    private SimpleStringProperty adresse;
-    private SimpleStringProperty contact;
-    private SimpleStringProperty tel;
-    private SimpleStringProperty mail;
-    private SimpleStringProperty site;
+    private final SimpleStringProperty nom;
+    private final SimpleStringProperty adresse;
+    private final SimpleStringProperty contact;
+    private final SimpleStringProperty tel;
+    private final SimpleStringProperty mail;
+    private final SimpleStringProperty site;
 
     public Club(String nom, String adresse, String contact, String tel, String mail, String site) {
         this.nom = new SimpleStringProperty(nom);
@@ -26,41 +26,74 @@ public class Club {
         return nom.get();
     }
 
+    public void setNom(String value) {
+        nom.set(value);
+    }
+
     public String getAdresse() {
         return adresse.get();
+    }
+
+    public void setAdresse(String value) {
+        adresse.set(value);
     }
 
     public String getContact() {
         return contact.get();
     }
 
+    public void setContact(String value) {
+        contact.set(value);
+    }
+
     public String getTel() {
         return tel.get();
+    }
+
+    public void setTel(String value) {
+        tel.set(value);
     }
 
     public String getMail() {
         return mail.get();
     }
 
+    public void setMail(String value) {
+        mail.set(value);
+    }
+
     public String getSite() {
         return site.get();
     }
 
-    public void setNom(String value) { nom.set(value); }
-    public void setAdresse(String value) { adresse.set(value); }
-    public void setContact(String value) { contact.set(value); }
-    public void setTel(String value) { tel.set(value); }
-    public void setMail(String value) { mail.set(value); }
-    public void setSite(String value) { site.set(value); }
+    public void setSite(String value) {
+        site.set(value);
+    }
 
     // Property getters
-    public StringProperty nomProperty() { return nom; }
-    public StringProperty adresseProperty() { return adresse; }
-    public StringProperty contactProperty() { return contact; }
-    public StringProperty telProperty() { return tel; }
-    public StringProperty mailProperty() { return mail; }
-    public StringProperty siteProperty() { return site; }
+    public StringProperty nomProperty() {
+        return nom;
+    }
 
+    public StringProperty adresseProperty() {
+        return adresse;
+    }
+
+    public StringProperty contactProperty() {
+        return contact;
+    }
+
+    public StringProperty telProperty() {
+        return tel;
+    }
+
+    public StringProperty mailProperty() {
+        return mail;
+    }
+
+    public StringProperty siteProperty() {
+        return site;
+    }
 
 
     @Override

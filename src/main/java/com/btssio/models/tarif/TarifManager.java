@@ -13,6 +13,9 @@ public class TarifManager {
     private Tarifs tarifs;
     private List<Categorie> categories;
 
+    public TarifManager() {
+    }
+
     public List<Categorie> getCategories() {
         return categories;
     }
@@ -34,8 +37,6 @@ public class TarifManager {
         categories.removeIf(categorie -> categorie.getNom().equals(nom));
     }
 
-    public TarifManager() {
-    }
     public void saveToXml(String pathToXml) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Tarifs.class);
         Marshaller marshaller = context.createMarshaller();

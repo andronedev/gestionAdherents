@@ -45,34 +45,9 @@
         <nomNaissance>Leblanc</nomNaissance>
         <paysVilleNaissance>France, Lyon</paysVilleNaissance>
         <pratique>Compétition</pratique>
-        <prenom>Marie</prenom>
+        <prenom>dsfsdf</prenom>
         <responsableLegal>Jacques Martin</responsableLegal>
         <telephone>0987654321</telephone>
         <ville>Paris</ville>
-    </adherent>
-    <adherent>
-        <adresse>fezfzefzef</adresse>
-        <armes>Fleuret</armes>
-        <categorieName></categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2024-11-04</dateFinAdhesion>
-        <dateInscription>2023-11-04</dateInscription>
-        <dateNaissance>2004-08-31</dateNaissance>
-        <deuxiemeTelephone>0612121221</deuxiemeTelephone>
-        <email>fezfz@fr.fr</email>
-        <genre>Féminin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantCotisation>0.0</montantCotisation>
-        <montantDon>0.0</montantDon>
-        <montantTotal>0.0</montantTotal>
-        <nationalite>fezfz</nationalite>
-        <nom>fezfez</nom>
-        <nomNaissance>fezfzfz</nomNaissance>
-        <paysVilleNaissance>fezfzf</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>fezfz</prenom>
-        <responsableLegal>grege erggeg</responsableLegal>
-        <telephone>0612121221</telephone>
-        <ville>efzfz</ville>
     </adherent>
 </adherents>

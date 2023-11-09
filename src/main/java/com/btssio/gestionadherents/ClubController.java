@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClubController {
+    private final ClubManager clubManager = new ClubManager(); // Initialize the ClubManager
     @FXML
     private TableView<Club> tableView; // Ensure this ID matches the TableView ID in FXML
     @FXML
@@ -50,11 +51,11 @@ public class ClubController {
     @FXML
     private TableColumn<Club, String> Site;
     @FXML
-    private TarifManager tarifManager ;
+    private TarifManager tarifManager;
     private List<Adherent> listeAdherents;
-
-    private final ClubManager clubManager = new ClubManager(); // Initialize the ClubManager
-
+    // Menu item actions
+    @FXML
+    private MenuBar mainMenuBar;
 
     @FXML
     private void initialize() {
@@ -67,8 +68,6 @@ public class ClubController {
 
         tableView.setItems(getClubData());
     }
-
-
 
     private ObservableList<Club> getClubData() {
         ObservableList<Club> clubs = FXCollections.observableArrayList();
@@ -103,12 +102,6 @@ public class ClubController {
         return clubs;
     }
 
-
-    // Menu item actions
-    @FXML
-    private MenuBar mainMenuBar;
-
-
     @FXML
     private void handleGoToInscriptionView(ActionEvent event) {
         try {
@@ -126,6 +119,7 @@ public class ClubController {
             // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
         }
     }
+
     @FXML
     private void handleGoToClubsView(ActionEvent event) {
         try {
@@ -252,10 +246,11 @@ public class ClubController {
             }
         }
     }
+
     private float calculateRowHeight(String[] content, float cellWidth, PDFont font, float fontSize) throws IOException {
         float maxRowHeight = 0;
         for (String text : content) {
-            List<String> lines = wrapText(text, (int)(cellWidth - 2), font, fontSize);
+            List<String> lines = wrapText(text, (int) (cellWidth - 2), font, fontSize);
             // Adaptez les paramètres selon la mise en page réelle
             float cellHeight = (lines.size() * 12) + 5; // 12 est la taille de la police utilisée, 5 pour un peu d'espace supplémentaire
             maxRowHeight = Math.max(maxRowHeight, cellHeight);
@@ -269,7 +264,7 @@ public class ClubController {
 
         for (int i = 0; i < content.length; i++) {
             String text = content[i] != null ? content[i] : "";
-            List<String> lines = wrapText(text, (int)(cellWidth - 2) , header ? PDType1Font.HELVETICA_BOLD : PDType1Font.HELVETICA, 12);
+            List<String> lines = wrapText(text, (int) (cellWidth - 2), header ? PDType1Font.HELVETICA_BOLD : PDType1Font.HELVETICA, 12);
 
             float cellHeight = (lines.size() * 12) + 5;
             float textY = y - 15; // Commencez à écrire du texte un peu en dessous du haut de la cellule
@@ -300,9 +295,6 @@ public class ClubController {
         // Réinitialisez la position y pour la prochaine rangée
         y -= rowHeight;
     }
-
-
-
 
 
     private List<String> wrapText(String text, float width, PDFont font, float fontSize) throws IOException {
@@ -337,11 +329,4 @@ public class ClubController {
         alert.showAndWait();
     }
 
-
-
-
-
-
-
-    // Any other event handlers for menu items can be defined here...
 }

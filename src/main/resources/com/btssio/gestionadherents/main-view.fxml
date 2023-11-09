@@ -16,22 +16,22 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
     <!-- Table for displaying adherents -->
     <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="754.0">
         <menus>
-            <Menu mnemonicParsing="false" text="Inscription" >
+            <Menu mnemonicParsing="false" text="Inscription">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="Ouvrir Inscription" onAction="#handleGoToInscriptionView" />
+                    <MenuItem mnemonicParsing="false" onAction="#handleGoToInscriptionView" text="Ouvrir Inscription" />
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Gestion Adhérent">
                 <items>
-                    <MenuItem mnemonicParsing="false" text="Ouvrir Gestion Adhérent" onAction="#handleGoToMainView" />
+                    <MenuItem mnemonicParsing="false" onAction="#handleGoToMainView" text="Ouvrir Gestion Adhérent" />
                 </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Clubs">
-                <MenuItem mnemonicParsing="false" text="Annuaire Association" onAction="#handleGoToClubsView" />
+                <MenuItem mnemonicParsing="false" onAction="#handleGoToClubsView" text="Annuaire Association" />
             </Menu>
         </menus>
     </MenuBar>
@@ -69,9 +69,9 @@
     <Button layoutX="513.0" layoutY="35.0" mnemonicParsing="false" onAction="#handleClearSearchAction" prefHeight="35.0" prefWidth="131.0" text="Effacer la recherche" />
     <!-- Separators for visual division -->
     <Separator layoutX="875.0" orientation="VERTICAL" prefHeight="671.0" prefWidth="21.0" />
-    <ScrollPane layoutX="936.0" layoutY="99.0" prefHeight="328.0" prefWidth="375.0">
+    <ScrollPane layoutX="918.0" layoutY="14.0" prefHeight="539.0" prefWidth="375.0">
         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="618.0" prefWidth="347.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="671.0" prefWidth="347.0">
                 <children>
                     <!-- Details pane for adding or editing adherents (can be expanded upon) -->
                     <Pane layoutX="19.0" layoutY="14.0" prefHeight="430.0" prefWidth="310.0">
@@ -111,7 +111,6 @@
                     </Pane>
                     <Button fx:id="clearButton" cancelButton="true" layoutX="8.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleClearAction" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
                     <!-- Add, Edit and Delete Buttons -->
-                    <Button fx:id="addButton" layoutX="14.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleAddAction" text="Ajouter l'adherent" />
                     <Button fx:id="editButton" layoutX="134.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleEditAction" text="Modifier l'adherent" />
                     <Button fx:id="deleteButton" layoutX="257.0" layoutY="534.0" mnemonicParsing="false" onAction="#handleDeleteAction" text="Supprimer" textFill="#810000">
                         <font>
@@ -133,13 +132,13 @@
             </AnchorPane>
         </content>
     </ScrollPane>
-    <Pane layoutX="918.0" layoutY="440.0" prefHeight="250.0" prefWidth="400.0">
-        <Label layoutX="36.0" layoutY="10.0" text="Catégorie:" />
-        <Label layoutX="36.0" layoutY="49.0" text="Tarif:" />
-        <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Définir cette catégorie a l'utilisateur" />
-        <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
-        <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
-        <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
-        <Button fx:id="clearCatButton" layoutX="36.0" layoutY="177.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
+    <Pane layoutX="903.0" layoutY="550.0" prefHeight="119.0" prefWidth="400.0">
+        <Label layoutX="19.0" layoutY="18.0" text="Catégorie:" />
+        <Label layoutX="264.0" layoutY="52.0" text="Tarif:" />
+        <Button fx:id="addCategorieButton" layoutX="19.0" layoutY="48.0" mnemonicParsing="false" onAction="#handleSetCategorie" text="Définir cette catégorie a l'utilisateur" />
+        <Button fx:id="deleteCategorieButton" layoutX="19.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleDeleteCategorie" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
+        <ChoiceBox fx:id="categorieChoiceBox" layoutX="95.0" layoutY="14.0" onAction="#handleSelectCategorie" prefHeight="25.0" prefWidth="254.0" />
+        <Label fx:id="price" layoutX="340.0" layoutY="52.0" text="0" />
+        <Button fx:id="clearCatButton" layoutX="264.0" layoutY="80.0" mnemonicParsing="false" onAction="#clearCategorie" prefHeight="25.0" prefWidth="117.0" text="Annuler" />
     </Pane>
 </Pane>

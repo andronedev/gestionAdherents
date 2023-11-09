@@ -10,7 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -21,6 +20,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 public class MainController {
 
     @FXML
@@ -132,7 +132,7 @@ public class MainController {
     @FXML
     private ChoiceBox<String> categorieChoiceBox;
     @FXML
-    private TarifManager tarifManager ;
+    private TarifManager tarifManager;
 
     @FXML
     private TextField InputRecherche;
@@ -194,6 +194,9 @@ public class MainController {
     @FXML
     private TextField responsableLegalField;
     private boolean rechercheActive = false;
+    private List<Adherent> listeAdherents;
+    @FXML
+    private MenuBar mainMenuBar; // Assurez-vous que le MenuBar a un fx:id et est lié ici
 
     public void initialize() {
         // Ajouter un écouteur à la sélection de la table
@@ -233,7 +236,6 @@ public class MainController {
         responsableLegalField.setText(adherent.getResponsableLegal());
 
 
-
         // set the categorieField text to the adherent's categorieName
         if (adherent.getCategorieName() != null) {
             // check if in the list of categories there category exist
@@ -245,8 +247,6 @@ public class MainController {
             clearCategorie();
         }
     }
-
-    private List<Adherent> listeAdherents;
 
     public void setListeAdherents(List<Adherent> listeAdherents, TarifManager tarifManager) {
         this.listeAdherents = listeAdherents;
@@ -387,7 +387,6 @@ public class MainController {
         );
 
 
-
         listeAdherents.add(newAdherent);
         updateAdherentsTable();
         handleClearAction();
@@ -422,10 +421,9 @@ public class MainController {
         AdherentManager.sauvegarderAdherents(listeAdherents, "adherents.xml");
     }
 
-
     @FXML
     public void handleSetCategorie() {
-        if(categorieChoiceBox.getSelectionModel().getSelectedItem() == null) {
+        if (categorieChoiceBox.getSelectionModel().getSelectedItem() == null) {
             return;
         }
         String selectedCategorie = categorieChoiceBox.getSelectionModel().getSelectedItem();
@@ -471,7 +469,6 @@ public class MainController {
         categorieChoiceBox.setValue(categorie.getNom());
         // set the tarifField text to the categorie's tarif
         price.setText(String.valueOf(categorie.getFraisInscription()));
-
 
 
     }
@@ -525,9 +522,6 @@ public class MainController {
     }
 
     @FXML
-    private MenuBar mainMenuBar; // Assurez-vous que le MenuBar a un fx:id et est lié ici
-
-    @FXML
     private void handleGoToInscriptionView(ActionEvent event) {
         try {
             // Chargez la vue d'inscription FXML
@@ -544,6 +538,7 @@ public class MainController {
             // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
         }
     }
+
     @FXML
     private void handleGoToClubsView(ActionEvent event) {
         try {

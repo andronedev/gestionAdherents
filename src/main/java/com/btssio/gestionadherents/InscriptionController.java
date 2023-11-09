@@ -2,32 +2,20 @@ package com.btssio.gestionadherents;
 
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
-import com.btssio.models.tarif.Categorie;
 import com.btssio.models.tarif.TarifManager;
 import jakarta.xml.bind.JAXBException;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.List;
-import java.awt.*;
 
 public class InscriptionController {
     @FXML
@@ -56,7 +44,7 @@ public class InscriptionController {
     @FXML
     private ChoiceBox<String> categorieChoiceBox;
     @FXML
-    private TarifManager tarifManager ;
+    private TarifManager tarifManager;
 
     @FXML
     private javafx.scene.control.TextField InputRecherche;
@@ -116,7 +104,6 @@ public class InscriptionController {
     private CheckBox droitierCheckbox;
 
 
-
     @FXML
     private TextField responsableLegalField;
 
@@ -126,13 +113,15 @@ public class InscriptionController {
     private com.btssio.gestionadherents.MainController MainController;
 
     private MainController mainController;
+    @FXML
+    private MenuBar mainMenuBar;
 
     @FXML
     private void handleAddAction(ActionEvent event) {
         if (ValidInputs()) {
             List<String> armes = new ArrayList<>();
             if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
-            if (epeeCheckBox.isSelected()) armes.add("Epée");
+            if (epeeCheckBox.isSelected()) armes.add("Épée");
             if (sabreCheckBox.isSelected()) armes.add("Sabre");
             String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
                     : loisirCheckbox.isSelected() ? "Loisir"
@@ -143,27 +132,27 @@ public class InscriptionController {
                     : gaucherCheckbox.isSelected() ? "Gaucher"
                     : droitierCheckbox.isSelected() ? "Droitier"
                     : "";
-            // Collect values from form inputs, validate them, and construct an adherent object
+            // Collecter les valeurs des champs du formulaire, les valider et construire un objet Adherent
             Adherent newAdherent = new Adherent(
                     emailField.getText(),
                     telephoneField.getText(),
-                    nomField.getText(),  // Replace with actual field if different
-                    prenomField.getText(), // Replace with actual field if different
+                    nomField.getText(),
+                    prenomField.getText(),
                     adresseField.getText(),
                     LocalDate.of(
                             Integer.parseInt(naissanceAnneeField.getText()),
                             Integer.parseInt(naissanceMoisField.getText()),
                             Integer.parseInt(naissanceJourField.getText())
                     ),
-                    LocalDate.now(), // You might need a DatePicker for this if you want a different date
-                    LocalDate.now().plusYears(1), // Assuming the adhesion lasts for 1 year
-                    0.0, // You might need to get this from a TextField or a different input
-                    0.0, // Same as above for montantDon
-                    0.0, // Same as above for montantTotal
-                    "", // You will need a way to set categorieName
+                    LocalDate.now(),
+                    LocalDate.now().plusYears(1),
+                    0.0,
+                    0.0,
+                    0.0,
+                    "",
                     nomNaissanceField.getText(),
                     masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "",
-                    paysVilleNaissanceField.getText(), // Assuming the country and city are comma-separated
+                    paysVilleNaissanceField.getText(),
                     nationaliteField.getText(),
                     codePostalField.getText(),
                     villeField.getText(),
@@ -174,146 +163,135 @@ public class InscriptionController {
                     responsableLegalField.getText()
             );
 
-            // Add new adherent to the list
+            // Ajouter le nouvel adhérent à la liste
             if (listeAdherents == null) {
                 listeAdherents = new ArrayList<>();
             }
             listeAdherents.add(newAdherent);
 
-            // Save the new list to XML
+            // Enregistrer la nouvelle liste au format XML
             try {
                 AdherentManager.sauvegarderAdherents(listeAdherents, "adherents.xml");
-                // Inform the user of success and/or clear form fields as necessary
+                // Informer l'utilisateur du succès et/ou effacer les champs du formulaire si nécessaire
                 showAlert("Adhérent ajouté", "L'adhérent a été ajouté avec succès !");
                 clearFormFields();
             } catch (Exception e) {
-                // Handle exceptions and inform the user of any errors
+                // Gérer les exceptions et informer l'utilisateur de toute erreur
                 showAlert("Erreur", "Une erreur est survenue lors de l'ajout de l'adhérent.");
                 e.printStackTrace();
             }
         }
     }
 
+
     private boolean ValidInputs() {
-        // Validate inputs and return true if they are valid, false otherwise
-            if (nomField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le nom est requis.");
-                return false;
-            }
-            else if (!nomField.getText().matches("[a-zA-Z\\s-']+")) { // Regex pour les lettres, espaces, tirets et apostrophes.
-                showAlert("Erreur de validation", "Le nom contient des caractères non autorisés.");
-                return false;
-            }
-            if (prenomField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le prénom est requis.");
-                return false;
-            }
-            else if (!nomField.getText().matches("[a-zA-Z\\s-']+")) { // Regex pour les lettres, espaces, tirets et apostrophes.
-        showAlert("Erreur de validation", "Le nom contient des caractères non autorisés.");
-        return false;
+        // Valider les saisies et renvoyer true si elles sont valides, sinon false
+        if (nomField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le nom est requis.");
+            return false;
+        } else if (!nomField.getText().matches("[a-zA-Z\\s-']+")) { // Regex pour les lettres, espaces, tirets et apostrophes.
+            showAlert("Erreur de validation", "Le nom contient des caractères non autorisés.");
+            return false;
+        }
+        if (prenomField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le prénom est requis.");
+            return false;
+        } else if (!prenomField.getText().matches("[a-zA-Z\\s-']+")) { // Regex pour les lettres, espaces, tirets et apostrophes.
+            showAlert("Erreur de validation", "Le prénom contient des caractères non autorisés.");
+            return false;
+        }
+        if (emailField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "L'email est requis.");
+            return false;
+        } else if (!emailField.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) { // Regex pour les emails
+            showAlert("Erreur de validation", "L'email est invalide.");
+            return false;
+        }
+        if (telephoneField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le numéro de téléphone est requis.");
+            return false;
+        } else if (!telephoneField.getText().matches("^(\\+33|0)[1-9]([-. ]?\\d{2}){4}$")) {
+            showAlert("Erreur de validation", "Le numéro de téléphone est invalide.");
+            return false;
+        }
+        if (adresseField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "L'adresse est requise.");
+            return false;
+        }
+        if (nomNaissanceField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le nom de naissance est requis.");
+            return false;
+        }
+        if (!masculinCheckBox.isSelected() && !femininCheckBox.isSelected()) {
+            showAlert("Erreur de validation", "Le sexe est requis.");
+            return false;
+        }
+        if (naissanceJourField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le jour de naissance est requis.");
+            return false;
+        } else if (!naissanceJourField.getText().matches("^(0?[1-9]|[12][0-9]|3[01])$")) { // Regex pour les jours de 1 à 31
+            showAlert("Erreur de validation", "Le jour de naissance est invalide.");
+            return false;
+        }
+        if (naissanceMoisField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le mois de naissance est requis.");
+            return false;
+        } else if (!naissanceMoisField.getText().matches("^(0?[1-9]|1[012])$")) { // Regex pour les mois de 1 à 12
+            showAlert("Erreur de validation", "Le mois de naissance est invalide.");
+            return false;
+        }
+        if (naissanceAnneeField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "L'année de naissance est requise.");
+            return false;
+        } else if (!naissanceAnneeField.getText().matches("^\\d{4}$")) { // Regex pour les années de 4 chiffres
+            showAlert("Erreur de validation", "L'année de naissance est invalide.");
+            return false;
+        }
+        if (paysVilleNaissanceField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le pays et la ville de naissance sont requis.");
+            return false;
+        }
+        if (nationaliteField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "La nationalité est requise.");
+            return false;
+        }
+        if (codePostalField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le code postal est requis.");
+            return false;
+        } else if (!codePostalField.getText().matches("^\\d{5}$")) { // Regex pour les codes postaux de 5 chiffres
+            showAlert("Erreur de validation", "Le code postal est invalide.");
+            return false;
+        }
+        if (villeField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "La ville est requise.");
+            return false;
+        }
+        if (deuxiemeTelField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le deuxième numéro de téléphone est requis.");
+            return false;
+        } else if (!deuxiemeTelField.getText().matches("^(\\+33|0)[1-9]([-. ]?\\d{2}){4}$")) {
+            showAlert("Erreur de validation", "Le deuxième numéro de téléphone est invalide.");
+            return false;
+        }
+        if (!fleuretCheckBox.isSelected() && !epeeCheckBox.isSelected() && !sabreCheckBox.isSelected()) {
+            showAlert("Erreur de validation", "L'arme est requise.");
+            return false;
+        }
+        if (!loisirCheckbox.isSelected() && !competitionCheckbox.isSelected()) {
+            showAlert("Erreur de validation", "La pratique est requise.");
+            return false;
+        }
+        if (!gaucherCheckbox.isSelected() && !droitierCheckbox.isSelected()) {
+            showAlert("Erreur de validation", "La latéralité est requise.");
+            return false;
+        }
+        if (responsableLegalField.getText().isEmpty()) {
+            showAlert("Erreur de validation", "Le responsable légal est requis.");
+            return false;
+        }
+        return true;
     }
-            if (emailField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "L'email est requis.");
-                return false;
-            }
-            else if (!emailField.getText().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) { // Regex pour les emails
-                showAlert("Erreur de validation", "L'email est invalide.");
-                return false;
-            }
-            if (telephoneField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le numéro de téléphone est requis.");
-                return false;
-            }
-            else if (!telephoneField.getText().matches("^(\\+33|0)[1-9]([-. ]?\\d{2}){4}$")) {
-                showAlert("Erreur de validation", "Le numéro de téléphone est invalide.");
-                return false;
-            }
-            if (adresseField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "L'adresse est requise.");
-                return false;
-            }
 
-            if (nomNaissanceField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le nom de naissance est requis.");
-                return false;
-            }
-
-            if (masculinCheckBox.isSelected() == false && femininCheckBox.isSelected() == false) {
-                showAlert("Erreur de validation", "Le sexe est requis.");
-                return false;
-            }
-            if (naissanceJourField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le jour de naissance est requis.");
-                return false;
-            }
-            else if (!naissanceJourField.getText().matches("^(0?[1-9]|[12][0-9]|3[01])$")) { // Regex pour les jours de 1 à 31
-                showAlert("Erreur de validation", "Le jour de naissance est invalide.");
-                return false;
-            }
-            if (naissanceMoisField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le mois de naissance est requis.");
-                return false;
-            }
-            else if (!naissanceMoisField.getText().matches("^(0?[1-9]|1[012])$")) { // Regex pour les mois de 1 à 12
-                showAlert("Erreur de validation", "Le mois de naissance est invalide.");
-                return false;
-            }
-            if (naissanceAnneeField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "L'année de naissance est requise.");
-                return false;
-            }
-            else if (!naissanceAnneeField.getText().matches("^\\d{4}$")) { // Regex pour les années de 4 chiffres
-                showAlert("Erreur de validation", "L'année de naissance est invalide.");
-                return false;
-            }
-            if (paysVilleNaissanceField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le pays et la ville de naissance sont requis.");
-                return false;
-            }
-
-            if (nationaliteField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "La nationalité est requise.");
-                return false;
-            }
-            if (codePostalField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le code postal est requis.");
-                return false;
-            }
-            else if (!codePostalField.getText().matches("^\\d{5}$")) { // Regex pour les codes postaux de 5 chiffres
-                showAlert("Erreur de validation", "Le code postal est invalide.");
-                return false;
-            }
-            if (villeField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "La ville est requise.");
-                return false;
-            }
-
-            if (deuxiemeTelField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le deuxième numéro de téléphone est requis.");
-                return false;
-            }
-            else if (!deuxiemeTelField.getText().matches("^(\\+33|0)[1-9]([-. ]?\\d{2}){4}$")) {
-                showAlert("Erreur de validation", "Le deuxième numéro de téléphone est invalide.");
-                return false;
-            }
-            if (fleuretCheckBox.isSelected() == false && epeeCheckBox.isSelected() == false && sabreCheckBox.isSelected() == false) {
-                showAlert("Erreur de validation", "L'arme est requise.");
-                return false;
-            }
-            if (loisirCheckbox.isSelected() == false && competitionCheckbox.isSelected() == false) {
-                showAlert("Erreur de validation", "La pratique est requise.");
-                return false;
-            }
-            if (gaucherCheckbox.isSelected() == false && droitierCheckbox.isSelected() == false) {
-                showAlert("Erreur de validation", "La latéralité est requise.");
-                return false;
-            }
-            if (responsableLegalField.getText().isEmpty()) {
-                showAlert("Erreur de validation", "Le responsable légal est requis.");
-                return false;
-            }
-            return true;
-    }
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -326,51 +304,72 @@ public class InscriptionController {
         return LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), Integer.parseInt(day));
     }
 
+    @FXML
     private void clearFormFields() {
-        // Logic to clear all form fields
+        nomField.clear();
+        prenomField.clear();
+        emailField.clear();
+        telephoneField.clear();
+        adresseField.clear();
+        nomNaissanceField.clear();
+        masculinCheckBox.setSelected(false);
+        femininCheckBox.setSelected(false);
+        naissanceJourField.clear();
+        naissanceMoisField.clear();
+        naissanceAnneeField.clear();
+        paysVilleNaissanceField.clear();
+        nationaliteField.clear();
+        codePostalField.clear();
+        villeField.clear();
+        deuxiemeTelField.clear();
+        fleuretCheckBox.setSelected(false);
+        epeeCheckBox.setSelected(false);
+        sabreCheckBox.setSelected(false);
+        loisirCheckbox.setSelected(false);
+        competitionCheckbox.setSelected(false);
+        gaucherCheckbox.setSelected(false);
+        droitierCheckbox.setSelected(false);
+        responsableLegalField.clear();
     }
-
-
-
-
 
     @FXML
     private void handleGoToMainView(ActionEvent event) {
         try {
-            // Check if the tarifManager is already initialized, if not initialize and load data
+            // Vérifie si le tarifManager est déjà initialisé, sinon l'initialiser et charger les données
             if (tarifManager == null) {
                 tarifManager = new TarifManager();
-                tarifManager.loadFromXml("tarifs.xml"); // Load tariff data
+                tarifManager.loadFromXml("tarifs.xml"); // Charger les données de tarifs
             }
 
-            // Check if listeAdherents is already loaded, if not, load from XML
+            // Vérifie si la listeAdherents est déjà chargée, sinon, charger à partir du XML
             if (listeAdherents == null || listeAdherents.isEmpty()) {
-                listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Load adherent data
+                listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Charger les données des adhérents
             }
 
-            // Load the main view FXML
+            // Charger le FXML de la vue principale
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             Parent mainView = loader.load();
 
-            // Get the controller for the main view and set its data
+            // Obtenir le contrôleur pour la vue principale et définir ses données
             MainController mainController = loader.getController();
 
-            // Set the loaded data in mainController
+            // Définir les données chargées dans mainController
 
             mainController.setListeAdherents(listeAdherents, tarifManager);
 
-            // Show the main view in the current stage
+            // Afficher la vue principale dans le stage actuel
             Scene mainScene = new Scene(mainView);
             Stage window = (Stage) ((MenuItem) event.getTarget()).getParentPopup().getOwnerWindow();
             window.setScene(mainScene);
             window.show();
         } catch (IOException e) {
             e.printStackTrace();
-            // Handle the exception, maybe log it or show an error message
+            // Gérer l'exception, peut-être la logger ou afficher un message d'erreur
         } catch (JAXBException e) {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void handleGoToInscriptionView(ActionEvent event) {
         try {
@@ -388,8 +387,7 @@ public class InscriptionController {
             // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
         }
     }
-    @FXML
-    private MenuBar mainMenuBar;
+
     @FXML
     private void handleGoToClubsView(ActionEvent event) {
         try {
@@ -407,16 +405,6 @@ public class InscriptionController {
             // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
         }
     }
-
-
-
-    private Stage getStageFromEvent(ActionEvent event) {
-        return (Stage) ((Node) event.getSource()).getScene().getWindow();
-    }
-
-
-
-
 
     public void setListeAdherents(List<Adherent> listeAdherents) {
         this.listeAdherents = listeAdherents;

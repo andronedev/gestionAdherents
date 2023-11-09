@@ -73,7 +73,7 @@
                     <Label layoutX="57.0" layoutY="399.0" text="nom et prémon du responsable légal:" />
                     <!-- Additional fields can be added here as needed -->
                 </Pane>
-                <Button fx:id="clearButton" cancelButton="true" layoutX="339.0" layoutY="570.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
+                <Button fx:id="clearButton" onAction="#clearFormFields" cancelButton="true" layoutX="339.0" layoutY="570.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="332.0" text="Annuler" />
 
                 <!-- Add, Edit and Delete Buttons -->
                 <Button fx:id="addButton" layoutX="345.0" layoutY="544.0" mnemonicParsing="false" onAction="#handleAddAction" prefHeight="24.0" prefWidth="324.0" text="S'inscrire" />
@@ -91,15 +91,7 @@
                 <CheckBox fx:id="competitionCheckbox" layoutX="571.0" layoutY="482.0" mnemonicParsing="false" text="Compétition" />
                 <CheckBox fx:id="gaucherCheckbox" layoutX="590.0" layoutY="508.0" mnemonicParsing="false" text="gaucher" />
                 <CheckBox fx:id="droitierCheckbox" layoutX="521.0" layoutY="508.0" mnemonicParsing="false" text="droitier" />
-                <Pane layoutX="743.0" layoutY="67.0" prefHeight="142.0" prefWidth="990.0">
-                    <Label layoutX="36.0" layoutY="10.0" text="Catégorie:" />
-                    <Label layoutX="36.0" layoutY="49.0" text="Tarif:" />
-                    <Button fx:id="addCategorieButton" layoutX="36.0" layoutY="90.0" mnemonicParsing="false" text="Définir cette catégorie a l'utilisateur" />
-                    <Button fx:id="deleteCategorieButton" layoutX="36.0" layoutY="134.0" mnemonicParsing="false" text="Supprimer l'utilisateur de cette catégorie" textFill="RED" />
-                    <ChoiceBox fx:id="categorieChoiceBox" layoutX="112.0" layoutY="6.0" prefHeight="25.0" prefWidth="254.0" />
-                    <Label fx:id="price" layoutX="112.0" layoutY="49.0" text="0" />
-                    <Button fx:id="clearCatButton" layoutX="36.0" layoutY="177.0" mnemonicParsing="false"  prefHeight="25.0" prefWidth="117.0" text="Annuler" />
-                </Pane>
+
             <Text layoutX="41.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cercle d'Escrime de Rouen 2022 • 2023 INSCRIPTION" wrappingWidth="332.0" />
             </children></AnchorPane>
 

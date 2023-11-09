@@ -38,12 +38,13 @@ public class Adherent {
     private String lateralite; // Peut être "gaucher" ou "droitier"
 
     private String responsableLegal;
+
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
                     LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon,
                     double montantTotal, String categorieName, String nomNaissance, String genre, String PaysVilleNaissance,
-                     String nationalite, String codePostal, String ville, String deuxiemeTelephone,
-                    List<String> armes, String pratique, String lateralite,String responsableLegal) {
+                    String nationalite, String codePostal, String ville, String deuxiemeTelephone,
+                    List<String> armes, String pratique, String lateralite, String responsableLegal) {
         this.email = email;
         this.telephone = telephone;
         this.nom = nom;
@@ -83,6 +84,7 @@ public class Adherent {
     public void setEmail(String email) {
         this.email = email;
     }
+
     @XmlElement
     public String getTelephone() {
         return telephone;
@@ -91,6 +93,7 @@ public class Adherent {
     public void setTelephone(String phoneNumber) {
         this.telephone = phoneNumber;
     }
+
     @XmlElement
     public String getNom() {
         return nom;
@@ -99,6 +102,7 @@ public class Adherent {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
     @XmlElement
     public String getPrenom() {
         return prenom;
@@ -107,6 +111,7 @@ public class Adherent {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
+
     @XmlElement
     public String getAdresse() {
         return adresse;
@@ -115,6 +120,7 @@ public class Adherent {
     public void setAdresse(String adresse) {
         this.adresse = adresse;
     }
+
     @XmlElement
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getDateNaissance() {
@@ -124,6 +130,7 @@ public class Adherent {
     public void setDateNaissance(LocalDate dateNaissance) {
         this.dateNaissance = dateNaissance;
     }
+
     @XmlElement
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getDateInscription() {
@@ -133,6 +140,7 @@ public class Adherent {
     public void setDateInscription(LocalDate dateInscription) {
         this.dateInscription = dateInscription;
     }
+
     @XmlElement
     @XmlJavaTypeAdapter(LocalDateAdapter.class)
     public LocalDate getDateFinAdhesion() {
@@ -142,6 +150,7 @@ public class Adherent {
     public void setDateFinAdhesion(LocalDate dateFinAdhesion) {
         this.dateFinAdhesion = dateFinAdhesion;
     }
+
     @XmlElement
     public double getMontantCotisation() {
         return montantCotisation;
@@ -150,6 +159,7 @@ public class Adherent {
     public void setMontantCotisation(double montantCotisation) {
         this.montantCotisation = montantCotisation;
     }
+
     @XmlElement
     public double getMontantDon() {
         return montantDon;
@@ -158,6 +168,7 @@ public class Adherent {
     public void setMontantDon(double montantDon) {
         this.montantDon = montantDon;
     }
+
     @XmlElement
     public double getMontantTotal() {
         return montantTotal;
@@ -175,6 +186,7 @@ public class Adherent {
     public void setCategorieName(String categorie) {
         this.categorieName = categorie;
     }
+
     @XmlElement
     public String getNomNaissance() {
         return nomNaissance;
@@ -183,6 +195,7 @@ public class Adherent {
     public void setNomNaissance(String nomNaissance) {
         this.nomNaissance = nomNaissance;
     }
+
     @XmlElement
     public String getGenre() {
         return genre;
@@ -191,6 +204,7 @@ public class Adherent {
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
     @XmlElement
     public String getPaysVilleNaissance() {
         return paysVilleNaissance;
@@ -208,6 +222,7 @@ public class Adherent {
     public void setNationalite(String nationalite) {
         this.nationalite = nationalite;
     }
+
     @XmlElement
     public String getCodePostal() {
         return codePostal;
@@ -216,6 +231,7 @@ public class Adherent {
     public void setCodePostal(String codePostal) {
         this.codePostal = codePostal;
     }
+
     @XmlElement
     public String getVille() {
         return ville;
@@ -224,6 +240,7 @@ public class Adherent {
     public void setVille(String ville) {
         this.ville = ville;
     }
+
     @XmlElement
     public String getDeuxiemeTelephone() {
         return deuxiemeTelephone;
@@ -232,6 +249,7 @@ public class Adherent {
     public void setDeuxiemeTelephone(String deuxiemeTelephone) {
         this.deuxiemeTelephone = deuxiemeTelephone;
     }
+
     @XmlElement
     public List<String> getArmes() {
         return armes;
@@ -240,6 +258,7 @@ public class Adherent {
     public void setArmes(List<String> armes) {
         this.armes = armes;
     }
+
     @XmlElement
     public String getPratique() {
         return pratique;
@@ -248,6 +267,7 @@ public class Adherent {
     public void setPratique(String pratique) {
         this.pratique = pratique;
     }
+
     @XmlElement
     public String getLateralite() {
         return lateralite;
