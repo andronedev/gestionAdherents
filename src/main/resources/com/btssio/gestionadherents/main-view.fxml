@@ -18,7 +18,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.btssio.gestionadherents.MainController">
     <!-- Table for displaying adherents -->
-    <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="754.0">
+    <MenuBar fx:id="mainMenuBar" prefHeight="28.0" prefWidth="884.0">
         <menus>
             <Menu mnemonicParsing="false" text="Inscription">
                 <items>
