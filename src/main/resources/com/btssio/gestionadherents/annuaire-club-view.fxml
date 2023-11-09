@@ -21,7 +21,7 @@
             <MenuItem mnemonicParsing="false" text="Ouvrir Gestion Adhérent" onAction="#handleGoToMainView" />
           </items>
         </Menu>
-        <Menu>
+        <Menu mnemonicParsing="false" text="Clubs">
         <MenuItem mnemonicParsing="false" text="Annuaire Association" onAction="#handleGoToClubsView"/></Menu>
       </menus>
     </MenuBar>
