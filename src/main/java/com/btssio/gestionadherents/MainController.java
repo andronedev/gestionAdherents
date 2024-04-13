@@ -334,65 +334,65 @@ public class MainController {
         }
     }
 
-    @FXML
-    public void handleAddAction() {
-            // si un adhérent est sélectionné, on clear les champs et on attend
-            if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
-                handleClearAction();
-                return;
-            }
-            List<String> armes = new ArrayList<>();
-        if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
-        if (epeeCheckBox.isSelected()) armes.add("Epée");
-        if (sabreCheckBox.isSelected()) armes.add("Sabre");
-
-        String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
-                : loisirCheckbox.isSelected() ? "Loisir"
-                : competitionCheckbox.isSelected() ? "Compétition"
-                : "";
-
-        String lateralite = gaucherCheckbox.isSelected() && droitierCheckbox.isSelected() ? "Ambidextre"
-                : gaucherCheckbox.isSelected() ? "Gaucher"
-                : droitierCheckbox.isSelected() ? "Droitier"
-                : "";
-
-        Adherent newAdherent = new Adherent(
-                emailField.getText(),
-                telephoneField.getText(),
-                nomField.getText(),  // Replace with actual field if different
-                prenomField.getText(), // Replace with actual field if different
-                adresseField.getText(),
-                LocalDate.of(
-                        Integer.parseInt(naissanceAnneeField.getText()),
-                        Integer.parseInt(naissanceMoisField.getText()),
-                        Integer.parseInt(naissanceJourField.getText())
-                ),
-                LocalDate.now(), // You might need a DatePicker for this if you want a different date
-                LocalDate.now().plusYears(1), // Assuming the adhesion lasts for 1 year
-                0.0, // You might need to get this from a TextField or a different input
-                0.0, // Same as above for montantDon
-                0.0, // Same as above for montantTotal
-                "", // You will need a way to set categorieName
-                nomNaissanceField.getText(),
-                masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "",
-                paysVilleNaissanceField.getText(), // Assuming the country and city are comma-separated
-                nationaliteField.getText(),
-                codePostalField.getText(),
-                villeField.getText(),
-                deuxiemeTelField.getText(),
-                armes,
-                pratique,
-                lateralite,
-                responsableLegalField.getText()
-        );
-
-
-        listeAdherents.add(newAdherent);
-        updateAdherentsTable();
-        handleClearAction();
-        saveAdherents();
-
-    }
+//    @FXML
+//    public void handleAddAction() {
+//            // si un adhérent est sélectionné, on clear les champs et on attend
+//            if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
+//                handleClearAction();
+//                return;
+//            }
+//            List<String> armes = new ArrayList<>();
+//        if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
+//        if (epeeCheckBox.isSelected()) armes.add("Epée");
+//        if (sabreCheckBox.isSelected()) armes.add("Sabre");
+//
+//        String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
+//                : loisirCheckbox.isSelected() ? "Loisir"
+//                : competitionCheckbox.isSelected() ? "Compétition"
+//                : "";
+//
+//        String lateralite = gaucherCheckbox.isSelected() && droitierCheckbox.isSelected() ? "Ambidextre"
+//                : gaucherCheckbox.isSelected() ? "Gaucher"
+//                : droitierCheckbox.isSelected() ? "Droitier"
+//                : "";
+//
+//        Adherent newAdherent = new Adherent(
+//                emailField.getText(),
+//                telephoneField.getText(),
+//                nomField.getText(),  // Replace with actual field if different
+//                prenomField.getText(), // Replace with actual field if different
+//                adresseField.getText(),
+//                LocalDate.of(
+//                        Integer.parseInt(naissanceAnneeField.getText()),
+//                        Integer.parseInt(naissanceMoisField.getText()),
+//                        Integer.parseInt(naissanceJourField.getText())
+//                ),
+//                LocalDate.now(), // You might need a DatePicker for this if you want a different date
+//                LocalDate.now().plusYears(1), // Assuming the adhesion lasts for 1 year
+//                0.0, // You might need to get this from a TextField or a different input
+//                0.0, // Same as above for montantDon
+//                0.0, // Same as above for montantTotal
+//                "", // You will need a way to set categorieName
+//                nomNaissanceField.getText(),
+//                masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "",
+//                paysVilleNaissanceField.getText(), // Assuming the country and city are comma-separated
+//                nationaliteField.getText(),
+//                codePostalField.getText(),
+//                villeField.getText(),
+//                deuxiemeTelField.getText(),
+//                armes,
+//                pratique,
+//                lateralite,
+//                responsableLegalField.getText()
+//        );
+//
+//
+//        listeAdherents.add(newAdherent);
+//        updateAdherentsTable();
+//        handleClearAction();
+//        saveAdherents();
+//
+//    }
 
     @FXML
     public void handleDeleteAction() {

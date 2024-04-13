@@ -1,35 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
-        <adresse>rgggr</adresse>
-        <armes>Fleuret</armes>
-        <armes>Sabre</armes>
-        <categorieName></categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-13</dateFinAdhesion>
-        <dateInscription>2024-04-13</dateInscription>
-        <dateNaissance>2600-01-20</dateNaissance>
-        <deuxiemeTelephone>0606060660</deuxiemeTelephone>
-        <email>ttdt@gmail.coml</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantCotisation>0.0</montantCotisation>
-        <montantDon>0.0</montantDon>
-        <montantTotal>0.0</montantTotal>
-        <nationalite>rgggr</nationalite>
-        <nom>messi</nom>
-        <nomNaissance>rgggr</nomNaissance>
-        <paysVilleNaissance>rgggr</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>grege</prenom>
-        <responsableLegal>rgggr</responsableLegal>
-        <telephone>0606060660</telephone>
-        <ville>rgggr</ville>
-    </adherent>
-    <adherent>
         <adresse>porttugal 1</adresse>
         <armes>Fleuret</armes>
-        <armes>Épée</armes>
         <categorieName></categorieName>
         <codePostal>31000</codePostal>
         <dateFinAdhesion>2025-04-13</dateFinAdhesion>
@@ -43,7 +16,7 @@
         <montantDon>0.0</montantDon>
         <montantTotal>0.0</montantTotal>
         <nationalite>on retest</nationalite>
-        <nom>on retest</nom>
+        <nom>vamos </nom>
         <nomNaissance>on retest</nomNaissance>
         <paysVilleNaissance>on retest</paysVilleNaissance>
         <pratique>Loisir</pratique>

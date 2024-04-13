@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tarifs>
     <Categories>
+        <!-- Catégories existantes -->
         <Categorie>
             <Nom>M5-M7</Nom>
             <AnneeDebut>2016</AnneeDebut>
@@ -12,17 +13,44 @@
             <Nom>M9</Nom>
             <AnneeDebut>2014</AnneeDebut>
             <AnneeFin>2015</AnneeFin>
-            <FraisInscription>220</FraisInscription>
+            <FraisInscription>190</FraisInscription>
             <FraisLicence>45</FraisLicence>
         </Categorie>
-
+        <Categorie>
+            <Nom>M11</Nom>
+            <AnneeDebut>2012</AnneeDebut>
+            <AnneeFin>2013</AnneeFin>
+            <FraisInscription>190</FraisInscription>
+            <FraisLicence>55</FraisLicence>
+        </Categorie>
+        <Categorie>
+            <Nom>M13-M20</Nom>
+            <AnneeDebut>2003</AnneeDebut>
+            <AnneeFin>2011</AnneeFin>
+            <FraisInscription>220</FraisInscription>
+            <FraisLicence>55</FraisLicence>
+        </Categorie>
+        <Categorie>
+            <Nom>M23</Nom>
+            <AnneeDebut>1900</AnneeDebut>
+            <AnneeFin>2002</AnneeFin>
+            <FraisInscription>255</FraisInscription>
+            <FraisLicence>55</FraisLicence>
+        </Categorie>
     </Categories>
-    <!-- ... d'autres catégories ... -->
     <Options>
         <LicenceSansAssurance>-0.21</LicenceSansAssurance>
         <LicenceAvecAssurance>1.49</LicenceAvecAssurance>
-        <ReductionFamille2e>24, 28.5, 33.75</ReductionFamille2e>
-        <ReductionFamille3e>32, 38, 45</ReductionFamille3e>
+        <ReductionFamille2eAdherentM5M7>-24</ReductionFamille2eAdherentM5M7>
+        <ReductionFamille2eAdherentM9>-24</ReductionFamille2eAdherentM9>
+        <ReductionFamille2eAdherentM11>-24</ReductionFamille2eAdherentM11>
+        <ReductionFamille2eAdherentM13M20>-28.50</ReductionFamille2eAdherentM13M20>
+        <ReductionFamille2eAdherentM23>-33.75</ReductionFamille2eAdherentM23>
+        <ReductionFamille3eAdherentM5M7>-32</ReductionFamille3eAdherentM5M7>
+        <ReductionFamille3eAdherentM9>-32</ReductionFamille3eAdherentM9>
+        <ReductionFamille3eAdherentM11>-32</ReductionFamille3eAdherentM11>
+        <ReductionFamille3eAdherentM13M20>-38</ReductionFamille3eAdherentM13M20>
+        <ReductionFamille3eAdherentM23>-45</ReductionFamille3eAdherentM23>
     </Options>
     <AutresFormules>
         <Carte10Seances>95</Carte10Seances>
