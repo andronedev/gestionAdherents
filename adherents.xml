@@ -1,53 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
-        <adresse>123 rue de la République, 75001 Paris</adresse>
-        <categorieName>Adulte</categorieName>
-        <codePostal>75001</codePostal>
-        <dateFinAdhesion>2024-01-01</dateFinAdhesion>
-        <dateInscription>2023-01-01</dateInscription>
-        <dateNaissance>1985-06-15</dateNaissance>
-        <deuxiemeTelephone>0643210987</deuxiemeTelephone>
-        <email>jean.dupont@example.com</email>
+        <adresse>rgggr</adresse>
+        <armes>Fleuret</armes>
+        <armes>Sabre</armes>
+        <categorieName></categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2025-04-13</dateFinAdhesion>
+        <dateInscription>2024-04-13</dateInscription>
+        <dateNaissance>2600-01-20</dateNaissance>
+        <deuxiemeTelephone>0606060660</deuxiemeTelephone>
+        <email>ttdt@gmail.coml</email>
         <genre>Masculin</genre>
         <lateralite>Droitier</lateralite>
-        <montantCotisation>190.0</montantCotisation>
-        <montantDon>50.0</montantDon>
-        <montantTotal>240.0</montantTotal>
-        <nationalite>Française</nationalite>
-        <nom>Dupont</nom>
-        <nomNaissance>Durand</nomNaissance>
-        <paysVilleNaissance>France, Paris</paysVilleNaissance>
+        <montantCotisation>0.0</montantCotisation>
+        <montantDon>0.0</montantDon>
+        <montantTotal>0.0</montantTotal>
+        <nationalite>rgggr</nationalite>
+        <nom>messi</nom>
+        <nomNaissance>rgggr</nomNaissance>
+        <paysVilleNaissance>rgggr</paysVilleNaissance>
         <pratique>Loisir</pratique>
-        <prenom>Jean</prenom>
-        <responsableLegal>Lucie Dupont</responsableLegal>
-        <telephone>0123456789</telephone>
-        <ville>Paris</ville>
+        <prenom>grege</prenom>
+        <responsableLegal>rgggr</responsableLegal>
+        <telephone>0606060660</telephone>
+        <ville>rgggr</ville>
     </adherent>
     <adherent>
-        <adresse>456 avenue des Ternes, 75017 Paris</adresse>
+        <adresse>porttugal 1</adresse>
         <armes>Fleuret</armes>
-        <armes>Epée</armes>
-        <categorieName>M5-M7</categorieName>
-        <codePostal>75017</codePostal>
-        <dateFinAdhesion>2024-02-15</dateFinAdhesion>
-        <dateInscription>2023-02-15</dateInscription>
-        <dateNaissance>1990-10-20</dateNaissance>
-        <deuxiemeTelephone>0678901234</deuxiemeTelephone>
-        <email>marie.martin@example.com</email>
-        <genre>Féminin</genre>
-        <lateralite>Gaucher</lateralite>
-        <montantCotisation>190.0</montantCotisation>
-        <montantDon>75.0</montantDon>
-        <montantTotal>265.0</montantTotal>
-        <nationalite>Française</nationalite>
-        <nom>Martin</nom>
-        <nomNaissance>Leblanc</nomNaissance>
-        <paysVilleNaissance>France, Lyon</paysVilleNaissance>
-        <pratique>Compétition</pratique>
-        <prenom>dsfsdf</prenom>
-        <responsableLegal>Jacques Martin</responsableLegal>
-        <telephone>0987654321</telephone>
-        <ville>Paris</ville>
+        <armes>Épée</armes>
+        <categorieName></categorieName>
+        <codePostal>31000</codePostal>
+        <dateFinAdhesion>2025-04-13</dateFinAdhesion>
+        <dateInscription>2024-04-13</dateInscription>
+        <dateNaissance>2002-02-02</dateNaissance>
+        <deuxiemeTelephone>0606060606</deuxiemeTelephone>
+        <email>ronaldomessi@gmail.com</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantCotisation>0.0</montantCotisation>
+        <montantDon>0.0</montantDon>
+        <montantTotal>0.0</montantTotal>
+        <nationalite>on retest</nationalite>
+        <nom>on retest</nom>
+        <nomNaissance>on retest</nomNaissance>
+        <paysVilleNaissance>on retest</paysVilleNaissance>
+        <pratique>Loisir</pratique>
+        <prenom>cristiano</prenom>
+        <responsableLegal>on retest</responsableLegal>
+        <telephone>0606060606</telephone>
+        <ville>testt</ville>
     </adherent>
 </adherents>

@@ -6,7 +6,9 @@ import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AdherentManager {
 
@@ -14,12 +16,15 @@ public class AdherentManager {
     public static List<Adherent> chargerAdherents(String pathToXml) {
         try {
             File adherentsXml = new File(pathToXml);
-            JAXBContext jaxbContext = JAXBContext.newInstance(Adherents.class); // Chargement de la classe Adherents au lieu de Adherent
+            JAXBContext jaxbContext = JAXBContext.newInstance(Adherents.class);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-            Adherents adherentsContainer = (Adherents) unmarshaller.unmarshal(adherentsXml); // Utilisation de Adherents comme conteneur
-            return adherentsContainer.getAdherentsList(); // Récupération de la liste directement depuis le conteneur Adherents
-
+            if (adherentsXml.exists()) {
+                Adherents adherentsContainer = (Adherents) unmarshaller.unmarshal(adherentsXml);
+                return adherentsContainer.getAdherentsList();
+            } else {
+                return new ArrayList<>();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -32,15 +37,26 @@ public class AdherentManager {
             File adherentsXml = new File(pathToXml);
             JAXBContext jaxbContext = JAXBContext.newInstance(Adherents.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
+
+            Adherents adherentsContainer = new Adherents();
+            adherentsContainer.setAdherentsList(adherents);
+
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-
-            Adherents wrapper = new Adherents();
-            wrapper.setAdherentsList(adherents);
-
-            marshaller.marshal(wrapper, adherentsXml);
+            marshaller.marshal(adherentsContainer, adherentsXml);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
+    //ajout d'un adherent dans la liste
+    public static void ajouterAdherent(List<Adherent> adherent, String pathToXml) {
+        try {
+            List<Adherent> adherents = chargerAdherents(pathToXml);
+            Objects.requireNonNull(adherents).add((Adherent) adherent);
+            sauvegarderAdherents(adherents, pathToXml);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
+
+

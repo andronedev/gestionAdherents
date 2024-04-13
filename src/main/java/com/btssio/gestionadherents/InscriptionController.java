@@ -132,6 +132,7 @@ public class InscriptionController {
                     : gaucherCheckbox.isSelected() ? "Gaucher"
                     : droitierCheckbox.isSelected() ? "Droitier"
                     : "";
+
             // Collecter les valeurs des champs du formulaire, les valider et construire un objet Adherent
             Adherent newAdherent = new Adherent(
                     emailField.getText(),
@@ -163,15 +164,16 @@ public class InscriptionController {
                     responsableLegalField.getText()
             );
 
-            // Ajouter le nouvel adhérent à la liste
-            if (listeAdherents == null) {
-                listeAdherents = new ArrayList<>();
-            }
-            listeAdherents.add(newAdherent);
-
-            // Enregistrer la nouvelle liste au format XML
             try {
-                AdherentManager.sauvegarderAdherents(listeAdherents, "adherents.xml");
+                // Charger la liste existante des adhérents
+                List<Adherent> existingAdherents = AdherentManager.chargerAdherents("adherents.xml");
+
+                // Ajouter le nouvel adhérent à la liste existante
+                existingAdherents.add(newAdherent);
+
+                // Sauvegarder la liste complète des adhérents
+                AdherentManager.sauvegarderAdherents(existingAdherents, "adherents.xml");
+
                 // Informer l'utilisateur du succès et/ou effacer les champs du formulaire si nécessaire
                 showAlert("Adhérent ajouté", "L'adhérent a été ajouté avec succès !");
                 clearFormFields();

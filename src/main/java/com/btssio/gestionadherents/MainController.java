@@ -336,12 +336,12 @@ public class MainController {
 
     @FXML
     public void handleAddAction() {
-        // si un adhérent est sélectionné, on clear les champs et on attend
-        if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
-            handleClearAction();
-            return;
-        }
-        List<String> armes = new ArrayList<>();
+            // si un adhérent est sélectionné, on clear les champs et on attend
+            if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
+                handleClearAction();
+                return;
+            }
+            List<String> armes = new ArrayList<>();
         if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
         if (epeeCheckBox.isSelected()) armes.add("Epée");
         if (sabreCheckBox.isSelected()) armes.add("Sabre");

@@ -8,6 +8,7 @@ module com.btssio.gestionadherents {
     requires java.desktop;
     requires org.glassfish.jaxb.runtime;
     requires org.apache.pdfbox;
+    requires java.xml;
 
     opens com.btssio.gestionadherents to javafx.fxml;
     opens com.btssio.models.adherent to org.glassfish.jaxb.runtime, jakarta.xml.bind;
