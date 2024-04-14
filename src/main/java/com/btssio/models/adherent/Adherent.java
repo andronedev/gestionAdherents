@@ -38,13 +38,17 @@ public class Adherent {
     private String lateralite; // Peut être "gaucher" ou "droitier"
 
     private String responsableLegal;
+    private boolean sansAssurance;
+    private boolean avecAssurance;
+    private boolean carte10Seances;
+    int nbAdherents;
 
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
                     LocalDate dateInscription, LocalDate dateFinAdhesion, double montantAdhesion, double montantDon,
                     double montantTotal, String categorieName, String nomNaissance, String genre, String PaysVilleNaissance,
                     String nationalite, String codePostal, String ville, String deuxiemeTelephone,
-                    List<String> armes, String pratique, String lateralite, String responsableLegal) {
+                    List<String> armes, String pratique, String lateralite, String responsableLegal , boolean sansAssurance, boolean avecAssurance, boolean carte10Seances , int nbAdherents) {
         this.email = email;
         this.telephone = telephone;
         this.nom = nom;
@@ -70,6 +74,10 @@ public class Adherent {
         this.pratique = pratique;
         this.lateralite = lateralite;
         this.responsableLegal = responsableLegal;
+        this.sansAssurance = sansAssurance;
+        this.avecAssurance = avecAssurance;
+        this.carte10Seances = carte10Seances;
+        this.nbAdherents = nbAdherents;
     }
 
     public Adherent() {
@@ -285,6 +293,40 @@ public class Adherent {
     public void setResponsableLegal(String responsableLegal) {
         this.responsableLegal = responsableLegal;
     }
+
+    public boolean isSansAssurance() {
+        return sansAssurance;
+    }
+
+    public void setSansAssurance(boolean sansAssurance) {
+        this.sansAssurance = sansAssurance;
+    }
+
+    public boolean isAvecAssurance() {
+        return avecAssurance;
+    }
+
+    public void setAvecAssurance(boolean avecAssurance) {
+        this.avecAssurance = avecAssurance;
+    }
+
+    public boolean isCarte10Seances() {
+        return carte10Seances;
+    }
+
+    public void setCarte10Seances(boolean carte10Seances) {
+        this.carte10Seances = carte10Seances;
+    }
+
+    public int getNbAdherents() {
+        return nbAdherents;
+    }
+
+    public void setNbAdherents(int nbAdherents) {
+        this.nbAdherents = nbAdherents;
+    }
+
+
 
     @Override
     public String toString() {

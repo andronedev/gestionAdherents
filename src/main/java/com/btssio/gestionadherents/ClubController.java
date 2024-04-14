@@ -147,9 +147,12 @@ public class ClubController {
                 tarifManager.loadFromXml("tarifs.xml"); // Load tariff data
             }
 
-            // Check if listeAdherents is already loaded, if not, load from XML
+            // Vérifie et charge la listeAdherents, garantissant qu'elle n'est jamais nulle
             if (listeAdherents == null || listeAdherents.isEmpty()) {
-                listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Load adherent data
+                listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Charger les données des adhérents
+                if (listeAdherents == null) {
+                    listeAdherents = new ArrayList<>(); // Assure une liste non nulle
+                }
             }
 
             // Load the main view FXML

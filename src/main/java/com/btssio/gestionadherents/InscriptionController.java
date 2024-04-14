@@ -177,7 +177,11 @@ public class InscriptionController {
                     armes,
                     pratique,
                     lateralite,
-                    responsableLegalField.getText());
+                    responsableLegalField.getText(),
+                    sansAssuranceCheckbox.isSelected(),
+                    avecAssuranceRenfCheckbox.isSelected(),
+                    avec10SeanceCheckbox.isSelected(),
+                    Integer.parseInt(nbAdherentFamille.getText()));
                     TarifManager tarifManager = new TarifManager();
                     try {
                         tarifManager.loadFromXml("tarifs.xml");
@@ -222,9 +226,13 @@ public class InscriptionController {
                     newAdherent.setMontantTotal(montantTotalInscription);
 
 
+
             try {
                 // Charger la liste existante des adhérents
                 List<Adherent> existingAdherents = AdherentManager.chargerAdherents("adherents.xml");
+                if (existingAdherents == null) {
+                    existingAdherents = new ArrayList<>();
+                }
 
                 // Ajouter le nouvel adhérent à la liste existante
                 existingAdherents.add(newAdherent);
@@ -442,15 +450,18 @@ public class InscriptionController {
     @FXML
     private void handleGoToMainView(ActionEvent event) {
         try {
-            // Vérifie si le tarifManager est déjà initialisé, sinon l'initialiser et charger les données
+            // Vérifie et initialise le tarifManager
             if (tarifManager == null) {
                 tarifManager = new TarifManager();
                 tarifManager.loadFromXml("tarifs.xml"); // Charger les données de tarifs
             }
 
-            // Vérifie si la listeAdherents est déjà chargée, sinon, charger à partir du XML
+            // Vérifie et charge la listeAdherents, garantissant qu'elle n'est jamais nulle
             if (listeAdherents == null || listeAdherents.isEmpty()) {
                 listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Charger les données des adhérents
+                if (listeAdherents == null) {
+                    listeAdherents = new ArrayList<>(); // Assure une liste non nulle
+                }
             }
 
             // Charger le FXML de la vue principale
@@ -461,8 +472,7 @@ public class InscriptionController {
             MainController mainController = loader.getController();
 
             // Définir les données chargées dans mainController
-
-            mainController.setListeAdherents(listeAdherents, tarifManager);
+            mainController.setListeAdherents(listeAdherents,tarifManager); // Assurez-vous que cette méthode gère aussi les listes vides
 
             // Afficher la vue principale dans le stage actuel
             Scene mainScene = new Scene(mainView);
@@ -470,12 +480,12 @@ public class InscriptionController {
             window.setScene(mainScene);
             window.show();
         } catch (IOException e) {
-            e.printStackTrace();
-            // Gérer l'exception, peut-être la logger ou afficher un message d'erreur
+            e.printStackTrace(); // Gérer l'exception, peut-être la logger ou afficher un message d'erreur
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace(); // Traiter les exceptions JAXB
         }
     }
+
 
     @FXML
     private void handleGoToInscriptionView(ActionEvent event) {

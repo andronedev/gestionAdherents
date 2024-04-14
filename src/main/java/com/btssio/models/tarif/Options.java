@@ -41,8 +41,6 @@ public class Options {
         this.carte10Seances = carte10Seances;
     }
 
-
-
     @XmlElement(name = "ReductionsFamiliales")
     @XmlJavaTypeAdapter(MapAdapter.class)
     public Map<String, Double> getReductionsFamiliales() {

@@ -1,103 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
-        <adresse>montantCarteSeances</adresse>
+        <adresse>milliemettest</adresse>
         <armes>Fleuret</armes>
-        <categorieName>M23</categorieName>
+        <avecAssurance>true</avecAssurance>
+        <carte10Seances>true</carte10Seances>
+        <categorieName>M13-M20</categorieName>
         <codePostal>15000</codePostal>
         <dateFinAdhesion>2025-04-14</dateFinAdhesion>
         <dateInscription>2024-04-14</dateInscription>
-        <dateNaissance>2017-02-02</dateNaissance>
+        <dateNaissance>2004-02-02</dateNaissance>
         <deuxiemeTelephone>0615332122</deuxiemeTelephone>
-        <email>montantCarteSeances@montantCarteSeances.fr</email>
+        <email>milliemettest@gmail.com</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantAdhesion>275.0</montantAdhesion>
+        <montantOption>67.99</montantOption>
+        <montantTotal>342.99</montantTotal>
+        <nationalite>milliemettest</nationalite>
+        <nbAdherents>0</nbAdherents>
+        <nom>milliemettest</nom>
+        <nomNaissance>milliemettest</nomNaissance>
+        <paysVilleNaissance>milliemettest</paysVilleNaissance>
+        <pratique>Loisir</pratique>
+        <prenom>milliemettest</prenom>
+        <responsableLegal>milliemettest</responsableLegal>
+        <sansAssurance>false</sansAssurance>
+        <telephone>0615332122</telephone>
+        <ville>milliemettest</ville>
+    </adherent>
+    <adherent>
+        <adresse>vamos</adresse>
+        <armes>Fleuret</armes>
+        <avecAssurance>false</avecAssurance>
+        <carte10Seances>false</carte10Seances>
+        <categorieName>M13-M20</categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
+        <dateInscription>2024-04-14</dateInscription>
+        <dateNaissance>2004-02-24</dateNaissance>
+        <deuxiemeTelephone>0615332121</deuxiemeTelephone>
+        <email>vamos@vamos.fr</email>
         <genre>Masculin</genre>
         <lateralite>Droitier</lateralite>
         <montantAdhesion>255.0</montantAdhesion>
-        <montantOption>71.0</montantOption>
-        <montantTotal>326.0</montantTotal>
-        <nationalite>montantCarteSeances</nationalite>
-        <nom>montantCarteSeances</nom>
-        <nomNaissance>montantCarteSeances</nomNaissance>
-        <paysVilleNaissance>montantCarteSeances</paysVilleNaissance>
+        <montantOption>-38.21</montantOption>
+        <montantTotal>236.79000000000002</montantTotal>
+        <nationalite>vamos</nationalite>
+        <nbAdherents>3</nbAdherents>
+        <nom>vamos</nom>
+        <nomNaissance>vamos</nomNaissance>
+        <paysVilleNaissance>vamos</paysVilleNaissance>
         <pratique>Loisir</pratique>
-        <prenom>montantCarteSeances</prenom>
-        <responsableLegal>montantCarteSeances</responsableLegal>
+        <prenom>vamos</prenom>
+        <responsableLegal>vamos</responsableLegal>
+        <sansAssurance>true</sansAssurance>
         <telephone>0615332122</telephone>
-        <ville>montantCarteSeances</ville>
-    </adherent>
-    <adherent>
-        <adresse>ttestavecassu</adresse>
-        <armes>Fleuret</armes>
-        <categorieName>M5-M7</categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
-        <dateInscription>2024-04-14</dateInscription>
-        <dateNaissance>2017-02-02</dateNaissance>
-        <deuxiemeTelephone>0615323232</deuxiemeTelephone>
-        <email>ttestavecassu@ttestavecassu.fr</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>218.0</montantAdhesion>
-        <montantOption>-22.51</montantOption>
-        <montantTotal>195.49</montantTotal>
-        <nationalite>ttestavecassu</nationalite>
-        <nom>ttestavecassu</nom>
-        <nomNaissance>ttestavecassu</nomNaissance>
-        <paysVilleNaissance>ttestavecassu</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>ttestavecassu</prenom>
-        <responsableLegal>ttestavecassu</responsableLegal>
-        <telephone>0615332122</telephone>
-        <ville>ttestavecassu</ville>
-    </adherent>
-    <adherent>
-        <adresse>omgpasdestr</adresse>
-        <armes>Fleuret</armes>
-        <categorieName>M5-M7</categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
-        <dateInscription>2024-04-14</dateInscription>
-        <dateNaissance>2017-02-02</dateNaissance>
-        <deuxiemeTelephone>0615333232</deuxiemeTelephone>
-        <email>omgpasdestr@fr.fr</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>218.0</montantAdhesion>
-        <montantOption>-32.0</montantOption>
-        <montantTotal>186.0</montantTotal>
-        <nationalite>omgpasdestr</nationalite>
-        <nom>omgpasdestr</nom>
-        <nomNaissance>omgpasdestr</nomNaissance>
-        <paysVilleNaissance>omgpasdestr</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>omgpasdestr</prenom>
-        <responsableLegal>omgpasdestr</responsableLegal>
-        <telephone>0615332122</telephone>
-        <ville>omgpasdestr</ville>
-    </adherent>
-    <adherent>
-        <adresse>impression</adresse>
-        <armes>Fleuret</armes>
-        <categorieName>M5-M7</categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
-        <dateInscription>2024-04-14</dateInscription>
-        <dateNaissance>2017-02-02</dateNaissance>
-        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
-        <email>impression@impression.fr</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>218.0</montantAdhesion>
-        <montantOption>0.0</montantOption>
-        <montantTotal>218.0</montantTotal>
-        <nationalite>impression</nationalite>
-        <nom>impression </nom>
-        <nomNaissance>impression</nomNaissance>
-        <paysVilleNaissance>impression</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>impression</prenom>
-        <responsableLegal>impression</responsableLegal>
-        <telephone>0615332122</telephone>
-        <ville>impression</ville>
+        <ville>vamos</ville>
     </adherent>
 </adherents>

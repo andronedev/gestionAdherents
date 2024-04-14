@@ -3,6 +3,8 @@ package com.btssio.gestionadherents;
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
 import com.btssio.models.tarif.Categorie;
+import com.btssio.models.tarif.OptionManager;
+import com.btssio.models.tarif.Options;
 import com.btssio.models.tarif.TarifManager;
 import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
@@ -192,6 +194,18 @@ public class MainController {
     @FXML
     private CheckBox droitierCheckbox;
 
+    @FXML
+    private CheckBox sansAssuranceCheckbox;
+
+    @FXML
+    private CheckBox avecAssuranceRenfCheckbox;
+
+    @FXML
+    private TextField nbAdherentFamille;
+
+    @FXML
+    private CheckBox avec10SeanceCheckbox;
+
 
     @FXML
     private TextField responsableLegalField;
@@ -236,7 +250,10 @@ public class MainController {
         gaucherCheckbox.setSelected(adherent.getLateralite().contains("Gaucher"));
         droitierCheckbox.setSelected(adherent.getLateralite().contains("Droitier"));
         responsableLegalField.setText(adherent.getResponsableLegal());
-
+        sansAssuranceCheckbox.setSelected(adherent.isSansAssurance());
+        avecAssuranceRenfCheckbox.setSelected(adherent.isAvecAssurance());
+        avec10SeanceCheckbox.setSelected(adherent.isCarte10Seances());
+        nbAdherentFamille.setText(String.valueOf(adherent.getNbAdherents()));
 
         // set the categorieField text to the adherent's categorieName
         if (adherent.getCategorieName() != null) {
@@ -306,6 +323,12 @@ public class MainController {
             selectedAdherent.setMontantAdhesion(Double.parseDouble(price.getText()));
             selectedAdherent.setMontantTotal(selectedAdherent.getMontantAdhesion() + selectedAdherent.getMontantOption());
             selectedAdherent.setNomNaissance(nomNaissanceField.getText());
+            selectedAdherent.setDateNaissance(LocalDate.of(
+                    Integer.parseInt(naissanceAnneeField.getText()),
+                    Integer.parseInt(naissanceMoisField.getText()),
+                    Integer.parseInt(naissanceJourField.getText())
+            ));
+            int birthYear = Integer.parseInt(naissanceAnneeField.getText());
             selectedAdherent.setGenre(masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "");
             selectedAdherent.setPaysVilleNaissance(paysVilleNaissanceField.getText());
             selectedAdherent.setNationalite(nationaliteField.getText());
@@ -327,6 +350,41 @@ public class MainController {
                     : "");
 
             responsableLegalField.setText(selectedAdherent.getResponsableLegal());
+            selectedAdherent.setResponsableLegal(responsableLegalField.getText());
+            selectedAdherent.setSansAssurance(sansAssuranceCheckbox.isSelected());
+            selectedAdherent.setAvecAssurance(avecAssuranceRenfCheckbox.isSelected());
+            selectedAdherent.setCarte10Seances(avec10SeanceCheckbox.isSelected());
+            selectedAdherent.setNbAdherents(Integer.parseInt(nbAdherentFamille.getText()));
+
+            //refaire les calculs
+            //initialise optionManager
+            double montantTotal = tarifManager.getFraisTotal(birthYear);
+            Options options = new Options();
+            OptionManager optionManager = new OptionManager(options);
+            try {
+                optionManager.loadFromXml("tarifs.xml");
+            } catch (JAXBException e) {
+                throw new RuntimeException(e);
+            }
+            //calculer la reduction
+            int nbAdherents;
+            try {
+                nbAdherents = Integer.parseInt(nbAdherentFamille.getText());
+            } catch (NumberFormatException e) {
+                // Si l'utilisateur n'a pas saisi de nombre, on considère qu'il y a 1 seul adhérent
+                nbAdherents = 1;
+            }
+            double reduction = OptionManager.calculerReduction(nbAdherents, optionManager.getCategorieNameByBirth(birthYear));
+            boolean sansAssurance = sansAssuranceCheckbox.isSelected();
+            boolean avecAssurance = avecAssuranceRenfCheckbox.isSelected();
+            boolean Carte10Seances = avec10SeanceCheckbox.isSelected();
+            selectedAdherent.setCategorieName(optionManager.getCategorieNameByBirth(birthYear));
+            selectedAdherent.setMontantOption(reduction);
+            double montantLicence = optionManager.getLicenceAmount(sansAssurance, avecAssurance);
+            double montantCarte10Seances = optionManager.getCarte10SeancesAmount(Carte10Seances);
+            double montantTotalInscription = optionManager.calculerMontantTotal(montantTotal, montantLicence, reduction , montantCarte10Seances);
+            selectedAdherent.setMontantOption(montantLicence+montantCarte10Seances+reduction);
+            selectedAdherent.setMontantTotal(montantTotalInscription);
 
             // Mise à jour de la table pour refléter les modifications
             updateAdherentsTable();
@@ -415,6 +473,25 @@ public class MainController {
         emailField.setText("");
         telephoneField.setText("");
         adresseField.setText("");
+        nomNaissanceField.setText("");
+        masculinCheckBox.setSelected(false);
+        femininCheckBox.setSelected(false);
+        naissanceJourField.setText("");
+        naissanceMoisField.setText("");
+        naissanceAnneeField.setText("");
+        paysVilleNaissanceField.setText("");
+        nationaliteField.setText("");
+        codePostalField.setText("");
+        villeField.setText("");
+        deuxiemeTelField.setText("");
+        fleuretCheckBox.setSelected(false);
+        epeeCheckBox.setSelected(false);
+        sabreCheckBox.setSelected(false);
+        loisirCheckbox.setSelected(false);
+        competitionCheckbox.setSelected(false);
+        gaucherCheckbox.setSelected(false);
+        droitierCheckbox.setSelected(false);
+        responsableLegalField.setText("");
         // unfocus the table
         adherentsTable.getSelectionModel().clearSelection();
     }

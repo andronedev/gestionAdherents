@@ -60,4 +60,20 @@ public class OptionManager {
         Tarifs tarifs = (Tarifs) unmarshaller.unmarshal(xmlFile);
         options = tarifs.getOptions(); // Assurez-vous que Tarifs contient un getter pour Options
     }
+
+    //get categorie name (M7-M9) from birthdate year
+    public String getCategorieNameByBirth(int birthdateYear) {
+        if (birthdateYear >= 2016 && birthdateYear <= 2018) {
+            return "M5-M7";
+        } else if (birthdateYear >= 2014 && birthdateYear <= 2015) {
+            return "M9";
+        } else if (birthdateYear >= 2012 && birthdateYear <= 2013) {
+            return "M11";
+        } else if (birthdateYear >= 2003 && birthdateYear <= 2011) {
+            return "M13-M20";
+        }
+        return "M23";
+    }
+
+
 }
