@@ -29,19 +29,33 @@ public class TarifManager {
         return null;
     }
 
-    public void addCategorie(Categorie categorie) {
-        categories.add(categorie);
+    public Categorie getCategorieForBirthYear(int birthYear) {
+        for (Categorie categorie : categories) {
+            if (birthYear >= categorie.getAnneeDebut() && birthYear <= categorie.getAnneeFin()) {
+                return categorie;
+            }
+        }
+        return null;
     }
-
-    public void removeCategorie(String nom) {
-        categories.removeIf(categorie -> categorie.getNom().equals(nom));
+    //getFraisInscription from birthYear
+    public double getFraisInscription(int birthYear) {
+        Categorie categorie = getCategorieForBirthYear(birthYear);
+        if (categorie != null) {
+            return categorie.getFraisInscription();
+        }
+        return 0;
     }
-
-    public void saveToXml(String pathToXml) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(Tarifs.class);
-        Marshaller marshaller = context.createMarshaller();
-        marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-        marshaller.marshal(tarifs, new File(pathToXml));
+    //getfraisliscence from birthYear
+    public double getFraisLicence(int birthYear) {
+        Categorie categorie = getCategorieForBirthYear(birthYear);
+        if (categorie != null) {
+            return categorie.getFraisLicence();
+        }
+        return 0;
+    }
+    //getFraisTotal from birthYear
+    public double getFraisTotal(int birthYear) {
+        return getFraisInscription(birthYear) + getFraisLicence(birthYear);
     }
 
     public void loadFromXml(String pathToXml) throws JAXBException {

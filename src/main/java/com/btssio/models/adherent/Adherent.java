@@ -20,8 +20,8 @@ public class Adherent {
     private LocalDate dateNaissance;
     private LocalDate dateInscription;
     private LocalDate dateFinAdhesion;
-    private double montantCotisation;
-    private double montantDon;
+    private double montantAdhesion;
+    private double montantOption;
     private double montantTotal;
     private String categorieName;
 
@@ -41,7 +41,7 @@ public class Adherent {
 
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
-                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon,
+                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantAdhesion, double montantDon,
                     double montantTotal, String categorieName, String nomNaissance, String genre, String PaysVilleNaissance,
                     String nationalite, String codePostal, String ville, String deuxiemeTelephone,
                     List<String> armes, String pratique, String lateralite, String responsableLegal) {
@@ -53,8 +53,8 @@ public class Adherent {
         this.dateNaissance = dateNaissance;
         this.dateInscription = dateInscription;
         this.dateFinAdhesion = dateFinAdhesion;
-        this.montantCotisation = montantCotisation;
-        this.montantDon = montantDon;
+        this.montantAdhesion = montantAdhesion;
+        this.montantOption = montantOption;
         this.montantTotal = montantTotal;
         this.categorieName = categorieName;
 
@@ -152,21 +152,21 @@ public class Adherent {
     }
 
     @XmlElement
-    public double getMontantCotisation() {
-        return montantCotisation;
+    public double getMontantAdhesion() {
+        return montantAdhesion;
     }
 
-    public void setMontantCotisation(double montantCotisation) {
-        this.montantCotisation = montantCotisation;
+    public void setMontantAdhesion(double montantAdhesion) {
+        this.montantAdhesion = montantAdhesion;
     }
 
     @XmlElement
-    public double getMontantDon() {
-        return montantDon;
+    public double getMontantOption() {
+        return montantOption;
     }
 
-    public void setMontantDon(double montantDon) {
-        this.montantDon = montantDon;
+    public void setMontantOption(double montantOption) {
+        this.montantOption = montantOption;
     }
 
     @XmlElement

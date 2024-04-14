@@ -34,8 +34,8 @@
             <TableColumn fx:id="dateInscriptionColumn" text="Date d'Inscription" />
             <TableColumn fx:id="dateFinAdhesionColumn" text="Date Fin d'Adhésion" />
             <TableColumn fx:id="categorieColumn" text="Catégorie" />
-            <TableColumn fx:id="montantCotisationColumn" text="Montant Cotisation" />
-            <TableColumn fx:id="montantDonColumn" text="Montant Don" />
+            <TableColumn fx:id="montantAdhesionColumn" text="Montant adhésion" />
+            <TableColumn fx:id="montantOptionColumn" text="Montant options" />
             <TableColumn fx:id="montantTotalColumn" text="Montant Total" />
             <TableColumn fx:id="nomNaissanceColumn" text="Nom de naissance" />
             <TableColumn fx:id="genreColumn" text="Genre" />

@@ -51,10 +51,10 @@ public class MainController {
     private TableColumn<Adherent, LocalDate> dateFinAdhesionColumn;
 
     @FXML
-    private TableColumn<Adherent, Double> montantCotisationColumn;
+    private TableColumn<Adherent, Double> montantAdhesionColumn;
 
     @FXML
-    private TableColumn<Adherent, Double> montantDonColumn;
+    private TableColumn<Adherent, Double> montantOptionColumn;
 
     @FXML
     private TableColumn<Adherent, Double> montantTotalColumn;
@@ -146,6 +146,7 @@ public class MainController {
     @FXML
     private CheckBox femininCheckBox;
 
+
     @FXML
     private TextField naissanceJourField;
 
@@ -191,6 +192,7 @@ public class MainController {
     @FXML
     private CheckBox droitierCheckbox;
 
+
     @FXML
     private TextField responsableLegalField;
     private boolean rechercheActive = false;
@@ -214,7 +216,7 @@ public class MainController {
         telephoneField.setText(adherent.getTelephone());
         adresseField.setText(adherent.getAdresse());
         categorieChoiceBox.setValue(adherent.getCategorieName());
-        price.setText(String.valueOf(adherent.getMontantCotisation()));
+        price.setText(String.valueOf(adherent.getMontantAdhesion()));
         nomNaissanceField.setText(adherent.getNomNaissance());
         masculinCheckBox.setSelected(adherent.getGenre().equals("Masculin"));
         femininCheckBox.setSelected(adherent.getGenre().equals("Féminin"));
@@ -267,8 +269,8 @@ public class MainController {
         dateNaissanceColumn.setCellValueFactory(new PropertyValueFactory<>("dateNaissance"));
         dateInscriptionColumn.setCellValueFactory(new PropertyValueFactory<>("dateInscription"));
         dateFinAdhesionColumn.setCellValueFactory(new PropertyValueFactory<>("dateFinAdhesion"));
-        montantCotisationColumn.setCellValueFactory(new PropertyValueFactory<>("montantCotisation"));
-        montantDonColumn.setCellValueFactory(new PropertyValueFactory<>("montantDon"));
+        montantAdhesionColumn.setCellValueFactory(new PropertyValueFactory<>("montantAdhesion"));
+        montantOptionColumn.setCellValueFactory(new PropertyValueFactory<>("montantOption"));
         montantTotalColumn.setCellValueFactory(new PropertyValueFactory<>("montantTotal"));
         categorieColumn.setCellValueFactory(new PropertyValueFactory<>("categorieName"));
 
@@ -301,8 +303,8 @@ public class MainController {
             selectedAdherent.setTelephone(telephoneField.getText());
             selectedAdherent.setAdresse(adresseField.getText());
             selectedAdherent.setCategorieName(categorieChoiceBox.getSelectionModel().getSelectedItem());
-            selectedAdherent.setMontantCotisation(Double.parseDouble(price.getText()));
-            selectedAdherent.setMontantTotal(selectedAdherent.getMontantCotisation() + selectedAdherent.getMontantDon());
+            selectedAdherent.setMontantAdhesion(Double.parseDouble(price.getText()));
+            selectedAdherent.setMontantTotal(selectedAdherent.getMontantAdhesion() + selectedAdherent.getMontantOption());
             selectedAdherent.setNomNaissance(nomNaissanceField.getText());
             selectedAdherent.setGenre(masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "");
             selectedAdherent.setPaysVilleNaissance(paysVilleNaissanceField.getText());
@@ -432,10 +434,10 @@ public class MainController {
         adherentsTable.getSelectionModel().getSelectedItem().setCategorieName(categorie.getNom());
 
         // set the adherent's montantCotisation to the categorie's fraisInscription
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantCotisation(categorie.getFraisInscription());
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantAdhesion(categorie.getFraisInscription());
 
         // update montantTotal to the sum of montantCotisation and montantDon
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantCotisation() + adherentsTable.getSelectionModel().getSelectedItem().getMontantDon());
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantAdhesion() + adherentsTable.getSelectionModel().getSelectedItem().getMontantOption());
 
         saveAdherents();
         updateAdherentsTable();
@@ -447,9 +449,9 @@ public class MainController {
         // set the adherent's categorieName to ""
         adherentsTable.getSelectionModel().getSelectedItem().setCategorieName("");
         // set the adherent's montantCotisation to 0
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantCotisation(0.0);
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantAdhesion(0.0);
         // update montantTotal to the sum of montantCotisation and montantDon
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantCotisation() + adherentsTable.getSelectionModel().getSelectedItem().getMontantDon());
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantAdhesion() + adherentsTable.getSelectionModel().getSelectedItem().getMontantOption());
         saveAdherents();
         updateAdherentsTable();
 

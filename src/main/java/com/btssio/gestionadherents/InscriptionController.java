@@ -2,7 +2,10 @@ package com.btssio.gestionadherents;
 
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
+import com.btssio.models.tarif.Categorie;
+import com.btssio.models.tarif.Options;
 import com.btssio.models.tarif.TarifManager;
+import com.btssio.models.tarif.OptionManager;
 import jakarta.xml.bind.JAXBException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -103,11 +106,24 @@ public class InscriptionController {
     @FXML
     private CheckBox droitierCheckbox;
 
+    @FXML
+    private CheckBox sansAssuranceCheckbox;
+
+    @FXML
+    private CheckBox avecAssuranceRenfCheckbox;
+
+    @FXML
+    private TextField nbAdherentFamille;
+
+    @FXML
+    private CheckBox avec10SeanceCheckbox;
 
     @FXML
     private TextField responsableLegalField;
 
     private List<Adherent> listeAdherents;
+
+
 
 
     private com.btssio.gestionadherents.MainController MainController;
@@ -161,8 +177,50 @@ public class InscriptionController {
                     armes,
                     pratique,
                     lateralite,
-                    responsableLegalField.getText()
-            );
+                    responsableLegalField.getText());
+                    TarifManager tarifManager = new TarifManager();
+                    try {
+                        tarifManager.loadFromXml("tarifs.xml");
+                    } catch (JAXBException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //from datenaissance use getFraisTotal
+                    int birthYear = Integer.parseInt(naissanceAnneeField.getText());
+                    Categorie laCat = tarifManager.getCategorieForBirthYear(birthYear);
+                    //affect category to adherent
+                    newAdherent.setCategorieName(laCat.getNom());
+                    double montantTotal = tarifManager.getFraisTotal(birthYear);
+                    System.out.println("Montant total pour l'année " + birthYear + " : " + montantTotal);
+                    //set montantAdhesion to adheren and tableview
+                    newAdherent.setMontantAdhesion(montantTotal);
+                    //initialise optionManager
+                    Options options = new Options();
+                    OptionManager optionManager = new OptionManager(options);
+                    try {
+                        optionManager.loadFromXml("tarifs.xml");
+                    } catch (JAXBException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //calculer la reduction
+                    int nbAdherents;
+                    try {
+                        nbAdherents = Integer.parseInt(nbAdherentFamille.getText());
+                    } catch (NumberFormatException e) {
+                        // Si l'utilisateur n'a pas saisi de nombre, on considère qu'il y a 1 seul adhérent
+                        nbAdherents = 1;
+                    }
+                    double reduction = OptionManager.calculerReduction(nbAdherents, laCat.getNom());
+                    newAdherent.setMontantOption(reduction);
+                    System.out.println("Réduction pour " + nbAdherents + " adhérent(s) : " + reduction);
+                    boolean sansAssurance = sansAssuranceCheckbox.isSelected();
+                    boolean avecAssurance = avecAssuranceRenfCheckbox.isSelected();
+                    boolean Carte10Seances = avec10SeanceCheckbox.isSelected();
+                    double montantLicence = optionManager.getLicenceAmount(sansAssurance, avecAssurance);
+                    double montantCarte10Seances = optionManager.getCarte10SeancesAmount(Carte10Seances);
+                    double montantTotalInscription = optionManager.calculerMontantTotal(montantTotal, montantLicence, reduction , montantCarte10Seances);
+                    newAdherent.setMontantOption(montantLicence+montantCarte10Seances+reduction);
+                    newAdherent.setMontantTotal(montantTotalInscription);
+
 
             try {
                 // Charger la liste existante des adhérents
@@ -307,6 +365,53 @@ public class InscriptionController {
     }
 
     @FXML
+    private void handleGenderSelection() {
+        if (masculinCheckBox.isSelected() && femininCheckBox.isSelected()) {
+            if (masculinCheckBox.isFocused()) {
+                femininCheckBox.setSelected(false);
+            } else if (femininCheckBox.isFocused()) {
+                masculinCheckBox.setSelected(false);
+            }
+        }
+    }
+
+    @FXML
+    private void handleLicenceAssuranceSelection() {
+        if (sansAssuranceCheckbox.isSelected() && avecAssuranceRenfCheckbox.isSelected()) {
+            if (avecAssuranceRenfCheckbox.isFocused()) {
+                sansAssuranceCheckbox.setSelected(false);
+            } else if (sansAssuranceCheckbox.isFocused()) {
+                avecAssuranceRenfCheckbox.setSelected(false);
+            }
+        }
+    }
+
+    @FXML
+    private void handleArmeSelection() {
+        if (fleuretCheckBox.isFocused()) {
+            epeeCheckBox.setSelected(false);
+            sabreCheckBox.setSelected(false);
+        } else if (epeeCheckBox.isFocused()) {
+            fleuretCheckBox.setSelected(false);
+            sabreCheckBox.setSelected(false);
+        } else if (sabreCheckBox.isFocused()) {
+            fleuretCheckBox.setSelected(false);
+            epeeCheckBox.setSelected(false);
+        }
+    }
+    @FXML
+    private void handlePratiqueSelection() {
+        if (loisirCheckbox.isSelected() && competitionCheckbox.isSelected()) {
+            if (loisirCheckbox.isFocused()) {
+                competitionCheckbox.setSelected(false);
+            } else if (competitionCheckbox.isFocused()) {
+                loisirCheckbox.setSelected(false);
+            }
+        }
+    }
+
+
+    @FXML
     private void clearFormFields() {
         nomField.clear();
         prenomField.clear();
@@ -408,7 +513,7 @@ public class InscriptionController {
         }
     }
 
-    public void setListeAdherents(List<Adherent> listeAdherents) {
+    public void setListeAdherents(List<Adherent> listeAdherents ) {
         this.listeAdherents = listeAdherents;
     }
 }
