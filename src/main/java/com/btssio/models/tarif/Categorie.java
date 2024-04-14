@@ -55,4 +55,15 @@ public class Categorie {
     public void setFraisLicence(int fraisLicence) {
         this.fraisLicence = fraisLicence;
     }
+
+    @Override
+    public String toString() {
+        return "Categorie{" +
+                "nom='" + nom + '\'' +
+                ", anneeDebut=" + anneeDebut +
+                ", anneeFin=" + anneeFin +
+                ", fraisInscription=" + fraisInscription +
+                ", fraisLicence=" + fraisLicence +
+                '}';
+    }
 }

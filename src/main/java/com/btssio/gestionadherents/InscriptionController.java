@@ -2,7 +2,10 @@ package com.btssio.gestionadherents;
 
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
+import com.btssio.models.tarif.Categorie;
+import com.btssio.models.tarif.Options;
 import com.btssio.models.tarif.TarifManager;
+import com.btssio.models.tarif.OptionManager;
 import jakarta.xml.bind.JAXBException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -103,11 +106,24 @@ public class InscriptionController {
     @FXML
     private CheckBox droitierCheckbox;
 
+    @FXML
+    private CheckBox sansAssuranceCheckbox;
+
+    @FXML
+    private CheckBox avecAssuranceRenfCheckbox;
+
+    @FXML
+    private TextField nbAdherentFamille;
+
+    @FXML
+    private CheckBox avec10SeanceCheckbox;
 
     @FXML
     private TextField responsableLegalField;
 
     private List<Adherent> listeAdherents;
+
+
 
 
     private com.btssio.gestionadherents.MainController MainController;
@@ -161,12 +177,62 @@ public class InscriptionController {
                     armes,
                     pratique,
                     lateralite,
-                    responsableLegalField.getText()
-            );
+                    responsableLegalField.getText(),
+                    sansAssuranceCheckbox.isSelected(),
+                    avecAssuranceRenfCheckbox.isSelected(),
+                    avec10SeanceCheckbox.isSelected(),
+                    Integer.parseInt(nbAdherentFamille.getText()));
+                    TarifManager tarifManager = new TarifManager();
+                    try {
+                        tarifManager.loadFromXml("tarifs.xml");
+                    } catch (JAXBException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //from datenaissance use getFraisTotal
+                    int birthYear = Integer.parseInt(naissanceAnneeField.getText());
+                    Categorie laCat = tarifManager.getCategorieForBirthYear(birthYear);
+                    //affect category to adherent
+                    newAdherent.setCategorieName(laCat.getNom());
+                    double montantTotal = tarifManager.getFraisTotal(birthYear);
+                    System.out.println("Montant total pour l'année " + birthYear + " : " + montantTotal);
+                    //set montantAdhesion to adheren and tableview
+                    newAdherent.setMontantAdhesion(montantTotal);
+                    //initialise optionManager
+                    Options options = new Options();
+                    OptionManager optionManager = new OptionManager(options);
+                    try {
+                        optionManager.loadFromXml("tarifs.xml");
+                    } catch (JAXBException e) {
+                        throw new RuntimeException(e);
+                    }
+                    //calculer la reduction
+                    int nbAdherents;
+                    try {
+                        nbAdherents = Integer.parseInt(nbAdherentFamille.getText());
+                    } catch (NumberFormatException e) {
+                        // Si l'utilisateur n'a pas saisi de nombre, on considère qu'il y a 1 seul adhérent
+                        nbAdherents = 1;
+                    }
+                    double reduction = OptionManager.calculerReduction(nbAdherents, laCat.getNom());
+                    newAdherent.setMontantOption(reduction);
+                    System.out.println("Réduction pour " + nbAdherents + " adhérent(s) : " + reduction);
+                    boolean sansAssurance = sansAssuranceCheckbox.isSelected();
+                    boolean avecAssurance = avecAssuranceRenfCheckbox.isSelected();
+                    boolean Carte10Seances = avec10SeanceCheckbox.isSelected();
+                    double montantLicence = optionManager.getLicenceAmount(sansAssurance, avecAssurance);
+                    double montantCarte10Seances = optionManager.getCarte10SeancesAmount(Carte10Seances);
+                    double montantTotalInscription = optionManager.calculerMontantTotal(montantTotal, montantLicence, reduction , montantCarte10Seances);
+                    newAdherent.setMontantOption(montantLicence+montantCarte10Seances+reduction);
+                    newAdherent.setMontantTotal(montantTotalInscription);
+
+
 
             try {
                 // Charger la liste existante des adhérents
                 List<Adherent> existingAdherents = AdherentManager.chargerAdherents("adherents.xml");
+                if (existingAdherents == null) {
+                    existingAdherents = new ArrayList<>();
+                }
 
                 // Ajouter le nouvel adhérent à la liste existante
                 existingAdherents.add(newAdherent);
@@ -307,6 +373,53 @@ public class InscriptionController {
     }
 
     @FXML
+    private void handleGenderSelection() {
+        if (masculinCheckBox.isSelected() && femininCheckBox.isSelected()) {
+            if (masculinCheckBox.isFocused()) {
+                femininCheckBox.setSelected(false);
+            } else if (femininCheckBox.isFocused()) {
+                masculinCheckBox.setSelected(false);
+            }
+        }
+    }
+
+    @FXML
+    private void handleLicenceAssuranceSelection() {
+        if (sansAssuranceCheckbox.isSelected() && avecAssuranceRenfCheckbox.isSelected()) {
+            if (avecAssuranceRenfCheckbox.isFocused()) {
+                sansAssuranceCheckbox.setSelected(false);
+            } else if (sansAssuranceCheckbox.isFocused()) {
+                avecAssuranceRenfCheckbox.setSelected(false);
+            }
+        }
+    }
+
+    @FXML
+    private void handleArmeSelection() {
+        if (fleuretCheckBox.isFocused()) {
+            epeeCheckBox.setSelected(false);
+            sabreCheckBox.setSelected(false);
+        } else if (epeeCheckBox.isFocused()) {
+            fleuretCheckBox.setSelected(false);
+            sabreCheckBox.setSelected(false);
+        } else if (sabreCheckBox.isFocused()) {
+            fleuretCheckBox.setSelected(false);
+            epeeCheckBox.setSelected(false);
+        }
+    }
+    @FXML
+    private void handlePratiqueSelection() {
+        if (loisirCheckbox.isSelected() && competitionCheckbox.isSelected()) {
+            if (loisirCheckbox.isFocused()) {
+                competitionCheckbox.setSelected(false);
+            } else if (competitionCheckbox.isFocused()) {
+                loisirCheckbox.setSelected(false);
+            }
+        }
+    }
+
+
+    @FXML
     private void clearFormFields() {
         nomField.clear();
         prenomField.clear();
@@ -337,15 +450,18 @@ public class InscriptionController {
     @FXML
     private void handleGoToMainView(ActionEvent event) {
         try {
-            // Vérifie si le tarifManager est déjà initialisé, sinon l'initialiser et charger les données
+            // Vérifie et initialise le tarifManager
             if (tarifManager == null) {
                 tarifManager = new TarifManager();
                 tarifManager.loadFromXml("tarifs.xml"); // Charger les données de tarifs
             }
 
-            // Vérifie si la listeAdherents est déjà chargée, sinon, charger à partir du XML
+            // Vérifie et charge la listeAdherents, garantissant qu'elle n'est jamais nulle
             if (listeAdherents == null || listeAdherents.isEmpty()) {
                 listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Charger les données des adhérents
+                if (listeAdherents == null) {
+                    listeAdherents = new ArrayList<>(); // Assure une liste non nulle
+                }
             }
 
             // Charger le FXML de la vue principale
@@ -356,8 +472,7 @@ public class InscriptionController {
             MainController mainController = loader.getController();
 
             // Définir les données chargées dans mainController
-
-            mainController.setListeAdherents(listeAdherents, tarifManager);
+            mainController.setListeAdherents(listeAdherents,tarifManager); // Assurez-vous que cette méthode gère aussi les listes vides
 
             // Afficher la vue principale dans le stage actuel
             Scene mainScene = new Scene(mainView);
@@ -365,12 +480,12 @@ public class InscriptionController {
             window.setScene(mainScene);
             window.show();
         } catch (IOException e) {
-            e.printStackTrace();
-            // Gérer l'exception, peut-être la logger ou afficher un message d'erreur
+            e.printStackTrace(); // Gérer l'exception, peut-être la logger ou afficher un message d'erreur
         } catch (JAXBException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace(); // Traiter les exceptions JAXB
         }
     }
+
 
     @FXML
     private void handleGoToInscriptionView(ActionEvent event) {
@@ -408,7 +523,7 @@ public class InscriptionController {
         }
     }
 
-    public void setListeAdherents(List<Adherent> listeAdherents) {
+    public void setListeAdherents(List<Adherent> listeAdherents ) {
         this.listeAdherents = listeAdherents;
     }
 }

@@ -3,6 +3,8 @@ package com.btssio.gestionadherents;
 import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
 import com.btssio.models.tarif.Categorie;
+import com.btssio.models.tarif.OptionManager;
+import com.btssio.models.tarif.Options;
 import com.btssio.models.tarif.TarifManager;
 import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
@@ -51,10 +53,10 @@ public class MainController {
     private TableColumn<Adherent, LocalDate> dateFinAdhesionColumn;
 
     @FXML
-    private TableColumn<Adherent, Double> montantCotisationColumn;
+    private TableColumn<Adherent, Double> montantAdhesionColumn;
 
     @FXML
-    private TableColumn<Adherent, Double> montantDonColumn;
+    private TableColumn<Adherent, Double> montantOptionColumn;
 
     @FXML
     private TableColumn<Adherent, Double> montantTotalColumn;
@@ -146,6 +148,7 @@ public class MainController {
     @FXML
     private CheckBox femininCheckBox;
 
+
     @FXML
     private TextField naissanceJourField;
 
@@ -192,6 +195,19 @@ public class MainController {
     private CheckBox droitierCheckbox;
 
     @FXML
+    private CheckBox sansAssuranceCheckbox;
+
+    @FXML
+    private CheckBox avecAssuranceRenfCheckbox;
+
+    @FXML
+    private TextField nbAdherentFamille;
+
+    @FXML
+    private CheckBox avec10SeanceCheckbox;
+
+
+    @FXML
     private TextField responsableLegalField;
     private boolean rechercheActive = false;
     private List<Adherent> listeAdherents;
@@ -214,7 +230,7 @@ public class MainController {
         telephoneField.setText(adherent.getTelephone());
         adresseField.setText(adherent.getAdresse());
         categorieChoiceBox.setValue(adherent.getCategorieName());
-        price.setText(String.valueOf(adherent.getMontantCotisation()));
+        price.setText(String.valueOf(adherent.getMontantAdhesion()));
         nomNaissanceField.setText(adherent.getNomNaissance());
         masculinCheckBox.setSelected(adherent.getGenre().equals("Masculin"));
         femininCheckBox.setSelected(adherent.getGenre().equals("Féminin"));
@@ -234,7 +250,10 @@ public class MainController {
         gaucherCheckbox.setSelected(adherent.getLateralite().contains("Gaucher"));
         droitierCheckbox.setSelected(adherent.getLateralite().contains("Droitier"));
         responsableLegalField.setText(adherent.getResponsableLegal());
-
+        sansAssuranceCheckbox.setSelected(adherent.isSansAssurance());
+        avecAssuranceRenfCheckbox.setSelected(adherent.isAvecAssurance());
+        avec10SeanceCheckbox.setSelected(adherent.isCarte10Seances());
+        nbAdherentFamille.setText(String.valueOf(adherent.getNbAdherents()));
 
         // set the categorieField text to the adherent's categorieName
         if (adherent.getCategorieName() != null) {
@@ -267,8 +286,8 @@ public class MainController {
         dateNaissanceColumn.setCellValueFactory(new PropertyValueFactory<>("dateNaissance"));
         dateInscriptionColumn.setCellValueFactory(new PropertyValueFactory<>("dateInscription"));
         dateFinAdhesionColumn.setCellValueFactory(new PropertyValueFactory<>("dateFinAdhesion"));
-        montantCotisationColumn.setCellValueFactory(new PropertyValueFactory<>("montantCotisation"));
-        montantDonColumn.setCellValueFactory(new PropertyValueFactory<>("montantDon"));
+        montantAdhesionColumn.setCellValueFactory(new PropertyValueFactory<>("montantAdhesion"));
+        montantOptionColumn.setCellValueFactory(new PropertyValueFactory<>("montantOption"));
         montantTotalColumn.setCellValueFactory(new PropertyValueFactory<>("montantTotal"));
         categorieColumn.setCellValueFactory(new PropertyValueFactory<>("categorieName"));
 
@@ -301,9 +320,15 @@ public class MainController {
             selectedAdherent.setTelephone(telephoneField.getText());
             selectedAdherent.setAdresse(adresseField.getText());
             selectedAdherent.setCategorieName(categorieChoiceBox.getSelectionModel().getSelectedItem());
-            selectedAdherent.setMontantCotisation(Double.parseDouble(price.getText()));
-            selectedAdherent.setMontantTotal(selectedAdherent.getMontantCotisation() + selectedAdherent.getMontantDon());
+            selectedAdherent.setMontantAdhesion(Double.parseDouble(price.getText()));
+            selectedAdherent.setMontantTotal(selectedAdherent.getMontantAdhesion() + selectedAdherent.getMontantOption());
             selectedAdherent.setNomNaissance(nomNaissanceField.getText());
+            selectedAdherent.setDateNaissance(LocalDate.of(
+                    Integer.parseInt(naissanceAnneeField.getText()),
+                    Integer.parseInt(naissanceMoisField.getText()),
+                    Integer.parseInt(naissanceJourField.getText())
+            ));
+            int birthYear = Integer.parseInt(naissanceAnneeField.getText());
             selectedAdherent.setGenre(masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "");
             selectedAdherent.setPaysVilleNaissance(paysVilleNaissanceField.getText());
             selectedAdherent.setNationalite(nationaliteField.getText());
@@ -325,6 +350,41 @@ public class MainController {
                     : "");
 
             responsableLegalField.setText(selectedAdherent.getResponsableLegal());
+            selectedAdherent.setResponsableLegal(responsableLegalField.getText());
+            selectedAdherent.setSansAssurance(sansAssuranceCheckbox.isSelected());
+            selectedAdherent.setAvecAssurance(avecAssuranceRenfCheckbox.isSelected());
+            selectedAdherent.setCarte10Seances(avec10SeanceCheckbox.isSelected());
+            selectedAdherent.setNbAdherents(Integer.parseInt(nbAdherentFamille.getText()));
+
+            //refaire les calculs
+            //initialise optionManager
+            double montantTotal = tarifManager.getFraisTotal(birthYear);
+            Options options = new Options();
+            OptionManager optionManager = new OptionManager(options);
+            try {
+                optionManager.loadFromXml("tarifs.xml");
+            } catch (JAXBException e) {
+                throw new RuntimeException(e);
+            }
+            //calculer la reduction
+            int nbAdherents;
+            try {
+                nbAdherents = Integer.parseInt(nbAdherentFamille.getText());
+            } catch (NumberFormatException e) {
+                // Si l'utilisateur n'a pas saisi de nombre, on considère qu'il y a 1 seul adhérent
+                nbAdherents = 1;
+            }
+            double reduction = OptionManager.calculerReduction(nbAdherents, optionManager.getCategorieNameByBirth(birthYear));
+            boolean sansAssurance = sansAssuranceCheckbox.isSelected();
+            boolean avecAssurance = avecAssuranceRenfCheckbox.isSelected();
+            boolean Carte10Seances = avec10SeanceCheckbox.isSelected();
+            selectedAdherent.setCategorieName(optionManager.getCategorieNameByBirth(birthYear));
+            selectedAdherent.setMontantOption(reduction);
+            double montantLicence = optionManager.getLicenceAmount(sansAssurance, avecAssurance);
+            double montantCarte10Seances = optionManager.getCarte10SeancesAmount(Carte10Seances);
+            double montantTotalInscription = optionManager.calculerMontantTotal(montantTotal, montantLicence, reduction , montantCarte10Seances);
+            selectedAdherent.setMontantOption(montantLicence+montantCarte10Seances+reduction);
+            selectedAdherent.setMontantTotal(montantTotalInscription);
 
             // Mise à jour de la table pour refléter les modifications
             updateAdherentsTable();
@@ -334,65 +394,65 @@ public class MainController {
         }
     }
 
-    @FXML
-    public void handleAddAction() {
-            // si un adhérent est sélectionné, on clear les champs et on attend
-            if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
-                handleClearAction();
-                return;
-            }
-            List<String> armes = new ArrayList<>();
-        if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
-        if (epeeCheckBox.isSelected()) armes.add("Epée");
-        if (sabreCheckBox.isSelected()) armes.add("Sabre");
-
-        String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
-                : loisirCheckbox.isSelected() ? "Loisir"
-                : competitionCheckbox.isSelected() ? "Compétition"
-                : "";
-
-        String lateralite = gaucherCheckbox.isSelected() && droitierCheckbox.isSelected() ? "Ambidextre"
-                : gaucherCheckbox.isSelected() ? "Gaucher"
-                : droitierCheckbox.isSelected() ? "Droitier"
-                : "";
-
-        Adherent newAdherent = new Adherent(
-                emailField.getText(),
-                telephoneField.getText(),
-                nomField.getText(),  // Replace with actual field if different
-                prenomField.getText(), // Replace with actual field if different
-                adresseField.getText(),
-                LocalDate.of(
-                        Integer.parseInt(naissanceAnneeField.getText()),
-                        Integer.parseInt(naissanceMoisField.getText()),
-                        Integer.parseInt(naissanceJourField.getText())
-                ),
-                LocalDate.now(), // You might need a DatePicker for this if you want a different date
-                LocalDate.now().plusYears(1), // Assuming the adhesion lasts for 1 year
-                0.0, // You might need to get this from a TextField or a different input
-                0.0, // Same as above for montantDon
-                0.0, // Same as above for montantTotal
-                "", // You will need a way to set categorieName
-                nomNaissanceField.getText(),
-                masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "",
-                paysVilleNaissanceField.getText(), // Assuming the country and city are comma-separated
-                nationaliteField.getText(),
-                codePostalField.getText(),
-                villeField.getText(),
-                deuxiemeTelField.getText(),
-                armes,
-                pratique,
-                lateralite,
-                responsableLegalField.getText()
-        );
-
-
-        listeAdherents.add(newAdherent);
-        updateAdherentsTable();
-        handleClearAction();
-        saveAdherents();
-
-    }
+//    @FXML
+//    public void handleAddAction() {
+//            // si un adhérent est sélectionné, on clear les champs et on attend
+//            if (adherentsTable.getSelectionModel().getSelectedItem() != null) {
+//                handleClearAction();
+//                return;
+//            }
+//            List<String> armes = new ArrayList<>();
+//        if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
+//        if (epeeCheckBox.isSelected()) armes.add("Epée");
+//        if (sabreCheckBox.isSelected()) armes.add("Sabre");
+//
+//        String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
+//                : loisirCheckbox.isSelected() ? "Loisir"
+//                : competitionCheckbox.isSelected() ? "Compétition"
+//                : "";
+//
+//        String lateralite = gaucherCheckbox.isSelected() && droitierCheckbox.isSelected() ? "Ambidextre"
+//                : gaucherCheckbox.isSelected() ? "Gaucher"
+//                : droitierCheckbox.isSelected() ? "Droitier"
+//                : "";
+//
+//        Adherent newAdherent = new Adherent(
+//                emailField.getText(),
+//                telephoneField.getText(),
+//                nomField.getText(),  // Replace with actual field if different
+//                prenomField.getText(), // Replace with actual field if different
+//                adresseField.getText(),
+//                LocalDate.of(
+//                        Integer.parseInt(naissanceAnneeField.getText()),
+//                        Integer.parseInt(naissanceMoisField.getText()),
+//                        Integer.parseInt(naissanceJourField.getText())
+//                ),
+//                LocalDate.now(), // You might need a DatePicker for this if you want a different date
+//                LocalDate.now().plusYears(1), // Assuming the adhesion lasts for 1 year
+//                0.0, // You might need to get this from a TextField or a different input
+//                0.0, // Same as above for montantDon
+//                0.0, // Same as above for montantTotal
+//                "", // You will need a way to set categorieName
+//                nomNaissanceField.getText(),
+//                masculinCheckBox.isSelected() ? "Masculin" : femininCheckBox.isSelected() ? "Féminin" : "",
+//                paysVilleNaissanceField.getText(), // Assuming the country and city are comma-separated
+//                nationaliteField.getText(),
+//                codePostalField.getText(),
+//                villeField.getText(),
+//                deuxiemeTelField.getText(),
+//                armes,
+//                pratique,
+//                lateralite,
+//                responsableLegalField.getText()
+//        );
+//
+//
+//        listeAdherents.add(newAdherent);
+//        updateAdherentsTable();
+//        handleClearAction();
+//        saveAdherents();
+//
+//    }
 
     @FXML
     public void handleDeleteAction() {
@@ -413,6 +473,25 @@ public class MainController {
         emailField.setText("");
         telephoneField.setText("");
         adresseField.setText("");
+        nomNaissanceField.setText("");
+        masculinCheckBox.setSelected(false);
+        femininCheckBox.setSelected(false);
+        naissanceJourField.setText("");
+        naissanceMoisField.setText("");
+        naissanceAnneeField.setText("");
+        paysVilleNaissanceField.setText("");
+        nationaliteField.setText("");
+        codePostalField.setText("");
+        villeField.setText("");
+        deuxiemeTelField.setText("");
+        fleuretCheckBox.setSelected(false);
+        epeeCheckBox.setSelected(false);
+        sabreCheckBox.setSelected(false);
+        loisirCheckbox.setSelected(false);
+        competitionCheckbox.setSelected(false);
+        gaucherCheckbox.setSelected(false);
+        droitierCheckbox.setSelected(false);
+        responsableLegalField.setText("");
         // unfocus the table
         adherentsTable.getSelectionModel().clearSelection();
     }
@@ -432,10 +511,10 @@ public class MainController {
         adherentsTable.getSelectionModel().getSelectedItem().setCategorieName(categorie.getNom());
 
         // set the adherent's montantCotisation to the categorie's fraisInscription
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantCotisation(categorie.getFraisInscription());
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantAdhesion(categorie.getFraisInscription());
 
         // update montantTotal to the sum of montantCotisation and montantDon
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantCotisation() + adherentsTable.getSelectionModel().getSelectedItem().getMontantDon());
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantAdhesion() + adherentsTable.getSelectionModel().getSelectedItem().getMontantOption());
 
         saveAdherents();
         updateAdherentsTable();
@@ -447,9 +526,9 @@ public class MainController {
         // set the adherent's categorieName to ""
         adherentsTable.getSelectionModel().getSelectedItem().setCategorieName("");
         // set the adherent's montantCotisation to 0
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantCotisation(0.0);
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantAdhesion(0.0);
         // update montantTotal to the sum of montantCotisation and montantDon
-        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantCotisation() + adherentsTable.getSelectionModel().getSelectedItem().getMontantDon());
+        adherentsTable.getSelectionModel().getSelectedItem().setMontantTotal(adherentsTable.getSelectionModel().getSelectedItem().getMontantAdhesion() + adherentsTable.getSelectionModel().getSelectedItem().getMontantOption());
         saveAdherents();
         updateAdherentsTable();
 

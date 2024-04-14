@@ -1,55 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
-        <adresse>rgggr</adresse>
+        <adresse>milliemettest</adresse>
         <armes>Fleuret</armes>
-        <armes>Sabre</armes>
-        <categorieName></categorieName>
+        <avecAssurance>true</avecAssurance>
+        <carte10Seances>true</carte10Seances>
+        <categorieName>M13-M20</categorieName>
         <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-13</dateFinAdhesion>
-        <dateInscription>2024-04-13</dateInscription>
-        <dateNaissance>2600-01-20</dateNaissance>
-        <deuxiemeTelephone>0606060660</deuxiemeTelephone>
-        <email>ttdt@gmail.coml</email>
+        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
+        <dateInscription>2024-04-14</dateInscription>
+        <dateNaissance>2004-02-02</dateNaissance>
+        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
+        <email>milliemettest@gmail.com</email>
         <genre>Masculin</genre>
         <lateralite>Droitier</lateralite>
-        <montantCotisation>0.0</montantCotisation>
-        <montantDon>0.0</montantDon>
-        <montantTotal>0.0</montantTotal>
-        <nationalite>rgggr</nationalite>
-        <nom>messi</nom>
-        <nomNaissance>rgggr</nomNaissance>
-        <paysVilleNaissance>rgggr</paysVilleNaissance>
+        <montantAdhesion>275.0</montantAdhesion>
+        <montantOption>67.99</montantOption>
+        <montantTotal>342.99</montantTotal>
+        <nationalite>milliemettest</nationalite>
+        <nbAdherents>0</nbAdherents>
+        <nom>milliemettest</nom>
+        <nomNaissance>milliemettest</nomNaissance>
+        <paysVilleNaissance>milliemettest</paysVilleNaissance>
         <pratique>Loisir</pratique>
-        <prenom>grege</prenom>
-        <responsableLegal>rgggr</responsableLegal>
-        <telephone>0606060660</telephone>
-        <ville>rgggr</ville>
+        <prenom>milliemettest</prenom>
+        <responsableLegal>milliemettest</responsableLegal>
+        <sansAssurance>false</sansAssurance>
+        <telephone>0615332122</telephone>
+        <ville>milliemettest</ville>
     </adherent>
     <adherent>
-        <adresse>porttugal 1</adresse>
+        <adresse>vamos</adresse>
         <armes>Fleuret</armes>
-        <armes>Épée</armes>
-        <categorieName></categorieName>
-        <codePostal>31000</codePostal>
-        <dateFinAdhesion>2025-04-13</dateFinAdhesion>
-        <dateInscription>2024-04-13</dateInscription>
-        <dateNaissance>2002-02-02</dateNaissance>
-        <deuxiemeTelephone>0606060606</deuxiemeTelephone>
-        <email>ronaldomessi@gmail.com</email>
+        <avecAssurance>false</avecAssurance>
+        <carte10Seances>false</carte10Seances>
+        <categorieName>M13-M20</categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
+        <dateInscription>2024-04-14</dateInscription>
+        <dateNaissance>2004-02-24</dateNaissance>
+        <deuxiemeTelephone>0615332121</deuxiemeTelephone>
+        <email>vamos@vamos.fr</email>
         <genre>Masculin</genre>
         <lateralite>Droitier</lateralite>
-        <montantCotisation>0.0</montantCotisation>
-        <montantDon>0.0</montantDon>
-        <montantTotal>0.0</montantTotal>
-        <nationalite>on retest</nationalite>
-        <nom>on retest</nom>
-        <nomNaissance>on retest</nomNaissance>
-        <paysVilleNaissance>on retest</paysVilleNaissance>
+        <montantAdhesion>255.0</montantAdhesion>
+        <montantOption>-38.21</montantOption>
+        <montantTotal>236.79000000000002</montantTotal>
+        <nationalite>vamos</nationalite>
+        <nbAdherents>3</nbAdherents>
+        <nom>vamos</nom>
+        <nomNaissance>vamos</nomNaissance>
+        <paysVilleNaissance>vamos</paysVilleNaissance>
         <pratique>Loisir</pratique>
-        <prenom>cristiano</prenom>
-        <responsableLegal>on retest</responsableLegal>
-        <telephone>0606060606</telephone>
-        <ville>testt</ville>
+        <prenom>vamos</prenom>
+        <responsableLegal>vamos</responsableLegal>
+        <sansAssurance>true</sansAssurance>
+        <telephone>0615332122</telephone>
+        <ville>vamos</ville>
     </adherent>
 </adherents>

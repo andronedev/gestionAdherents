@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tarifs>
     <Categories>
+        <!-- Catégories existantes -->
         <Categorie>
             <Nom>M5-M7</Nom>
             <AnneeDebut>2016</AnneeDebut>
@@ -12,19 +13,86 @@
             <Nom>M9</Nom>
             <AnneeDebut>2014</AnneeDebut>
             <AnneeFin>2015</AnneeFin>
-            <FraisInscription>220</FraisInscription>
+            <FraisInscription>190</FraisInscription>
             <FraisLicence>45</FraisLicence>
         </Categorie>
-
+        <Categorie>
+            <Nom>M11</Nom>
+            <AnneeDebut>2012</AnneeDebut>
+            <AnneeFin>2013</AnneeFin>
+            <FraisInscription>190</FraisInscription>
+            <FraisLicence>55</FraisLicence>
+        </Categorie>
+        <Categorie>
+            <Nom>M13-M20</Nom>
+            <AnneeDebut>2003</AnneeDebut>
+            <AnneeFin>2011</AnneeFin>
+            <FraisInscription>220</FraisInscription>
+            <FraisLicence>55</FraisLicence>
+        </Categorie>
+        <Categorie>
+            <Nom>M23</Nom>
+            <AnneeDebut>1900</AnneeDebut>
+            <AnneeFin>2002</AnneeFin>
+            <FraisInscription>255</FraisInscription>
+            <FraisLicence>55</FraisLicence>
+        </Categorie>
     </Categories>
-    <!-- ... d'autres catégories ... -->
     <Options>
         <LicenceSansAssurance>-0.21</LicenceSansAssurance>
         <LicenceAvecAssurance>1.49</LicenceAvecAssurance>
-        <ReductionFamille2e>24, 28.5, 33.75</ReductionFamille2e>
-        <ReductionFamille3e>32, 38, 45</ReductionFamille3e>
-    </Options>
-    <AutresFormules>
         <Carte10Seances>95</Carte10Seances>
-    </AutresFormules>
+        <ReductionsFamiliales>
+            <ReductionFamiliale>
+                <Categorie>M5-M7</Categorie>
+                <Type>2eAdherent</Type>
+                <Montant>-24</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M5-M7</Categorie>
+                <Type>3eAdherent</Type>
+                <Montant>-32</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M9</Categorie>
+                <Type>2eAdherent</Type>
+                <Montant>-24</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M9</Categorie>
+                <Type>3eAdherent</Type>
+                <Montant>-32</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M11</Categorie>
+                <Type>2eAdherent</Type>
+                <Montant>-24</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M11</Categorie>
+                <Type>3eAdherent</Type>
+                <Montant>-32</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M13-M20</Categorie>
+                <Type>2eAdherent</Type>
+                <Montant>-28.50</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M13-M20</Categorie>
+                <Type>3eAdherent</Type>
+                <Montant>-38</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M23</Categorie>
+                <Type>2eAdherent</Type>
+                <Montant>-33.75</Montant>
+            </ReductionFamiliale>
+            <ReductionFamiliale>
+                <Categorie>M23</Categorie>
+                <Type>3eAdherent</Type>
+                <Montant>-45</Montant>
+            </ReductionFamiliale>
+        </ReductionsFamiliales>
+    </Options>
 </Tarifs>

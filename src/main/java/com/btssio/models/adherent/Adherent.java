@@ -20,8 +20,8 @@ public class Adherent {
     private LocalDate dateNaissance;
     private LocalDate dateInscription;
     private LocalDate dateFinAdhesion;
-    private double montantCotisation;
-    private double montantDon;
+    private double montantAdhesion;
+    private double montantOption;
     private double montantTotal;
     private String categorieName;
 
@@ -38,13 +38,17 @@ public class Adherent {
     private String lateralite; // Peut être "gaucher" ou "droitier"
 
     private String responsableLegal;
+    private boolean sansAssurance;
+    private boolean avecAssurance;
+    private boolean carte10Seances;
+    int nbAdherents;
 
     // Constructeur
     public Adherent(String email, String telephone, String nom, String prenom, String adresse, LocalDate dateNaissance,
-                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantCotisation, double montantDon,
+                    LocalDate dateInscription, LocalDate dateFinAdhesion, double montantAdhesion, double montantDon,
                     double montantTotal, String categorieName, String nomNaissance, String genre, String PaysVilleNaissance,
                     String nationalite, String codePostal, String ville, String deuxiemeTelephone,
-                    List<String> armes, String pratique, String lateralite, String responsableLegal) {
+                    List<String> armes, String pratique, String lateralite, String responsableLegal , boolean sansAssurance, boolean avecAssurance, boolean carte10Seances , int nbAdherents) {
         this.email = email;
         this.telephone = telephone;
         this.nom = nom;
@@ -53,8 +57,8 @@ public class Adherent {
         this.dateNaissance = dateNaissance;
         this.dateInscription = dateInscription;
         this.dateFinAdhesion = dateFinAdhesion;
-        this.montantCotisation = montantCotisation;
-        this.montantDon = montantDon;
+        this.montantAdhesion = montantAdhesion;
+        this.montantOption = montantOption;
         this.montantTotal = montantTotal;
         this.categorieName = categorieName;
 
@@ -70,6 +74,10 @@ public class Adherent {
         this.pratique = pratique;
         this.lateralite = lateralite;
         this.responsableLegal = responsableLegal;
+        this.sansAssurance = sansAssurance;
+        this.avecAssurance = avecAssurance;
+        this.carte10Seances = carte10Seances;
+        this.nbAdherents = nbAdherents;
     }
 
     public Adherent() {
@@ -152,21 +160,21 @@ public class Adherent {
     }
 
     @XmlElement
-    public double getMontantCotisation() {
-        return montantCotisation;
+    public double getMontantAdhesion() {
+        return montantAdhesion;
     }
 
-    public void setMontantCotisation(double montantCotisation) {
-        this.montantCotisation = montantCotisation;
+    public void setMontantAdhesion(double montantAdhesion) {
+        this.montantAdhesion = montantAdhesion;
     }
 
     @XmlElement
-    public double getMontantDon() {
-        return montantDon;
+    public double getMontantOption() {
+        return montantOption;
     }
 
-    public void setMontantDon(double montantDon) {
-        this.montantDon = montantDon;
+    public void setMontantOption(double montantOption) {
+        this.montantOption = montantOption;
     }
 
     @XmlElement
@@ -285,6 +293,40 @@ public class Adherent {
     public void setResponsableLegal(String responsableLegal) {
         this.responsableLegal = responsableLegal;
     }
+
+    public boolean isSansAssurance() {
+        return sansAssurance;
+    }
+
+    public void setSansAssurance(boolean sansAssurance) {
+        this.sansAssurance = sansAssurance;
+    }
+
+    public boolean isAvecAssurance() {
+        return avecAssurance;
+    }
+
+    public void setAvecAssurance(boolean avecAssurance) {
+        this.avecAssurance = avecAssurance;
+    }
+
+    public boolean isCarte10Seances() {
+        return carte10Seances;
+    }
+
+    public void setCarte10Seances(boolean carte10Seances) {
+        this.carte10Seances = carte10Seances;
+    }
+
+    public int getNbAdherents() {
+        return nbAdherents;
+    }
+
+    public void setNbAdherents(int nbAdherents) {
+        this.nbAdherents = nbAdherents;
+    }
+
+
 
     @Override
     public String toString() {
