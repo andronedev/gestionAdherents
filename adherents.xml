@@ -1,61 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
-        <adresse>milliemettest</adresse>
-        <armes>Fleuret</armes>
-        <avecAssurance>true</avecAssurance>
-        <carte10Seances>true</carte10Seances>
-        <categorieName>M13-M20</categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
-        <dateInscription>2024-04-14</dateInscription>
-        <dateNaissance>2004-02-02</dateNaissance>
-        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
-        <email>milliemettest@gmail.com</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>275.0</montantAdhesion>
-        <montantOption>67.99</montantOption>
-        <montantTotal>342.99</montantTotal>
-        <nationalite>milliemettest</nationalite>
-        <nbAdherents>0</nbAdherents>
-        <nom>milliemettest</nom>
-        <nomNaissance>milliemettest</nomNaissance>
-        <paysVilleNaissance>milliemettest</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>milliemettest</prenom>
-        <responsableLegal>milliemettest</responsableLegal>
-        <sansAssurance>false</sansAssurance>
-        <telephone>0615332122</telephone>
-        <ville>milliemettest</ville>
-    </adherent>
-    <adherent>
-        <adresse>vamos</adresse>
+        <adresse>nicolas</adresse>
         <armes>Fleuret</armes>
         <avecAssurance>false</avecAssurance>
         <carte10Seances>false</carte10Seances>
-        <categorieName>M13-M20</categorieName>
+        <categorieName>M5-M7</categorieName>
         <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-14</dateFinAdhesion>
-        <dateInscription>2024-04-14</dateInscription>
-        <dateNaissance>2004-02-24</dateNaissance>
-        <deuxiemeTelephone>0615332121</deuxiemeTelephone>
-        <email>vamos@vamos.fr</email>
+        <dateFinAdhesion>2025-04-15</dateFinAdhesion>
+        <dateInscription>2024-04-15</dateInscription>
+        <dateNaissance>2017-02-21</dateNaissance>
+        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
+        <email>nicolas@gmail.com</email>
         <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>255.0</montantAdhesion>
-        <montantOption>-38.21</montantOption>
-        <montantTotal>236.79000000000002</montantTotal>
-        <nationalite>vamos</nationalite>
-        <nbAdherents>3</nbAdherents>
-        <nom>vamos</nom>
-        <nomNaissance>vamos</nomNaissance>
-        <paysVilleNaissance>vamos</paysVilleNaissance>
+        <lateralite>Gaucher</lateralite>
+        <montantAdhesion>190.0</montantAdhesion>
+        <montantOption>-32.21</montantOption>
+        <montantTotal>185.79</montantTotal>
+        <nationalite>nicolas</nationalite>
+        <nbAdherents>235</nbAdherents>
+        <nom>gay</nom>
+        <nomNaissance>nicolas</nomNaissance>
+        <paysVilleNaissance>nicolas</paysVilleNaissance>
         <pratique>Loisir</pratique>
-        <prenom>vamos</prenom>
-        <responsableLegal>vamos</responsableLegal>
+        <prenom>nicolas</prenom>
+        <responsableLegal>nicolas</responsableLegal>
         <sansAssurance>true</sansAssurance>
         <telephone>0615332122</telephone>
-        <ville>vamos</ville>
+        <ville>nicolas</ville>
+    </adherent>
+    <adherent>
+        <adresse>testtssss</adresse>
+        <armes>Fleuret</armes>
+        <avecAssurance>false</avecAssurance>
+        <carte10Seances>false</carte10Seances>
+        <categorieName>M9</categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2025-04-15</dateFinAdhesion>
+        <dateInscription>2024-04-15</dateInscription>
+        <dateNaissance>2015-02-24</dateNaissance>
+        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
+        <email>testtssss@gmail.com</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantAdhesion>235.0</montantAdhesion>
+        <montantOption>-24.0</montantOption>
+        <montantTotal>211.0</montantTotal>
+        <nationalite>testtssss</nationalite>
+        <nbAdherents>2</nbAdherents>
+        <nom>testtssss</nom>
+        <nomNaissance>testtssss</nomNaissance>
+        <paysVilleNaissance>testtssss</paysVilleNaissance>
+        <pratique>Loisir</pratique>
+        <prenom>testtsssstesttssss</prenom>
+        <responsableLegal>esttssss</responsableLegal>
+        <sansAssurance>false</sansAssurance>
+        <telephone>0615332122</telephone>
+        <ville>testtssss</ville>
+    </adherent>
+    <adherent>
+        <adresse>nbAdherents</adresse>
+        <armes>Fleuret</armes>
+        <avecAssurance>false</avecAssurance>
+        <carte10Seances>false</carte10Seances>
+        <categorieName>M9</categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2025-04-15</dateFinAdhesion>
+        <dateInscription>2024-04-15</dateInscription>
+        <dateNaissance>2015-02-24</dateNaissance>
+        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
+        <email>nbAdherents@nbAdherents.fr</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantAdhesion>235.0</montantAdhesion>
+        <montantOption>0.0</montantOption>
+        <montantTotal>235.0</montantTotal>
+        <nationalite>nbAdherents</nationalite>
+        <nbAdherents>0</nbAdherents>
+        <nom>nbAdherents</nom>
+        <nomNaissance>nbAdherents</nomNaissance>
+        <paysVilleNaissance>nbAdherents</paysVilleNaissance>
+        <pratique>Loisir</pratique>
+        <prenom>nbAdherents</prenom>
+        <responsableLegal>nbAdherents</responsableLegal>
+        <sansAssurance>false</sansAssurance>
+        <telephone>0615332122</telephone>
+        <ville>nbAdherents</ville>
     </adherent>
 </adherents>

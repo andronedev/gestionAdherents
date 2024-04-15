@@ -181,7 +181,7 @@ public class InscriptionController {
                     sansAssuranceCheckbox.isSelected(),
                     avecAssuranceRenfCheckbox.isSelected(),
                     avec10SeanceCheckbox.isSelected(),
-                    Integer.parseInt(nbAdherentFamille.getText()));
+                    nbAdherentFamille.getText().isEmpty() ? 0 : Integer.parseInt(nbAdherentFamille.getText()));
                     TarifManager tarifManager = new TarifManager();
                     try {
                         tarifManager.loadFromXml("tarifs.xml");
@@ -207,11 +207,15 @@ public class InscriptionController {
                     }
                     //calculer la reduction
                     int nbAdherents;
-                    try {
-                        nbAdherents = Integer.parseInt(nbAdherentFamille.getText());
-                    } catch (NumberFormatException e) {
-                        // Si l'utilisateur n'a pas saisi de nombre, on considère qu'il y a 1 seul adhérent
+                    String inputText = nbAdherentFamille.getText();
+                    if (inputText.isEmpty()) {
                         nbAdherents = 1;
+                    } else {
+                        try {
+                            nbAdherents = Integer.parseInt(inputText);
+                        } catch (NumberFormatException e) {
+                            nbAdherents = 1;
+                        }
                     }
                     double reduction = OptionManager.calculerReduction(nbAdherents, laCat.getNom());
                     newAdherent.setMontantOption(reduction);
