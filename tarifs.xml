@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Tarifs>
     <Categories>
-        <!-- Catégories existantes -->
         <Categorie>
             <Nom>M5-M7</Nom>
             <AnneeDebut>2016</AnneeDebut>

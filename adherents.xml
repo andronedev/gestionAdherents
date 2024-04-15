@@ -1,90 +1,61 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <adherents>
     <adherent>
-        <adresse>nicolas</adresse>
-        <armes>Fleuret</armes>
-        <avecAssurance>false</avecAssurance>
-        <carte10Seances>false</carte10Seances>
-        <categorieName>M5-M7</categorieName>
-        <codePostal>15000</codePostal>
+        <adresse>2 Rue capitole</adresse>
+        <armes>Sabre</armes>
+        <avecAssurance>true</avecAssurance>
+        <carte10Seances>true</carte10Seances>
+        <categorieName>M13-M20</categorieName>
+        <codePostal>31000</codePostal>
         <dateFinAdhesion>2025-04-15</dateFinAdhesion>
         <dateInscription>2024-04-15</dateInscription>
-        <dateNaissance>2017-02-21</dateNaissance>
-        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
-        <email>nicolas@gmail.com</email>
+        <dateNaissance>2004-02-24</dateNaissance>
+        <deuxiemeTelephone>0615323232</deuxiemeTelephone>
+        <email>kamalichchou@gmail.com</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantAdhesion>275.0</montantAdhesion>
+        <montantOption>96.49</montantOption>
+        <montantTotal>371.49</montantTotal>
+        <nationalite>Française</nationalite>
+        <nbAdherents>0</nbAdherents>
+        <nom>Ichchou</nom>
+        <nomNaissance>Ichchou</nomNaissance>
+        <paysVilleNaissance>France Toulouse</paysVilleNaissance>
+        <pratique>Compétition</pratique>
+        <prenom>Kamal</prenom>
+        <responsableLegal>La madre</responsableLegal>
+        <sansAssurance>false</sansAssurance>
+        <telephone>0615323232</telephone>
+        <ville>Toulouse</ville>
+    </adherent>
+    <adherent>
+        <adresse>2 rue Martinique</adresse>
+        <armes>Épée</armes>
+        <avecAssurance>true</avecAssurance>
+        <carte10Seances>true</carte10Seances>
+        <categorieName>M23</categorieName>
+        <codePostal>31100</codePostal>
+        <dateFinAdhesion>2025-04-15</dateFinAdhesion>
+        <dateInscription>2024-04-15</dateInscription>
+        <dateNaissance>2001-05-12</dateNaissance>
+        <deuxiemeTelephone>0618515151</deuxiemeTelephone>
+        <email>Nicolas@Chandelier.fr</email>
         <genre>Masculin</genre>
         <lateralite>Gaucher</lateralite>
-        <montantAdhesion>190.0</montantAdhesion>
-        <montantOption>-32.21</montantOption>
-        <montantTotal>185.79</montantTotal>
-        <nationalite>nicolas</nationalite>
-        <nbAdherents>235</nbAdherents>
-        <nom>gay</nom>
-        <nomNaissance>nicolas</nomNaissance>
-        <paysVilleNaissance>nicolas</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>nicolas</prenom>
-        <responsableLegal>nicolas</responsableLegal>
-        <sansAssurance>true</sansAssurance>
-        <telephone>0615332122</telephone>
-        <ville>nicolas</ville>
-    </adherent>
-    <adherent>
-        <adresse>testtssss</adresse>
-        <armes>Fleuret</armes>
-        <avecAssurance>false</avecAssurance>
-        <carte10Seances>false</carte10Seances>
-        <categorieName>M9</categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-15</dateFinAdhesion>
-        <dateInscription>2024-04-15</dateInscription>
-        <dateNaissance>2015-02-24</dateNaissance>
-        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
-        <email>testtssss@gmail.com</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>235.0</montantAdhesion>
-        <montantOption>-24.0</montantOption>
-        <montantTotal>211.0</montantTotal>
-        <nationalite>testtssss</nationalite>
+        <montantAdhesion>310.0</montantAdhesion>
+        <montantOption>62.739999999999995</montantOption>
+        <montantTotal>372.74</montantTotal>
+        <nationalite>Française</nationalite>
         <nbAdherents>2</nbAdherents>
-        <nom>testtssss</nom>
-        <nomNaissance>testtssss</nomNaissance>
-        <paysVilleNaissance>testtssss</paysVilleNaissance>
+        <nom>Chandelier</nom>
+        <nomNaissance>Chandelier</nomNaissance>
+        <paysVilleNaissance>France</paysVilleNaissance>
         <pratique>Loisir</pratique>
-        <prenom>testtsssstesttssss</prenom>
-        <responsableLegal>esttssss</responsableLegal>
+        <prenom>Nicolas</prenom>
+        <responsableLegal>Chandelier Paul</responsableLegal>
         <sansAssurance>false</sansAssurance>
-        <telephone>0615332122</telephone>
-        <ville>testtssss</ville>
-    </adherent>
-    <adherent>
-        <adresse>nbAdherents</adresse>
-        <armes>Fleuret</armes>
-        <avecAssurance>false</avecAssurance>
-        <carte10Seances>false</carte10Seances>
-        <categorieName>M9</categorieName>
-        <codePostal>15000</codePostal>
-        <dateFinAdhesion>2025-04-15</dateFinAdhesion>
-        <dateInscription>2024-04-15</dateInscription>
-        <dateNaissance>2015-02-24</dateNaissance>
-        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
-        <email>nbAdherents@nbAdherents.fr</email>
-        <genre>Masculin</genre>
-        <lateralite>Droitier</lateralite>
-        <montantAdhesion>235.0</montantAdhesion>
-        <montantOption>0.0</montantOption>
-        <montantTotal>235.0</montantTotal>
-        <nationalite>nbAdherents</nationalite>
-        <nbAdherents>0</nbAdherents>
-        <nom>nbAdherents</nom>
-        <nomNaissance>nbAdherents</nomNaissance>
-        <paysVilleNaissance>nbAdherents</paysVilleNaissance>
-        <pratique>Loisir</pratique>
-        <prenom>nbAdherents</prenom>
-        <responsableLegal>nbAdherents</responsableLegal>
-        <sansAssurance>false</sansAssurance>
-        <telephone>0615332122</telephone>
-        <ville>nbAdherents</ville>
+        <telephone>0618515151</telephone>
+        <ville>Toulouse</ville>
     </adherent>
 </adherents>
