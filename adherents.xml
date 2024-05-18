@@ -31,7 +31,6 @@
     </adherent>
     <adherent>
         <adresse>2 rue Martinique</adresse>
-        <armes>Épée</armes>
         <avecAssurance>true</avecAssurance>
         <carte10Seances>true</carte10Seances>
         <categorieName>M23</categorieName>
@@ -43,12 +42,12 @@
         <email>Nicolas@Chandelier.fr</email>
         <genre>Masculin</genre>
         <lateralite>Gaucher</lateralite>
-        <montantAdhesion>310.0</montantAdhesion>
+        <montantAdhesion>255.0</montantAdhesion>
         <montantOption>62.739999999999995</montantOption>
         <montantTotal>372.74</montantTotal>
         <nationalite>Française</nationalite>
         <nbAdherents>2</nbAdherents>
-        <nom>Chandelier</nom>
+        <nom>nico</nom>
         <nomNaissance>Chandelier</nomNaissance>
         <paysVilleNaissance>France</paysVilleNaissance>
         <pratique>Loisir</pratique>
@@ -57,5 +56,34 @@
         <sansAssurance>false</sansAssurance>
         <telephone>0618515151</telephone>
         <ville>Toulouse</ville>
+    </adherent>
+    <adherent>
+        <adresse>tye</adresse>
+        <armes>Fleuret</armes>
+        <avecAssurance>true</avecAssurance>
+        <carte10Seances>true</carte10Seances>
+        <categorieName>M13-M20</categorieName>
+        <codePostal>15000</codePostal>
+        <dateFinAdhesion>2025-05-18</dateFinAdhesion>
+        <dateInscription>2024-05-18</dateInscription>
+        <dateNaissance>2004-02-24</dateNaissance>
+        <deuxiemeTelephone>0615332122</deuxiemeTelephone>
+        <email>tye@gmail.com</email>
+        <genre>Masculin</genre>
+        <lateralite>Droitier</lateralite>
+        <montantAdhesion>275.0</montantAdhesion>
+        <montantOption>96.49</montantOption>
+        <montantTotal>371.49</montantTotal>
+        <nationalite>Française</nationalite>
+        <nbAdherents>0</nbAdherents>
+        <nom>tye</nom>
+        <nomNaissance>tye</nomNaissance>
+        <paysVilleNaissance>France Toulouse</paysVilleNaissance>
+        <pratique>Loisir</pratique>
+        <prenom>tye</prenom>
+        <responsableLegal>tye</responsableLegal>
+        <sansAssurance>false</sansAssurance>
+        <telephone>0615332122</telephone>
+        <ville>Aurillac</ville>
     </adherent>
 </adherents>

@@ -570,9 +570,11 @@ public class MainController {
             for (Adherent adherent : listeAdherents) {
                 String nom = adherent.getNom().toLowerCase();
                 String prenom = adherent.getPrenom().toLowerCase();
+                //implémenter d'autres éléments de recherche ville
+                String ville = adherent.getVille().toLowerCase();
 
                 // Vérifiez si le nom ou le prénom contient la chaîne de recherche.
-                if (nom.contains(searchString) || prenom.contains(searchString)) {
+                if (nom.contains(searchString) || prenom.contains(searchString) || ville.contains(searchString)) {
                     matchingAdherents.add(adherent);
                 }
             }
@@ -580,23 +582,25 @@ public class MainController {
             // Si au moins un adhérent correspond à la recherche, affichez uniquement celui-ci.
             if (!matchingAdherents.isEmpty()) {
                 adherentsTable.setItems(matchingAdherents);
-                rechercheActive = true; // Mettez à jour l'état de la recherche
-            } else {
+            } else {//                rechercheActive = true; // Mettez à jour l'état de la recherche
+                adherentsTable.setItems(FXCollections.observableArrayList(new ArrayList<>())); // Aucun adhérent trouvé, affichez une liste vide
                 rechercheActive = false; // Aucun adhérent trouvé, mettez à jour l'état de la recherche
             }
         } else {
-            rechercheActive = false; // La recherche est vide, mettez à jour l'état de la recherche
+            adherentsTable.setItems(FXCollections.observableArrayList(listeAdherents));
+            rechercheActive = false;// La recherche est vide, mettez à jour l'état de la recherche
+
+
         }
     }
 
     @FXML
     private void handleClearSearchAction() {
-        InputRecherche.clear(); // Effacez le contenu du champ de recherche
+        InputRecherche.clear();
 
-        // Si la recherche était active, rétablissez la liste complète des adhérents.
-        if (rechercheActive) {
+        if (!rechercheActive) {
             adherentsTable.setItems(FXCollections.observableArrayList(listeAdherents));
-            rechercheActive = false; // Mettez à jour l'état de la recherche
+            rechercheActive = false; // Mise à jour l'état de la recherche
         }
     }
 
