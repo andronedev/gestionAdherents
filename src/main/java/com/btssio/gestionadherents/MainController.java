@@ -204,6 +204,17 @@ public class MainController {
         });
     }
 
+    @FXML
+    private void handleGenderSelection() {
+        if (masculinCheckBox.isSelected() && femininCheckBox.isSelected()) {
+            if (masculinCheckBox.isFocused()) {
+                femininCheckBox.setSelected(false);
+            } else if (femininCheckBox.isFocused()) {
+                masculinCheckBox.setSelected(false);
+            }
+        }
+    }
+
     private void updateInputFields(Adherent adherent) {
         nomField.setText(adherent.getNom());
         prenomField.setText(adherent.getPrenom());

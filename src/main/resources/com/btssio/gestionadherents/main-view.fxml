@@ -76,8 +76,8 @@
                         <Label layoutX="10" layoutY="210" text="Nom de naissance:" />
                         <TextField fx:id="nomNaissanceField" layoutX="126.0" layoutY="205.0" prefHeight="25.0" prefWidth="210.0" />
                         <Label layoutX="10" layoutY="250" text="Genre:" />
-                        <CheckBox fx:id="masculinCheckBox" layoutX="69.0" layoutY="245.0" mnemonicParsing="false" text="Masculin" />
-                        <CheckBox fx:id="femininCheckBox" layoutX="158.0" layoutY="245.0" mnemonicParsing="false" text="Féminin" />
+                        <CheckBox fx:id="masculinCheckBox" layoutX="69.0" layoutY="245.0" mnemonicParsing="false" text="Masculin" onAction="#handleGenderSelection"/>
+                        <CheckBox fx:id="femininCheckBox" layoutX="158.0" layoutY="245.0" mnemonicParsing="false" text="Féminin" onAction="#handleGenderSelection" />
                         <Label layoutX="10" layoutY="285" text="Naissance :" />
                         <TextField fx:id="naissanceJourField" layoutX="81.0" layoutY="280.0" prefHeight="25.0" prefWidth="26.0" />
                         <TextField fx:id="naissanceMoisField" layoutX="125.0" layoutY="280.0" prefHeight="25.0" prefWidth="26.0" />
