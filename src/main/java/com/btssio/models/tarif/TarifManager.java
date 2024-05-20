@@ -20,6 +20,11 @@ public class TarifManager {
         return categories;
     }
 
+    //getOptions
+    public Options getOptions() {
+        return tarifs.getOptions();
+    }
+
     public Categorie getCategorieByName(String nom) {
         for (Categorie categorie : categories) {
             if (categorie.getNom().equals(nom)) {

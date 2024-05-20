@@ -134,11 +134,14 @@ public class InscriptionController {
 
     @FXML
     private void handleAddAction(ActionEvent event) {
+        // Vérifier les entrées valides avant de continuer
         if (ValidInputs()) {
+            // Collecter les valeurs des champs du formulaire pour les armes, la pratique et la latéralité
             List<String> armes = new ArrayList<>();
             if (fleuretCheckBox.isSelected()) armes.add("Fleuret");
             if (epeeCheckBox.isSelected()) armes.add("Épée");
             if (sabreCheckBox.isSelected()) armes.add("Sabre");
+
             String pratique = loisirCheckbox.isSelected() && competitionCheckbox.isSelected() ? "Loisir et Compétition"
                     : loisirCheckbox.isSelected() ? "Loisir"
                     : competitionCheckbox.isSelected() ? "Compétition"
@@ -149,7 +152,7 @@ public class InscriptionController {
                     : droitierCheckbox.isSelected() ? "Droitier"
                     : "";
 
-            // Collecter les valeurs des champs du formulaire, les valider et construire un objet Adherent
+            // Collecter les valeurs des champs du formulaire et construire un objet Adherent
             Adherent newAdherent = new Adherent(
                     emailField.getText(),
                     telephoneField.getText(),
@@ -181,55 +184,63 @@ public class InscriptionController {
                     sansAssuranceCheckbox.isSelected(),
                     avecAssuranceRenfCheckbox.isSelected(),
                     avec10SeanceCheckbox.isSelected(),
-                    nbAdherentFamille.getText().isEmpty() ? 0 : Integer.parseInt(nbAdherentFamille.getText()));
-                    TarifManager tarifManager = new TarifManager();
-                    try {
-                        tarifManager.loadFromXml("tarifs.xml");
-                    } catch (JAXBException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //from datenaissance use getFraisTotal
-                    int birthYear = Integer.parseInt(naissanceAnneeField.getText());
-                    Categorie laCat = tarifManager.getCategorieForBirthYear(birthYear);
-                    //affect category to adherent
-                    newAdherent.setCategorieName(laCat.getNom());
-                    double montantTotal = tarifManager.getFraisTotal(birthYear);
-                    System.out.println("Montant total pour l'année " + birthYear + " : " + montantTotal);
-                    //set montantAdhesion to adheren and tableview
-                    newAdherent.setMontantAdhesion(montantTotal);
-                    //initialise optionManager
-                    Options options = new Options();
-                    OptionManager optionManager = new OptionManager(options);
-                    try {
-                        optionManager.loadFromXml("tarifs.xml");
-                    } catch (JAXBException e) {
-                        throw new RuntimeException(e);
-                    }
-                    //calculer la reduction
-                    int nbAdherents;
-                    String inputText = nbAdherentFamille.getText();
-                    if (inputText.isEmpty()) {
-                        nbAdherents = 1;
-                    } else {
-                        try {
-                            nbAdherents = Integer.parseInt(inputText);
-                        } catch (NumberFormatException e) {
-                            nbAdherents = 1;
-                        }
-                    }
-                    double reduction = OptionManager.calculerReduction(nbAdherents, laCat.getNom());
-                    newAdherent.setMontantOption(reduction);
-                    System.out.println("Réduction pour " + nbAdherents + " adhérent(s) : " + reduction);
-                    boolean sansAssurance = sansAssuranceCheckbox.isSelected();
-                    boolean avecAssurance = avecAssuranceRenfCheckbox.isSelected();
-                    boolean Carte10Seances = avec10SeanceCheckbox.isSelected();
-                    double montantLicence = optionManager.getLicenceAmount(sansAssurance, avecAssurance);
-                    double montantCarte10Seances = optionManager.getCarte10SeancesAmount(Carte10Seances);
-                    double montantTotalInscription = optionManager.calculerMontantTotal(montantTotal, montantLicence, reduction , montantCarte10Seances);
-                    newAdherent.setMontantOption(montantLicence+montantCarte10Seances+reduction);
-                    newAdherent.setMontantTotal(montantTotalInscription);
+                    nbAdherentFamille.getText().isEmpty() ? 0 : Integer.parseInt(nbAdherentFamille.getText())
+            );
 
+            // Initialiser et charger les tarifs depuis le fichier XML
+            TarifManager tarifManager = new TarifManager();
+            try {
+                tarifManager.loadFromXml("tarifs.xml");
+            } catch (JAXBException e) {
+                throw new RuntimeException(e);
+            }
 
+            // Déterminer la catégorie de l'adhérent en fonction de l'année de naissance
+            int birthYear = Integer.parseInt(naissanceAnneeField.getText());
+            Categorie laCat = tarifManager.getCategorieForBirthYear(birthYear);
+            newAdherent.setCategorieName(laCat.getNom());
+
+            // Calculer les frais d'inscription en fonction de la date de naissance
+            double montantTotal = tarifManager.getFraisTotal(birthYear);
+            newAdherent.setMontantAdhesion(montantTotal);
+            System.out.println("Montant total pour l'année " + birthYear + " : " + montantTotal);
+
+            // Initialiser et charger les options depuis le fichier XML
+            Options options = new Options();
+            OptionManager optionManager = new OptionManager(options);
+            try {
+                optionManager.loadFromXml("tarifs.xml");
+            } catch (JAXBException e) {
+                throw new RuntimeException(e);
+            }
+
+            // Calculer la réduction familiale
+            int nbAdherents;
+            String inputText = nbAdherentFamille.getText();
+            if (inputText.isEmpty()) {
+                nbAdherents = 1;
+            } else {
+                try {
+                    nbAdherents = Integer.parseInt(inputText);
+                } catch (NumberFormatException e) {
+                    nbAdherents = 1;
+                }
+            }
+            double reduction = OptionManager.calculerReduction(nbAdherents, laCat.getNom());
+            newAdherent.setMontantOption(reduction);
+            System.out.println("Réduction pour " + nbAdherents + " adhérent(s) : " + reduction);
+
+            // Calculer les montants d'assurance et de carte de 10 séances
+            boolean sansAssurance = sansAssuranceCheckbox.isSelected();
+            boolean avecAssurance = avecAssuranceRenfCheckbox.isSelected();
+            boolean Carte10Seances = avec10SeanceCheckbox.isSelected();
+            double montantLicence = optionManager.getLicenceAmount(sansAssurance, avecAssurance);
+            double montantCarte10Seances = optionManager.getCarte10SeancesAmount(Carte10Seances);
+
+            // Calculer le montant total d'inscription
+            double montantTotalInscription = optionManager.calculerMontantTotal(montantTotal, montantLicence, reduction, montantCarte10Seances);
+            newAdherent.setMontantOption(montantLicence + montantCarte10Seances + reduction);
+            newAdherent.setMontantTotal(montantTotalInscription);
 
             try {
                 // Charger la liste existante des adhérents
@@ -254,6 +265,7 @@ public class InscriptionController {
             }
         }
     }
+
 
 
     private boolean ValidInputs() {
