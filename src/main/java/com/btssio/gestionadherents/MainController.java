@@ -657,11 +657,11 @@ public class MainController {
                 tarifManager.loadFromXml("tarifs.xml"); // Load tariff data
             }
 
-            // Check if listeAdherents is already loaded, if not, load from XML
-            if (listeAdherents == null || listeAdherents.isEmpty()) {
-                listeAdherents = AdherentManager.chargerAdherents("adherents.xml"); // Load adherent data
+            // Charger la liste des adhérents depuis le fichier XML, garantissant qu'elle n'est jamais nulle
+            listeAdherents = AdherentManager.chargerAdherents("adherents.xml");
+            if (listeAdherents == null) {
+                listeAdherents = new ArrayList<>(); // Assure une liste non nulle
             }
-
             // Load the main view FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             Parent mainView = loader.load();
