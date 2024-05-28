@@ -14,6 +14,8 @@ module com.btssio.gestionadherents {
     opens com.btssio.models.adherent to org.glassfish.jaxb.runtime, jakarta.xml.bind;
     opens com.btssio.models.tarif to org.glassfish.jaxb.runtime, jakarta.xml.bind;
     opens com.btssio.models.utils to org.glassfish.jaxb.runtime, jakarta.xml.bind;
+    opens com.btssio.models.clubs to org.glassfish.jaxb.runtime, jakarta.xml.bind, javafx.base;
+
     exports com.btssio.gestionadherents;
     exports com.btssio.models.adherent;
     exports com.btssio.models.tarif;

@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -22,13 +23,6 @@ import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDFont;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -59,46 +53,25 @@ public class ClubController {
 
     @FXML
     private void initialize() {
-        Nom.setCellValueFactory(cellData -> cellData.getValue().nomProperty());
-        Adresse.setCellValueFactory(cellData -> cellData.getValue().adresseProperty());
-        Contact.setCellValueFactory(cellData -> cellData.getValue().contactProperty());
-        Téléphone.setCellValueFactory(cellData -> cellData.getValue().telProperty());
-        Mail.setCellValueFactory(cellData -> cellData.getValue().mailProperty());
-        Site.setCellValueFactory(cellData -> cellData.getValue().siteProperty());
+        // Set the cell value factories for each column
+        Nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        Adresse.setCellValueFactory(new PropertyValueFactory<>("adresse"));
+        Contact.setCellValueFactory(new PropertyValueFactory<>("contact"));
+        Téléphone.setCellValueFactory(new PropertyValueFactory<>("tel"));
+        Mail.setCellValueFactory(new PropertyValueFactory<>("mail"));
+        Site.setCellValueFactory(new PropertyValueFactory<>("site"));
 
+        // Load the data into the table view
         tableView.setItems(getClubData());
     }
 
     private ObservableList<Club> getClubData() {
         ObservableList<Club> clubs = FXCollections.observableArrayList();
         try {
-            File xmlFile = new File("clubs.xml"); // Remplacez par le chemin d'accès réel à votre fichier XML
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
-            doc.getDocumentElement().normalize();
-
-            NodeList nList = doc.getElementsByTagName("club");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-
-                    String nom = eElement.getElementsByTagName("nom").item(0).getTextContent();
-                    String adresse = eElement.getElementsByTagName("adresse").item(0).getTextContent();
-                    String contact = eElement.getElementsByTagName("contact").item(0).getTextContent();
-                    String tel = eElement.getElementsByTagName("tel").item(0).getTextContent();
-                    String mail = eElement.getElementsByTagName("mail").item(0).getTextContent();
-                    String site = eElement.getElementsByTagName("site").item(0).getTextContent();
-
-                    clubs.add(new Club(nom, adresse, contact, tel, mail, site));
-                }
-            }
+            clubs.addAll(ClubManager.chargerClubs("clubs.xml"));
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return clubs;
     }
 
@@ -161,7 +134,6 @@ public class ClubController {
             MainController mainController = loader.getController();
 
             // Set the loaded data in mainController
-
             mainController.setListeAdherents(listeAdherents, tarifManager);
 
             // Show the main view in the current stage
@@ -206,7 +178,6 @@ public class ClubController {
 
                     // Dessiner les en-têtes de colonnes
                     contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                    // Dessiner les en-têtes de colonnes
                     drawRow(contentStream, margin, yPosition, cellWidth, rowHeight, columns, true);
                     yPosition -= rowHeight;
 
@@ -214,11 +185,10 @@ public class ClubController {
                     for (Club club : tableView.getItems()) {
                         if (yPosition <= margin + rowHeight) {
                             contentStream.close();
-                            page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
-                            contentStream = new PDPageContentStream(document, page, PDPageContentStream.AppendMode.APPEND, true, true);
-                            yPosition = page.getMediaBox().getHeight() - margin;
-                            drawRow(contentStream, margin, yPosition, cellWidth, rowHeight, columns, true);
-                            yPosition -= rowHeight;
+                            PDPage newPage = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
+                            document.addPage(newPage);
+                            contentStream = new PDPageContentStream(document, newPage);
+                            yPosition = yStart;
                         }
                         String[] clubInfo = {
                                 club.getNom(),
@@ -236,7 +206,6 @@ public class ClubController {
                     document.save(file);
                     showAlert(Alert.AlertType.INFORMATION, stage, "Succès", "Le fichier PDF a été sauvegardé avec succès à l'emplacement : " + file.getAbsolutePath());
 
-
                 } catch (IOException e) {
                     showAlert(Alert.AlertType.ERROR, stage, "Erreur", "Une erreur est survenue lors de la création du PDF : " + e.getMessage());
                     e.printStackTrace();
@@ -252,7 +221,6 @@ public class ClubController {
         float maxRowHeight = 0;
         for (String text : content) {
             List<String> lines = wrapText(text, (int) (cellWidth - 2), font, fontSize);
-            // Adaptez les paramètres selon la mise en page réelle
             float cellHeight = (lines.size() * 12) + 5; // 12 est la taille de la police utilisée, 5 pour un peu d'espace supplémentaire
             maxRowHeight = Math.max(maxRowHeight, cellHeight);
         }
@@ -297,7 +265,6 @@ public class ClubController {
         y -= rowHeight;
     }
 
-
     private List<String> wrapText(String text, float width, PDFont font, float fontSize) throws IOException {
         List<String> lines = new ArrayList<>();
         while (text.length() > 0) {
@@ -320,7 +287,6 @@ public class ClubController {
         return lines;
     }
 
-
     private void showAlert(Alert.AlertType alertType, Stage owner, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
@@ -329,5 +295,4 @@ public class ClubController {
         alert.initOwner(owner);
         alert.showAndWait();
     }
-
 }

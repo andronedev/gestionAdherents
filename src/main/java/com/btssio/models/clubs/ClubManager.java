@@ -1,49 +1,47 @@
 package com.btssio.models.clubs;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClubManager {
-    public ObservableList<Club> loadClubsFromXML(String xmlFilePath) {
-        ObservableList<Club> clubs = FXCollections.observableArrayList();
 
+    public static List<Club> chargerClubs(String pathToXml) {
         try {
-            File xmlFile = new File(xmlFilePath);
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(xmlFile);
-            doc.getDocumentElement().normalize();
+            File clubsXml = new File(pathToXml);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Clubs.class);
+            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
-            NodeList nList = doc.getElementsByTagName("club");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-                Node nNode = nList.item(temp);
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                    Element eElement = (Element) nNode;
-
-                    String nom = eElement.getElementsByTagName("nom").item(0).getTextContent();
-                    String adresse = eElement.getElementsByTagName("adresse").item(0).getTextContent();
-                    String contact = eElement.getElementsByTagName("contact").item(0).getTextContent();
-                    String tel = eElement.getElementsByTagName("tel").item(0).getTextContent();
-                    String mail = eElement.getElementsByTagName("mail").item(0).getTextContent();
-                    String site = eElement.getElementsByTagName("site").item(0).getTextContent();
-
-                    clubs.add(new Club(nom, adresse, contact, tel, mail, site));
-                }
+            if (clubsXml.exists()) {
+                Clubs clubsContainer = (Clubs) unmarshaller.unmarshal(clubsXml);
+                return clubsContainer.getClubsList();
+            } else {
+                return new ArrayList<>();
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return clubs;
+        return null; // Si une exception est levée ou que quelque chose se passe mal, on retourne null.
+    }
+
+    public static void sauvegarderClubs(List<Club> clubs, String pathToXml) {
+        try {
+            File clubsXml = new File(pathToXml);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Clubs.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+
+            Clubs clubsContainer = new Clubs();
+            clubsContainer.setClubsList(clubs);
+
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+            marshaller.marshal(clubsContainer, clubsXml);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
