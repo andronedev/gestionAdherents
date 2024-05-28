@@ -215,6 +215,18 @@ public class MainController {
         }
     }
 
+
+    @FXML
+    private void handleLicenceAssuranceSelection() {
+        if (sansAssuranceCheckbox.isSelected() && avecAssuranceRenfCheckbox.isSelected()) {
+            if (avecAssuranceRenfCheckbox.isFocused()) {
+                sansAssuranceCheckbox.setSelected(false);
+            } else if (sansAssuranceCheckbox.isFocused()) {
+                avecAssuranceRenfCheckbox.setSelected(false);
+            }
+        }
+    }
+
     private void updateInputFields(Adherent adherent) {
         nomField.setText(adherent.getNom());
         prenomField.setText(adherent.getPrenom());
