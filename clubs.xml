@@ -48,36 +48,4 @@
         <mail>gaecdelahaye.grosse@wanadoo.fr</mail>
         <site>http://www.pont-a-mousson-escrime.info/</site>
     </club>
-    <club id="7">
-        <nom>ESCRIME SEICHAMPS ST-MAX ESSEY</nom>
-        <adresse>16 rue de preny 54420 PULNOY</adresse>
-        <contact>M. KUJAWA Patrick</contact>
-        <tel>06.66.15.60.01</tel>
-        <mail>patrick.escrime54@orange.fr</mail>
-        <site>https://www.esseylesnancy.fr/contacts/escrime-seichampssaint-maxessey</site>
-    </club>
-    <club id="8">
-        <nom>C.E DE TOUL ESCRIME</nom>
-        <adresse>1 rue Thiebauclos 54570 FOUG</adresse>
-        <contact>M. BAUDINO Georges</contact>
-        <tel>03.83.62.71.01</tel>
-        <mail>louescrime@yahoo.fr</mail>
-        <site>http://toulescrime.free.fr/</site>
-    </club>
-    <club id="9">
-        <nom>C.E DU PAYS HAUT</nom>
-        <adresse>12 allée des Tulipes 54190 VILLERUPT</adresse>
-        <contact>M. BUCHERT Jean-Marie</contact>
-        <tel>03.82.89.28.51</tel>
-        <mail>jmariebucher@hotmail.com</mail>
-        <site></site>
-    </club>
-    <club id="10">
-        <nom>OMNISPORTS FROUARD/POMPEY</nom>
-        <adresse>23 rue du Stade 54670 MILLERY</adresse>
-        <contact>M. GAILLET Gérard</contact>
-        <tel>03.83.24.67.62</tel>
-        <mail>gaillet.mangenot@yahoo.fr</mail>
-        <site>https://www.omnisportsfrouardpompey.fr/category/nos-sections/section-escrime/</site>
-    </club>
 </clubs>
