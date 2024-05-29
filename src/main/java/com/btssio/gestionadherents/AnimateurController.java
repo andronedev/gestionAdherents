@@ -3,6 +3,7 @@ import com.btssio.models.adherent.Adherent;
 import com.btssio.models.adherent.AdherentManager;
 import com.btssio.models.animateur.Animateur;
 import com.btssio.models.animateur.AnimateurManager;
+import com.btssio.models.tarif.Categorie;
 import com.btssio.models.tarif.TarifManager;
 import jakarta.xml.bind.JAXBException;
 import javafx.collections.FXCollections;
@@ -49,8 +50,6 @@ public class AnimateurController {
     @FXML
     private TextField adressePostaleField;
 
-    @FXML
-    private TextField categorieEleveSuivieField;
 
     @FXML
     private TextField searchField;
@@ -75,6 +74,8 @@ public class AnimateurController {
     @FXML
     private CheckBox sabreCheckBox;
 
+    @FXML
+    private ChoiceBox categorieEleveSuivieChoiceBox;
 
     public void initialize() {
         // Ajouter un écouteur à la sélection de la table
@@ -99,6 +100,24 @@ public class AnimateurController {
 
         // Mettre à jour la table avec la liste des animateurs
         updateAnimateursTable();
+
+
+        try {
+            // load ChoiceBox with categories of Tarif
+            TarifManager tarifManager = new TarifManager();
+            tarifManager.loadFromXml("tarifs.xml");
+            List<String> categories = new ArrayList<>();
+            for (Categorie categorie : tarifManager.getCategories()) {
+                categories.add(categorie.getNom());
+            }
+            ObservableList<String> observableCategories = FXCollections.observableArrayList(categories);
+            categorieEleveSuivieChoiceBox.setItems(observableCategories);
+
+
+        }catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
@@ -133,7 +152,8 @@ public class AnimateurController {
                 sabreCheckBox.setSelected(true);
                 break;
         }
-        categorieEleveSuivieField.setText(animateur.getCategorieEleveSuivie());
+        categorieEleveSuivieChoiceBox.setValue(animateur.getCategorieEleveSuivie());
+
     }
 
     public void updateAnimateursTable() {
@@ -156,7 +176,7 @@ public class AnimateurController {
                 prenomField.getText(),
                 adressePostaleField.getText(),
                 arme,
-                categorieEleveSuivieField.getText()
+                categorieEleveSuivieChoiceBox.getValue().toString()
         );
         listeAnimateurs.add(newAnimateur);
         updateAnimateursTable();
@@ -180,7 +200,7 @@ public class AnimateurController {
             selectedAnimateur.setPrenom(prenomField.getText());
             selectedAnimateur.setAdressePostale(adressePostaleField.getText());
             selectedAnimateur.setArme(arme);
-            selectedAnimateur.setCategorieEleveSuivie(categorieEleveSuivieField.getText());
+            selectedAnimateur.setCategorieEleveSuivie(categorieEleveSuivieChoiceBox.getValue().toString());
             updateAnimateursTable();
             handleClearAction();
             animateursTable.refresh();
@@ -207,7 +227,7 @@ public class AnimateurController {
         fleuretCheckBox.setSelected(false);
         epeeCheckBox.setSelected(false);
         sabreCheckBox.setSelected(false);
-        categorieEleveSuivieField.clear();
+        categorieEleveSuivieChoiceBox.getSelectionModel().clearSelection();
         animateursTable.getSelectionModel().clearSelection();
     }
 
