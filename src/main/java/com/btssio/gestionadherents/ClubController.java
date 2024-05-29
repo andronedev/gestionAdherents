@@ -178,6 +178,26 @@ public class ClubController {
     }
 
     @FXML
+    public void handleGoToAnimateursView(ActionEvent actionEvent) {
+        try {
+            // Chargez la vue des animateurs FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("animateur-view.fxml"));
+            Parent animateursView = loader.load();
+
+            // Configurez la scène et la fenêtre pour afficher la vue des animateurs
+            Scene currentScene = mainMenuBar.getScene(); // Obtenez la scène actuelle via mainMenuBar
+            Stage window = (Stage) currentScene.getWindow(); // Obtenez la fenêtre (Stage) associée à la scène
+            window.setScene(new Scene(animateursView));
+            window.show();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+            // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+
+        }
+    }
+
+    @FXML
     private void handleGeneratePDF(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Enregistrer le PDF");

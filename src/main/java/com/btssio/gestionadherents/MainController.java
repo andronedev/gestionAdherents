@@ -35,6 +35,9 @@ public class MainController {
     private TableColumn<Adherent, String> prenomColumn;
 
     @FXML
+    private TableColumn<Adherent, Integer> classementNationalColumn;
+
+    @FXML
     private TableColumn<Adherent, String> adresseColumn;
 
     @FXML
@@ -105,6 +108,9 @@ public class MainController {
 
     @FXML
     private TextField prenomField;
+
+    @FXML
+    private TextField classementNationalField;
 
     @FXML
     private TextField emailField;
@@ -202,6 +208,8 @@ public class MainController {
                 updateInputFields(newSelection);
             }
         });
+        // by default order by nom et prenom asc
+        adherentsTable.getSortOrder().add(nomColumn);
     }
 
     @FXML
@@ -230,6 +238,7 @@ public class MainController {
     private void updateInputFields(Adherent adherent) {
         nomField.setText(adherent.getNom());
         prenomField.setText(adherent.getPrenom());
+        classementNationalField.setText(String.valueOf(adherent.getClassementNational()));
         emailField.setText(adherent.getEmail());
         telephoneField.setText(adherent.getTelephone());
         adresseField.setText(adherent.getAdresse());
@@ -269,6 +278,7 @@ public class MainController {
 
         nomColumn.setCellValueFactory(new PropertyValueFactory<>("nom"));
         prenomColumn.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        classementNationalColumn.setCellValueFactory(new PropertyValueFactory<>("classementNational"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         telephoneColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -305,6 +315,7 @@ public class MainController {
             // Mettre à jour l'adhérent sélectionné avec les valeurs des champs d'entrée
             selectedAdherent.setNom(nomField.getText());
             selectedAdherent.setPrenom(prenomField.getText());
+            selectedAdherent.setClassementNational(Integer.parseInt(classementNationalField.getText()));
             selectedAdherent.setEmail(emailField.getText());
             selectedAdherent.setTelephone(telephoneField.getText());
             selectedAdherent.setAdresse(adresseField.getText());
@@ -466,6 +477,7 @@ public class MainController {
     public void handleClearAction() {
         nomField.setText("");
         prenomField.setText("");
+        classementNationalField.setText("");
         emailField.setText("");
         telephoneField.setText("");
         adresseField.setText("");
@@ -614,6 +626,25 @@ public class MainController {
             // Handle the exception, maybe log it or show an error message
         } catch (JAXBException e) {
             throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    public void handleGoToAnimateursView(ActionEvent actionEvent) {
+        try {
+            // Chargez la vue des animateurs FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("animateur-view.fxml"));
+            Parent animateursView = loader.load();
+
+            // Configurez la scène et la fenêtre pour afficher la vue des animateurs
+            Scene currentScene = mainMenuBar.getScene(); // Obtenez la scène actuelle via mainMenuBar
+            Stage window = (Stage) currentScene.getWindow(); // Obtenez la fenêtre (Stage) associée à la scène
+            window.setScene(new Scene(animateursView));
+            window.show();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+            // Gérez l'exception, peut-être la loguer ou afficher un message d'erreur
+
         }
     }
 

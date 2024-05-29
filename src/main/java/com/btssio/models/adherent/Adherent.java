@@ -24,6 +24,7 @@ public class Adherent {
     private double montantOption;
     private double montantTotal;
     private String categorieName;
+    private int classementNational; // Ajout de l'attribut classementNational
 
     private String nomNaissance;
     private String genre; // Peut être "Masculin" ou "Féminin", à déterminer en fonction de la logique de l'application
@@ -48,7 +49,7 @@ public class Adherent {
                     LocalDate dateInscription, LocalDate dateFinAdhesion, double montantAdhesion, double montantDon,
                     double montantTotal, String categorieName, String nomNaissance, String genre, String PaysVilleNaissance,
                     String nationalite, String codePostal, String ville, String deuxiemeTelephone,
-                    List<String> armes, String pratique, String lateralite, String responsableLegal , boolean sansAssurance, boolean avecAssurance, boolean carte10Seances , int nbAdherents) {
+                    List<String> armes, String pratique, String lateralite, String responsableLegal , boolean sansAssurance, boolean avecAssurance, boolean carte10Seances , int nbAdherents, int classementNational) {
         this.email = email;
         this.telephone = telephone;
         this.nom = nom;
@@ -78,12 +79,22 @@ public class Adherent {
         this.avecAssurance = avecAssurance;
         this.carte10Seances = carte10Seances;
         this.nbAdherents = nbAdherents;
+        this.classementNational = classementNational;
     }
 
     public Adherent() {
     }
 
     // Getters et Setters pour chaque attribut
+    @XmlElement
+    public int getClassementNational() {
+        return classementNational;
+    }
+
+    public void setClassementNational(int classementNational) {
+        this.classementNational = classementNational;
+    }
+
     @XmlElement
     public String getEmail() {
         return email;

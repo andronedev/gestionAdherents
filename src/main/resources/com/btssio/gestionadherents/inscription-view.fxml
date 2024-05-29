@@ -18,6 +18,9 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleGoToMainView" text="Ouvrir Gestion Adhérent" />
                     </items>
                 </Menu>
+                <Menu mnemonicParsing="false" text="Animateurs">
+                    <MenuItem mnemonicParsing="false" onAction="#handleGoToAnimateursView" text="Gestion Animateur" />
+                </Menu>
                 <Menu mnemonicParsing="false" text="Clubs">
                 <MenuItem mnemonicParsing="false" onAction="#handleGoToClubsView" text="Annuaire Association" />
                 </Menu>
