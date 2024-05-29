@@ -50,9 +50,6 @@ public class AnimateurController {
     private TextField adressePostaleField;
 
     @FXML
-    private TextField armeField;
-
-    @FXML
     private TextField categorieEleveSuivieField;
 
     @FXML
@@ -64,7 +61,19 @@ public class AnimateurController {
 
     @FXML
     private TarifManager tarifManager;
+
+    @FXML
     private List<Adherent> listeAdherents;
+
+
+    @FXML
+    private CheckBox fleuretCheckBox;
+
+    @FXML
+    private CheckBox epeeCheckBox;
+
+    @FXML
+    private CheckBox sabreCheckBox;
 
 
     public void initialize() {
@@ -92,11 +101,38 @@ public class AnimateurController {
         updateAnimateursTable();
     }
 
+
+
+    @FXML
+    private void handleArmeSelection() {
+        if (fleuretCheckBox.isFocused()) {
+            epeeCheckBox.setSelected(false);
+            sabreCheckBox.setSelected(false);
+        } else if (epeeCheckBox.isFocused()) {
+            fleuretCheckBox.setSelected(false);
+            sabreCheckBox.setSelected(false);
+        } else if (sabreCheckBox.isFocused()) {
+            fleuretCheckBox.setSelected(false);
+            epeeCheckBox.setSelected(false);
+        }
+    }
+
+
     private void updateInputFields(Animateur animateur) {
         nomField.setText(animateur.getNom());
         prenomField.setText(animateur.getPrenom());
         adressePostaleField.setText(animateur.getAdressePostale());
-        armeField.setText(animateur.getArme());
+        switch (animateur.getArme()) {
+            case "Fleuret":
+                fleuretCheckBox.setSelected(true);
+                break;
+            case "Épée":
+                epeeCheckBox.setSelected(true);
+                break;
+            case "Sabre":
+                sabreCheckBox.setSelected(true);
+                break;
+        }
         categorieEleveSuivieField.setText(animateur.getCategorieEleveSuivie());
     }
 
@@ -107,11 +143,19 @@ public class AnimateurController {
 
     @FXML
     public void handleAddAction() {
+        String arme = "";
+        if (fleuretCheckBox.isSelected()) {
+            arme = "Fleuret";
+        } else if (epeeCheckBox.isSelected()) {
+            arme = "Épée";
+        } else if (sabreCheckBox.isSelected()) {
+            arme = "Sabre";
+        }
         Animateur newAnimateur = new Animateur(
                 nomField.getText(),
                 prenomField.getText(),
                 adressePostaleField.getText(),
-                armeField.getText(),
+                arme,
                 categorieEleveSuivieField.getText()
         );
         listeAnimateurs.add(newAnimateur);
@@ -124,10 +168,18 @@ public class AnimateurController {
     public void handleEditAction() {
         Animateur selectedAnimateur = animateursTable.getSelectionModel().getSelectedItem();
         if (selectedAnimateur != null) {
+            String arme = "";
+            if (fleuretCheckBox.isSelected()) {
+                arme = "Fleuret";
+            } else if (epeeCheckBox.isSelected()) {
+                arme = "Épée";
+            } else if (sabreCheckBox.isSelected()) {
+                arme = "Sabre";
+            }
             selectedAnimateur.setNom(nomField.getText());
             selectedAnimateur.setPrenom(prenomField.getText());
             selectedAnimateur.setAdressePostale(adressePostaleField.getText());
-            selectedAnimateur.setArme(armeField.getText());
+            selectedAnimateur.setArme(arme);
             selectedAnimateur.setCategorieEleveSuivie(categorieEleveSuivieField.getText());
             updateAnimateursTable();
             handleClearAction();
@@ -152,7 +204,9 @@ public class AnimateurController {
         nomField.clear();
         prenomField.clear();
         adressePostaleField.clear();
-        armeField.clear();
+        fleuretCheckBox.setSelected(false);
+        epeeCheckBox.setSelected(false);
+        sabreCheckBox.setSelected(false);
         categorieEleveSuivieField.clear();
         animateursTable.getSelectionModel().clearSelection();
     }
