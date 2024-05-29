@@ -193,6 +193,8 @@ public class MainController {
     @FXML
     private CheckBox avec10SeanceCheckbox;
 
+    @FXML
+    private Button resetFilterButton;
 
     @FXML
     private TextField responsableLegalField;
@@ -210,6 +212,10 @@ public class MainController {
         });
         // by default order by nom et prenom asc
         adherentsTable.getSortOrder().add(nomColumn);
+        resetFilterButton.setOnAction(event -> {
+            adherentsTable.getSortOrder().clear();
+            adherentsTable.getSortOrder().add(nomColumn);
+        });
     }
 
     @FXML

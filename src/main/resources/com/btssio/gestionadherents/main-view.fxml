@@ -146,4 +146,5 @@
             </AnchorPane>
         </content>
     </ScrollPane>
+   <Button layoutX="659.0" layoutY="41.0" mnemonicParsing="false" text="Réinitialiser ordre" fx:id="resetFilterButton"/>
 </Pane>
